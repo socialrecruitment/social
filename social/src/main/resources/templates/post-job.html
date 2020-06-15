@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<html lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:width="http://www.w3.org/1999/xhtml"
+      xmlns:margin="http://www.w3.org/1999/xhtml">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="description" content="jobguru | Job Board HTML Templates from Themescare">
+   <meta name="keyword" content="Job, freelancer, employee, marketplace">
+   <meta name="author" content="Themescare">
+   <!--Bootstrap css-->
+   <link rel="stylesheet" href="/css/bootstrap.css">
+   <!--Font Awesome css-->
+   <link rel="stylesheet" href="/css/font-awesome.min.css">
+   <!--Magnific css-->
+   <link rel="stylesheet" href="/css/magnific-popup.css">
+   <!--Owl-Carousel css-->
+   <link rel="stylesheet" href="/css/owl.carousel.min.css">
+   <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+   <!--Animate css-->
+   <link rel="stylesheet" href="/css/animate.min.css">
+   <!--Select2 css-->
+   <link rel="stylesheet" href="/css/select2.min.css">
+   <!--Slicknav css-->
+   <link rel="stylesheet" href="/css/slicknav.min.css">
+   <!--Bootstrap-Datepicker css-->
+   <link rel="stylesheet" href="/css/bootstrap-datepicker.min.css">
+   <!--Jquery UI css-->
+   <link rel="stylesheet" href="/css/jquery-ui.min.css">
+   <!--Perfect-Scrollbar css-->
+   <link rel="stylesheet" href="/css/perfect-scrollbar.min.css">
+   <!--Site Main Style css-->
+   <link rel="stylesheet" href="/css/style.css">
+   <!--Responsive css-->
+   <link rel="stylesheet" href="/css/responsive.css">
+   <!--layui-->
+   <link rel="stylesheet" href="../layui/css/layui.css">
+</head>
+<body>
+
+<!-- 导航栏开始 -->
+<header class="jobguru-header-area stick-top forsticky" th:replace="head::myMenu">
+</header>
+<!-- 导航栏结束-->
+
+<!-- 发布工作标题开始 -->
+<section class="jobguru-breadcromb-area">
+   <div class="breadcromb-top section_100">
+      <div class="container">
+         <div class="row">
+
+            <div class="col-md-12">
+               <div class="breadcromb-box">
+                  <h3>发布工作</h3>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+</section>
+<!--发布工作标题结束 -->
+
+<!-- 发布工作开始 -->
+<section class="candidate-dashboard-area section_70">
+   <div class="container">
+      <div class="row" >
+         <div class="col-md-12 col-lg-3 dashboard-left-border" th:replace="head::mycomDashboard">
+         </div>
+         <div class="col-md-12 col-lg-9">
+            <div class="dashboard-right">
+               <div class="earnings-page-box manage-jobs">
+                  <div class="manage-jobs-heading">
+                     <h3>发布新工作</h3>
+                  </div>
+                  <div class="new-job-submission">
+                     <form class="layui-form" method="POST" th:action="@{/user/postjob}" enctype="multipart/form-data">
+                        <div class="resume-box">
+                           <div class="single-resume-feild feild-flex-2">
+                              <div class="layui-form-item" hidden>
+                                 <label for="company_id" class="layui-form-label">公司ID:</label>
+                                 <div class="layui-input-block">
+                                    <input name="company_id" class="layui-input" type="text" placeholder="" autocomplete="off" id="company_id" lay-verify="title">
+                                 </div>
+                              </div>
+
+                              <div class="layui-form-item" hidden>
+                                 <label for="job_id">职位ID:</label>
+                                 <div class="layui-input-block">
+                                    <input name="job_id" class="layui-input" type="text" placeholder="" autocomplete="off" id="job_id" lay-verify="title">
+                                 </div>
+                              </div>
+
+                              <div class="layui-form-item" >
+                                 <label for="job_name" class="layui-form-label">职位:</label>
+                                 <div class="layui-input-block">
+                                    <input name="job_name" class="layui-input" type="text" placeholder="" autocomplete="off" id="job_name" lay-verify="title">
+                                 </div>
+                              </div>
+
+                              <div class="layui-form-item" >
+                                 <label for="company_location" class="layui-form-label">地点:</label>
+                                 <div class="layui-input-block">
+                                    <input name="company_location" class="layui-input" type="text" placeholder="公司地点" autocomplete="off" id="company_location" lay-verify="title">
+                                 </div>
+                              </div>
+
+                           </div>
+                           <div class="single-resume-feild feild-flex-2">
+                              <div class="layui-form-item" >
+                                 <label for="company_city" class="layui-form-label">城市:</label>
+                                 <div class="layui-input-block">
+                                    <input name="company_city" class="layui-input" type="text" placeholder="工作城市" autocomplete="off" id="company_city" lay-verify="title">
+                                 </div>
+                              </div>
+
+                              <div class="layui-form-item" >
+                                 <label for="company_type" class="layui-form-label">类型:</label>
+                                 <div class="layui-input-block">
+                                    <input name="company_type" class="layui-input" type="text" placeholder="请输入公司类型" autocomplete="off" id="company_type" lay-verify="title">
+                                 </div>
+                              </div>
+
+                           </div>
+                           <div class="single-resume-feild feild-flex-2">
+                              <div class="layui-form-item" >
+                              <label for="company_industry" class="layui-form-label">行业:</label>
+                              <div class="layui-input-block">
+                                 <input name="company_industry" class="layui-input" type="text" placeholder="" autocomplete="off" id="company_industry" lay-verify="title">
+                              </div>
+                              </div>
+
+                              <div class="layui-form-item" >
+                                 <label for="education_required" class="layui-form-label">学历:</label>
+                                 <div class="layui-input-block">
+                                    <input name="education_required" class="layui-input" type="text" placeholder="请输入学历要求" autocomplete="off" id="education_required" lay-verify="title">
+                                 </div>
+                              </div>
+
+                           </div>
+                           <div class="single-resume-feild feild-flex-2">
+                              <div class="layui-form-item" >
+                                 <label for="job_experience" class="layui-form-label">经验:</label>
+                                 <div class="layui-input-block">
+                                    <input name="job_experience" class="layui-input" type="text" placeholder="请输入工作经验要求" autocomplete="off" id="job_experience" lay-verify="title">
+                                 </div>
+                              </div>
+
+                           </div>
+                           <div class="single-resume-feild">
+                              <div class="layui-form-item layui-form-text">
+                                  <label for="job_information"  class="layui-form-label" lay-filter="formDemo">描述:</label>
+                                  <div class="layui-input-block">
+                                     <textarea name="job_information" placeholder="请输入具体的职位描述" class="layui-textarea" id="job_information"></textarea>
+                                    </div>
+                                  </div>
+                           </div>
+                        </div>
+                              <div class="layui-form-item">
+                                 <div class="layui-input-block">
+                                    <button class="layui-btn" lay-submit lay-filter="formDemo">职位发布</button>
+                                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                 </div>
+                              </div>
+<!--                        <div class="single-input submit-resume">-->
+<!--                           <button type="submit">职位发布</button>-->
+<!--                        </div>-->
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+</section>
+<!-- 发布工作 结束 -->
+<!-- 底部菜单项开始 -->
+<footer class="jobguru-footer-area" th:replace="head::myunder">
+</footer>
+<!--底部菜单项结束 -->
+<!--layui-->
+<script src="../layui/layui.js"></script>
+
+<!--Jquery js-->
+<script src="/js/jquery-3.0.0.min.js"></script>
+<!--Popper js-->
+<script src="/js/popper.min.js"></script>
+<!--Bootstrap js-->
+<script src="/js/bootstrap.min.js"></script>
+<!--Bootstrap Datepicker js-->
+<script src="/js/bootstrap-datepicker.min.js"></script>
+<!--Perfect Scrollbar js-->
+<script src="/js/jquery-perfect-scrollbar.min.js"></script>
+<!--Owl-Carousel js-->
+<script src="/js/owl.carousel.min.js"></script>
+<!--SlickNav js-->
+<script src="/js/jquery.slicknav.min.js"></script>
+<!--Magnific js-->
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<!--Select2 js-->
+<script src="/js/select2.min.js"></script>
+<!--jquery-ui js-->
+<script src="/js/jquery-ui.min.js"></script>
+<!--Main js-->
+<script src="/js/main.js"></script>
+</body>
+</html>
+

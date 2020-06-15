@@ -1,0 +1,505 @@
+
+<!DOCTYPE html>
+<html lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="jobguru | Job Board HTML Templates from Themescare">
+    <meta name="keyword" content="Job, freelancer, employee, marketplace">
+    <meta name="author" content="Themescare">
+    <!-- Title -->
+    <title>jobguru</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+    <!--Bootstrap css-->
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <!--Font Awesome css-->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <!--Magnific css-->
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+    <!--Owl-Carousel css-->
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+    <!--Animate css-->
+    <link rel="stylesheet" href="/css/animate.min.css">
+    <!--Select2 css-->
+    <link rel="stylesheet" href="/css/select2.min.css">
+    <!--Slicknav css-->
+    <link rel="stylesheet" href="/css/slicknav.min.css">
+    <!--Bootstrap-Datepicker css-->
+    <link rel="stylesheet" href="/css/bootstrap-datepicker.min.css">
+    <!--Jquery UI css-->
+    <link rel="stylesheet" href="/css/jquery-ui.min.css">
+    <!--Perfect-Scrollbar css-->
+    <link rel="stylesheet" href="/css/perfect-scrollbar.min.css">
+    <!--Site Main Style css-->
+    <link rel="stylesheet" href="/css/style.css">
+    <!--Responsive css-->
+    <link rel="stylesheet" href="/css/responsive.css">
+
+    <link href="/css/bootstrap.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<!-- 导航栏开始 -->
+<header class="jobguru-header-area stick-top forsticky" th:replace="head::myMenu">
+</header>
+<!-- 导航栏结束 -->
+<!--报告分析开始-->
+<section class="jobguru-categories-area section_70">
+    <div class="container">
+<!--        学历-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card p-4">
+                    <div>图表显示<strong>[[${job_name}]]</strong>职位的学历要求占比和工作经验要求占比
+                    </div>
+                    <div id="edu" style="width: 600px;height:450px;"></div>
+                    <div id="exp" style="width: 600px;height:450px;"></div>
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+                    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=xfhhaTThl11qYVrqLZii6w8qE5ggnhrY&__ec_v__=20190126"></script>
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+                    <script type="text/javascript">
+                            var dom = document.getElementById("edu");
+                            var myChart = echarts.init(dom);
+                            var app = {};
+                            var titleE =[];
+                            option = null;
+                            app.title = '';
+                            var info='';
+                            var index=0;
+                            var onex="";
+                            var ee = "[[${Edu}]]";
+                            //aa = aa.substr(1,aa.length);
+                            var len = 10;
+                            for(var i=1;i<=len;i++){
+                                info += "第"+i+"次：&nbsp;&nbsp;&nbsp;";
+                                index = ee.indexOf(',');
+                                if(len==i){
+                                    onex = ee.substring(0,ee.length-1);
+                                }else{
+                                    onex = ee.substring(0,index);
+                                }
+                                info +="aa1:  "+ee;
+                                info +="&nbsp;&nbsp;&nbsp; onex: "+onex+"<br/>";
+                                ee = ee.substr(index+1,ee.length);
+                                titleE.push(onex);
+                            }
+                            option = null;
+                            option = {
+                                title : {
+                                    text: '[[${job_name}]]职位的学历要求占比',
+                                    x:'center'
+                                },
+                                tooltip : {
+                                    trigger: 'item',
+                                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                                },
+                                legend: {
+                                    orient: 'vertical',
+                                    left: 'left',
+                                    data: titleE
+                                },
+                                series : [
+                                    {
+                                        name: '学历占比',
+                                        type: 'pie',
+                                        radius : '55%',
+                                        center: ['50%', '60%'],
+                                        data: [{value:[[${Edunum1}]],name:'高中'},
+                                            {value:[[${Edunum2}]],name:'中专'},
+                                            {value:[[${Edunum3}]],name:'大专'},
+                                            {value:[[${Edunum4}]],name:'本科'},
+                                            {value:[[${Edunum5}]],name:'硕士'},
+                                            {value:[[${Edunum6}]],name:'博士'},
+                                            {value:[[${Edunum7}]],name:'无'}
+                                        ],
+                                        itemStyle: {
+                                            emphasis: {
+                                                shadowBlur: 10,
+                                                shadowOffsetX: 0,
+                                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                            }
+                                        }
+                                    }
+                                ]
+                            };
+                            ;
+                            if (option && typeof option === "object") {
+                                myChart.setOption(option, true);
+                            }
+                        </script><script type="text/javascript">
+                            var dom = document.getElementById("exp");
+                            var myChart = echarts.init(dom);
+                            var app = {};
+                            var titleF =[];
+                            option = null;
+                            app.title = '';
+                            var info='';
+                            var index=0;
+                            var onex="";
+                            var ff = "[[${Edu}]]";
+                            //aa = aa.substr(1,aa.length);
+                            var len = 10;
+                            for(var i=1;i<=len;i++){
+                                info += "第"+i+"次：&nbsp;&nbsp;&nbsp;";
+                                index = ff.indexOf(',');
+                                if(len==i){
+                                    onex = ff.substring(0,ff.length-1);
+                                }else{
+                                    onex = ff.substring(0,index);
+                                }
+                                info +="aa1:  "+ff;
+                                info +="&nbsp;&nbsp;&nbsp; onex: "+onex+"<br/>";
+                                ff = ff.substr(index+1,ff.length);
+                                titleF.push(onex);
+                            }
+                            option = null;
+                            option = {
+                                title : {
+                                    text: '[[${job_name}]]职位的工作经验占比',
+                                    x:'center'
+                                },
+                                tooltip : {
+                                    trigger: 'item',
+                                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                                },
+                                legend: {
+                                    x : 'center',
+                                    y : 'bottom',
+                                    data:titleF
+                                },
+                                toolbox: {
+                                    show : true,
+                                    feature : {
+                                        mark : {show: true},
+                                        dataView : {show: true, readOnly: false},
+                                        magicType : {
+                                            show: true,
+                                            type: ['pie', 'funnel']
+                                        },
+                                        restore : {show: true},
+                                        saveAsImage : {show: true}
+                                    }
+                                },
+                                calculable : true,
+                                series :
+                                    {
+                                        name:'工作经验占比',
+                                        type:'pie',
+                                        radius : [30, 110],
+                                        center : ['75%', '50%'],
+                                        roseType : 'area',
+                                        data:[{value:[[${expn1}]],name:'1年经验'},
+                                            {value:[[${expn2}]],name:'2年经验'},
+                                            {value:[[${expn3}]],name:'3-4年经验'},
+                                            {value:[[${expn4}]],name:'5-7年经验'},
+                                            {value:[[${expn5}]],name:'8-9年经验'},
+                                            {value:[[${expn6}]],name:'10年以上经验'},
+                                            {value:[[${expn7}]],name:'无工作经验'},
+                                            {value:[[${expn8}]],name:'其他'}
+                                        ]
+                                    }
+                            };
+                            ;
+                            if (option && typeof option === "object") {
+                                myChart.setOption(option, true);
+                            }
+                        </script>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        <div class="col-md-12">
+                <div class="card p-4">
+                    <div>图表显示<strong>[[${city}]]</strong>等城市<strong>[[${job_name}]]</strong>职位的发布数量
+                    </div>
+                    <div id="main1" style="width: 800px;height:500px;"></div>
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+                    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=x96lvzsWMdYmoZ2jrmXzMtOYNozXzrZV&__ec_v__=20191217"></script>
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+                    <script type="text/javascript">
+                        var dom = document.getElementById("main1");
+                        var myChart = echarts.init(dom);
+                        var titleA =[];
+                        var info='';
+                        var index=0;
+                        var onex="";
+                        var aa = "[[${city}]]";
+                        //aa = aa.substr(1,aa.length);
+                        var len = 10;
+                        for(var i=1;i<=len;i++){
+                            info += "第"+i+"次：&nbsp;&nbsp;&nbsp;";
+                            index = aa.indexOf(',');
+                            if(len==i){
+                                onex = aa.substring(0,aa.length-1);
+                            }else{
+                                onex = aa.substring(0,index);
+                            }
+                            info +="aa:  "+aa;
+                            info +="&nbsp;&nbsp;&nbsp; onex: "+onex+"<br/>";
+                            aa = aa.substr(index+1,aa.length);
+                            titleA.push(onex);
+                        }
+
+                        var app = {};
+                        option = null;
+                        app.title = '坐标轴刻度与标签对齐';
+
+                        option = {
+                            title: {
+                                text: '热门城市的该职位发布数量'
+                            },
+                            color: ['#91db8c'],
+                            tooltip : {
+                                trigger: 'axis',
+                                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                                    type : 'line'        // 默认为直线，可选为：'line' | 'shadow'
+                                }
+                            },
+                            grid: {
+                                left: '3%',
+                                right: '4%',
+                                bottom: '3%',
+                                containLabel: true
+                            },
+                            xAxis : [
+                                {
+                                    type : 'category',
+                                    data : titleA,
+                                    axisTick: {
+                                        alignWithLabel: true
+                                    }
+                                }
+                            ],
+                            yAxis : [
+                                {
+                                    type : 'value'
+                                }
+                            ],
+                            series : [
+                                {
+                                    name:'招聘发布数量',
+                                    type:'line',
+                                    barWidth: '30%',
+                                    data:[[${jobnum}]]
+                                }
+                            ]
+                        };
+                        ;
+                        if (option && typeof option === "object") {
+                            myChart.setOption(option, true);
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+            <div class="card p-4">
+                <div >图表显示<strong>[[${job_name}]]</strong>职位按工资排序的信息</div>
+                <table class="table table-hover">
+                    <tr class="success">
+                        <th>编号</th>
+                        <th>职位名</th>
+                        <th>公司名</th>
+                        <th>薪水</th>
+                        <th>学历要求</th>
+                        <th>公司所在地</th>
+                        <th>公司类型</th>
+                        <th>发布日期</th>
+                        <th>详情</th>
+                    </tr>
+                    <tr th:each="RecruitmentInfo,userStat:${list1}">
+                        <td th:text="${userStat.index+1}">abc</td>
+                        <td th:text="${RecruitmentInfo.job_name}">abc</td>
+                        <td th:text="${RecruitmentInfo.company_name}">abc</td>
+
+                        <td th:text="${RecruitmentInfo.salary}">abc</td>
+                        <td th:text="${RecruitmentInfo.education_required}">abc</td>
+                        <td th:text="${RecruitmentInfo.company_location}">abc</td>
+                        <td th:text="${RecruitmentInfo.company_type}">abc</td>
+                        <td th:text="${#dates.format(RecruitmentInfo.postdate,'yyyy/MM/dd')}">abc</td>
+                        <td>
+                            <a th:href="${RecruitmentInfo.company_link}"  role="button">更多</a>
+                        </td>
+                    </tr>
+                </table>
+            </div></div></div>
+
+        <div class="row">
+            <div class="col-md-12">
+            <div class="card p-4">
+                <div >图表显示六大热门职位<strong>[[${topjobname}]]</strong>近七天的职位发布数量变动趋势。</div>
+                <div id="main4" style="width: 800px;height:500px; "></div>
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+                <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=x96lvzsWMdYmoZ2jrmXzMtOYNozXzrZV&__ec_v__=20191217"></script>
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+                <script type="text/javascript">
+                    var dom = document.getElementById("main4");
+                    var myChart = echarts.init(dom);
+                    var app = {};
+                    option = null;
+
+                    option = {
+
+                        tooltip: {
+                            trigger: 'axis'
+                        },
+                        legend: {
+                            data:['记者','销售经理','微信运营','电话客服','新媒体运营','市场营销']
+                        },
+                        grid: {
+                            left: '3%',
+                            right: '4%',
+                            bottom: '3%',
+                            containLabel: true
+                        },
+                        toolbox: {
+                            feature: {
+                                saveAsImage: {}
+                            }
+                        },
+                        xAxis: {
+                            type: 'category',
+                            boundaryGap: false,
+                            data: ['2019-12-12','2019-12-13','2019-12-14','2019-12-15','2019-12-16','2019-12-17','2019-12-18']
+                        },
+                        yAxis: {
+                            type: 'value'
+                        },
+                        series: [
+                            {
+                                name:'记者',
+                                type:'line',
+                                stack: '总量',
+                                data:[{value:[[${kf1}]],name:"1"},
+                                    {value:[[${kf2}]],name:"1"},
+                                    {value:[[${kf3}]],name:"1"},
+                                    {value:[[${kf4}]],name:"1"},
+                                    {value:[[${kf5}]],name:"1"},
+                                    {value:[[${kf6}]],name:"1"},
+                                    {value:[[${kf7}]],name:"1"}]
+                            },
+                            {
+                                name:'销售经理',
+                                type:'line',
+                                stack: '总量',
+                                data:[{value:[[${xs1}]],name:"1"},
+                                    {value:[[${xs2}]],name:"1"},
+                                    {value:[[${xs3}]],name:"1"},
+                                    {value:[[${xs4}]],name:"1"},
+                                    {value:[[${xs5}]],name:"1"},
+                                    {value:[[${xs6}]],name:"1"},
+                                    {value:[[${xs7}]],name:"1"}]
+                            },
+                            {
+                                name:'微信运营',
+                                type:'line',
+                                stack: '总量',
+                                data:[{value:[[${sj1}]],name:"1"},
+                                    {value:[[${sj2}]],name:"1"},
+                                    {value:[[${sj3}]],name:"1"},
+                                    {value:[[${sj4}]],name:"1"},
+                                    {value:[[${sj5}]],name:"1"},
+                                    {value:[[${sj6}]],name:"1"},
+                                    {value:[[${sj7}]],name:"1"}]
+                            },
+                            {
+                                name:'电话客服',
+                                type:'line',
+                                stack: '总量',
+                                data:[{value:[[${ui1}]],name:"1"},
+                                    {value:[[${ui2}]],name:"1"},
+                                    {value:[[${ui3}]],name:"1"},
+                                    {value:[[${ui4}]],name:"1"},
+                                    {value:[[${ui5}]],name:"1"},
+                                    {value:[[${ui6}]],name:"1"},
+                                    {value:[[${ui7}]],name:"1"}]
+                            },
+                            {
+                                name:'新媒体运营',
+                                type:'line',
+                                stack: '总量',
+                                data:[{value:[[${soft1}]],name:"1"},
+                                    {value:[[${soft2}]],name:"1"},
+                                    {value:[[${soft3}]],name:"1"},
+                                    {value:[[${soft4}]],name:"1"},
+                                    {value:[[${soft5}]],name:"1"},
+                                    {value:[[${soft6}]],name:"1"},
+                                    {value:[[${soft7}]],name:"1"}]
+                            },
+                            {
+                                name:'市场营销',
+                                type:'line',
+                                stack: '总量',
+                                data:[
+                                    {value:[[${java1}]],name:"1"},
+                                    {value:[[${java2}]],name:"1"},
+                                    {value:[[${java3}]],name:"1"},
+                                    {value:[[${java4}]],name:"1"},
+                                    {value:[[${java5}]],name:"1"},
+                                    {value:[[${java6}]],name:"1"},
+                                    {value:[[${java7}]],name:"1"}]
+                            }
+                        ],
+                        title: {
+                            text: '热门职位发布数量变动趋势'
+                        }
+                    };
+                    ;
+                    if (option && typeof option === "object") {
+                        myChart.setOption(option, true);
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<!--报告分析结束-->
+<!-- 底部菜单开始 -->
+<footer class="jobguru-footer-area" th:replace="head::myunder">
+</footer>
+<!-- 底部菜单结束 -->
+<!--Jquery js-->
+<script src="/js/jquery-3.0.0.min.js"></script>
+<!--Popper js-->
+<script src="/js/popper.min.js"></script>
+<!--Bootstrap js-->
+<script src="/js/bootstrap.min.js"></script>
+<!--Bootstrap Datepicker js-->
+<script src="/js/bootstrap-datepicker.min.js"></script>
+<!--Perfect Scrollbar js-->
+<script src="/js/jquery-perfect-scrollbar.min.js"></script>
+<!--Owl-Carousel js-->
+<script src="/js/owl.carousel.min.js"></script>
+<!--SlickNav js-->
+<script src="/js/jquery.slicknav.min.js"></script>
+<!--Magnific js-->
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<!--Select2 js-->
+<script src="/js/select2.min.js"></script>
+<!--jquery-ui js-->
+<script src="/js/jquery-ui.min.js"></script>
+<!--Main js-->
+<script src="/js/main.js"></script>
+</body>
+</html>
+

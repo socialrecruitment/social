@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:background-image="http://www.w3.org/1999/xhtml">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="description" content="jobguru | Job Board HTML Templates from Themescare">
+   <meta name="keyword" content="Job, freelancer, employee, marketplace">
+   <meta name="author" content="Themescare">
+   <!-- Title -->
+   <title>易析职位分析平台</title>
+   <!-- Favicon -->
+   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+   <!--Bootstrap css-->
+   <link rel="stylesheet" href="/css/bootstrap.css">
+   <!--Font Awesome css-->
+   <link rel="stylesheet" href="/css/font-awesome.min.css">
+   <!--Magnific css-->
+   <link rel="stylesheet" href="/css/magnific-popup.css">
+   <!--Owl-Carousel css-->
+   <link rel="stylesheet" href="/css/owl.carousel.min.css">
+   <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+   <!--Animate css-->
+   <link rel="stylesheet" href="/css/animate.min.css">
+   <!--Select2 css-->
+   <link rel="stylesheet" href="/css/select2.min.css">
+   <!--Slicknav css-->
+   <link rel="stylesheet" href="/css/slicknav.min.css">
+   <!--Bootstrap-Datepicker css-->
+   <link rel="stylesheet" href="/css/bootstrap-datepicker.min.css">
+   <!--Jquery UI css-->
+   <link rel="stylesheet" href="/css/jquery-ui.min.css">
+   <!--Perfect-Scrollbar css-->
+   <link rel="stylesheet" href="/css/perfect-scrollbar.min.css">
+   <!--Site Main Style css-->
+   <link rel="stylesheet" href="/css/style.css">
+   <!--Responsive css-->
+   <link rel="stylesheet" href="/css/responsive.css">
+
+   <link rel="stylesheet" href="/css/styles.css">
+
+   <link rel="stylesheet" href="/layui/css/layui.css">
+   <style>
+
+      .layui-input {
+         width: 100%;
+         border: 2px solid #e8ecec;
+         padding: 7px 10px;
+         border-radius: 5px;
+         color: #333;
+      }
+   </style>
+</head>
+<body>
+<!--背景图开始-->
+<div id="login-bg" class="container-fluid">
+   <div class="bg-img"></div>
+   <div class="bg-color"></div>
+</div>
+<!--背景图结束-->
+
+<!--登录开始 -->
+
+<section class="jobguru-login-area section_70">
+   <div class="container">
+      <div class="row">
+
+         <div class="col-md-12">
+            <div class="login-box">
+               <div class="login-title">
+                  <h3>登录</h3>
+               </div>
+               <div class="layui-form-item">
+
+                  <form th:action="@{/user/login}" class="layui-form layui-form-pane" method="POST">
+                     <div class="layui-form-item ">
+                        <label class="layui-form-label">邮箱</label>
+                        <div class="layui-input-block">
+                           <input type="text" name="user_email" placeholder="输入邮箱" lay-verify="required|email" autocomplete="off" class="layui-input">
+                        </div>
+                     </div>
+                     <div class="layui-form-item">
+                        <label class="layui-form-label">密码</label>
+                        <div class="layui-input-block">
+                           <input type="password" name="user_password"placeholder="输入密码" lay-verify="password" autocomplete="off" class="layui-input">
+                        </div>
+                     </div>
+                     <div class="remember-row single-login-field clearfix">
+                        <p class="checkbox remember">
+                           <input class="checkbox-spin" type="checkbox" id="Freelance">
+                           <label for="Freelance"><span></span>记住密码</label>
+                        </p>
+                     </div>
+                     <input onclick="submit()" type="submit" value="登录" class="layui-btn layui-btn-sm">
+                     <a href="/user/register" class="layui-btn layui-btn-sm">还没有账户?</a>
+                  </form>
+
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!--      登录结束-->
+
+<!--Jquery js-->
+<script src="/js/jquery-3.0.0.min.js"></script>
+<!--Popper js-->
+<script src="/js/popper.min.js"></script>
+<!--Bootstrap js-->
+<script src="/js/bootstrap.min.js"></script>
+<!--Bootstrap Datepicker js-->
+<script src="/js/bootstrap-datepicker.min.js"></script>
+<!--Perfect Scrollbar js-->
+<script src="/js/jquery-perfect-scrollbar.min.js"></script>
+<!--Owl-Carousel js-->
+<script src="/js/owl.carousel.min.js"></script>
+<!--SlickNav js-->
+<script src="/js/jquery.slicknav.min.js"></script>
+<!--Magnific js-->
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<!--Select2 js-->
+<script src="/js/select2.min.js"></script>
+<!--jquery-ui js-->
+<script src="/js/jquery-ui.min.js"></script>
+<!--Custom-Scrollbar js-->
+<script src="/js/custom-scrollbar.js"></script>
+<!--Main js-->
+<script src="/js/main.js"></script>
+</body>
+</html>
+

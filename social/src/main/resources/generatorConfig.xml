@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+    <classPathEntry location="C:\Users\未闻花名030329\.m2\repository\mysql\mysql-connector-java\5.1.39\mysql-connector-java-5.1.39.jar"/>
+
+    <context id="default" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="true" />
+            <property name="suppressAllComments" value="true" />
+<!--           忽略日期、忽略注释-->
+        </commentGenerator>
+
+         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/social_work?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+<!--数据库设定-->
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.example.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+<!--            去掉空格-->
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="com.example.mapperxml" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator targetPackage="com.example.mapper" targetProject="src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <table tableName="%" schema="social_work">
+        </table>
+
+    </context>
+</generatorConfiguration>

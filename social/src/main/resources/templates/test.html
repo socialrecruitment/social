@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="jobguru | Job Board HTML Templates from Themescare">
+    <meta name="keyword" content="Job, freelancer, employee, marketplace">
+    <meta name="author" content="Themescare">
+    <!-- Title -->
+    <title>jobguru</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+    <!--Bootstrap css-->
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <!--Font Awesome css-->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <!--Magnific css-->
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+    <!--Owl-Carousel css-->
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+    <!--Animate css-->
+    <link rel="stylesheet" href="/css/animate.min.css">
+    <!--Select2 css-->
+    <link rel="stylesheet" href="/css/select2.min.css">
+    <!--Slicknav css-->
+    <link rel="stylesheet" href="/css/slicknav.min.css">
+    <!--Bootstrap-Datepicker css-->
+    <link rel="stylesheet" href="/css/bootstrap-datepicker.min.css">
+    <!--Jquery UI css-->
+    <link rel="stylesheet" href="/css/jquery-ui.min.css">
+    <!--Perfect-Scrollbar css-->
+    <link rel="stylesheet" href="/css/perfect-scrollbar.min.css">
+    <!--Site Main Style css-->
+    <link rel="stylesheet" href="/css/style.css">
+    <!--Responsive css-->
+    <link rel="stylesheet" href="/css/responsive.css">
+
+    <link href="/css/bootstrap.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<!-- 导航栏开始 -->
+<header class="jobguru-header-area stick-top forsticky" th:replace="head::myMenu">
+</header>
+<!-- 导航栏结束 -->
+
+<!--地区分布开始-->
+<div id="container" style="height: 100%"></div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=xfhhaTThl11qYVrqLZii6w8qE5ggnhrY&__ec_v__=20190126"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+<script type="text/javascript">
+    var dom = document.getElementById("container");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    var data = [
+        {name: '上海', value: [[${dq1}]]/50},
+        {name: '广州', value: [[${dq3}]]/50},
+        {name: '深圳', value: [[${dq6}]]/50},
+        {name: '重庆', value: [[${dq7}]]/50},
+        {name: '北京', value: [[${dq2}]]/50},
+        {name: '杭州', value: [[${dq4}]]/50},
+        {name: '武汉', value: [[${dq5}]]/50},
+        {name: '长沙', value: 16},
+        {name: '哈尔滨', value: 12},
+        {name: '南昌', value: 12},
+        {name: '苏州', value: 12},
+        {name: '福州', value: 14},
+        {name: '徐州', value: 15},
+        {name: '赤峰', value: 16},
+        {name: '合肥', value: 18},
+        {name: '九江', value: 18},
+        {name: '邵阳', value: 19},
+        {name: '泉州', value: 21},
+        {name: '西安', value: 21},
+        {name: '青海', value: 21}
+
+    ];
+    var geoCoordMap = {
+        '上海':[121.48,31.22],
+        '广州':[113.23,23.16],
+        '深圳':[114.07,22.62],
+        '重庆':[106.54,29.59],
+        '北京':[116.46,39.92],
+        '杭州':[120.19,30.26],
+        '武汉':[114.31,30.52],
+        '长沙':[109.781327,123],
+        '哈尔滨':[120.38,133],
+        '南昌':[122.207216,145],
+        '苏州':[123.97,167],
+        '福州':[120.13,190],
+        '徐州':[118.87,201],
+        '赤峰':[120.33,223],
+        '合肥':[121.52,245],
+        '九江':[102.188043,267],
+        '邵阳':[118.58,283],
+        '泉州':[120.53,300],
+        '西安':[119.46,321],
+        '青海':[119.97,350]
+
+
+    };
+
+    var convertData = function (data) {
+        var res = [];
+        for (var i = 0; i < data.length; i++) {
+            var geoCoord = geoCoordMap[data[i].name];
+            if (geoCoord) {
+                res.push({
+                    name: data[i].name,
+                    value: geoCoord.concat(data[i].value)
+                });
+            }
+        }
+        return res;
+    };
+
+    option = {
+        title: {
+            text: '全国主要城市招聘发布数量分布',
+            left: 'center'
+        },
+        tooltip : {
+            trigger: 'item'
+        },
+        bmap: {
+            center: [104.114129, 37.550339],
+            zoom: 5,
+            roam: true,
+            mapStyle: {
+                styleJson: [{
+                    'featureType': 'water',
+                    'elementType': 'all',
+                    'stylers': {
+                        'color': '#d1d1d1'
+                    }
+                }, {
+                    'featureType': 'land',
+                    'elementType': 'all',
+                    'stylers': {
+                        'color': '#f3f3f3'
+                    }
+                }, {
+                    'featureType': 'railway',
+                    'elementType': 'all',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'highway',
+                    'elementType': 'all',
+                    'stylers': {
+                        'color': '#fdfdfd'
+                    }
+                }, {
+                    'featureType': 'highway',
+                    'elementType': 'labels',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'arterial',
+                    'elementType': 'geometry',
+                    'stylers': {
+                        'color': '#fefefe'
+                    }
+                }, {
+                    'featureType': 'arterial',
+                    'elementType': 'geometry.fill',
+                    'stylers': {
+                        'color': '#fefefe'
+                    }
+                }, {
+                    'featureType': 'poi',
+                    'elementType': 'all',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'green',
+                    'elementType': 'all',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'subway',
+                    'elementType': 'all',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'manmade',
+                    'elementType': 'all',
+                    'stylers': {
+                        'color': '#d1d1d1'
+                    }
+                }, {
+                    'featureType': 'local',
+                    'elementType': 'all',
+                    'stylers': {
+                        'color': '#d1d1d1'
+                    }
+                }, {
+                    'featureType': 'arterial',
+                    'elementType': 'labels',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'boundary',
+                    'elementType': 'all',
+                    'stylers': {
+                        'color': '#fefefe'
+                    }
+                }, {
+                    'featureType': 'building',
+                    'elementType': 'all',
+                    'stylers': {
+                        'color': '#d1d1d1'
+                    }
+                }, {
+                    'featureType': 'label',
+                    'elementType': 'labels.text.fill',
+                    'stylers': {
+                        'color': '#999999'
+                    }
+                }]
+            }
+        },
+        series : [
+            {
+                name: 'pm2.5',
+                type: 'scatter',
+                coordinateSystem: 'bmap',
+                data: convertData(data),
+                symbolSize: function (val) {
+                    return val[2] / 10;
+                },
+                label: {
+                    normal: {
+                        formatter: '{b}',
+                        position: 'right',
+                        show: false
+                    },
+                    emphasis: {
+                        show: true
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: ['#91db8c']
+                    }
+                }
+            },
+            {
+                name: 'Top 5',
+                type: 'effectScatter',
+                coordinateSystem: 'bmap',
+                data: convertData(data.sort(function (a, b) {
+                    return b.value - a.value;
+                }).slice(0, 6)),
+                symbolSize: function (val) {
+                    return val[2] / 10;
+                },
+                showEffectOn: 'render',
+                rippleEffect: {
+                    brushType: 'stroke'
+                },
+                hoverAnimation: true,
+                label: {
+                    normal: {
+                        formatter: '{b}',
+                        position: 'right',
+                        show: true
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: 'purple',
+                        shadowBlur: 10,
+                        shadowColor: '#333'
+                    }
+                },
+                zlevel: 1
+            }
+        ]
+    };;
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+</script>
+<!--地区分布结束-->
+<!-- 底部菜单项开始 -->
+<footer class="jobguru-footer-area" th:replace="head::myunder">
+</footer>
+<!-- 底部菜单项结束 -->
+
+<!--Jquery js-->
+<script src="/js/jquery-3.0.0.min.js"></script>
+<!--Popper js-->
+<script src="/js/popper.min.js"></script>
+<!--Bootstrap js-->
+<script src="/js/bootstrap.min.js"></script>
+<!--Bootstrap Datepicker js-->
+<script src="/js/bootstrap-datepicker.min.js"></script>
+<!--Perfect Scrollbar js-->
+<script src="/js/jquery-perfect-scrollbar.min.js"></script>
+<!--Owl-Carousel js-->
+<script src="/js/owl.carousel.min.js"></script>
+<!--SlickNav js-->
+<script src="/js/jquery.slicknav.min.js"></script>
+<!--Magnific js-->
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<!--Select2 js-->
+<script src="/js/select2.min.js"></script>
+<!--jquery-ui js-->
+<script src="/js/jquery-ui.min.js"></script>
+<!--Main js-->
+<script src="/js/main.js"></script>
+</body>
+</html>
+

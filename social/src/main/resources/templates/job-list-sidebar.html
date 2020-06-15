@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="description" content="jobguru | Job Board HTML Templates from Themescare">
+   <meta name="keyword" content="Job, freelancer, employee, marketplace">
+   <meta name="author" content="Themescare">
+   <!-- Title -->
+   <title>jobguru</title>
+   <!-- Favicon -->
+   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+   <!--Bootstrap css-->
+   <link rel="stylesheet" href="/css/bootstrap.css">
+   <!--Font Awesome css-->
+   <link rel="stylesheet" href="/css/font-awesome.min.css">
+   <!--Magnific css-->
+   <link rel="stylesheet" href="/css/magnific-popup.css">
+   <!--Owl-Carousel css-->
+   <link rel="stylesheet" href="/css/owl.carousel.min.css">
+   <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+   <!--Animate css-->
+   <link rel="stylesheet" href="/css/animate.min.css">
+   <!--Select2 css-->
+   <link rel="stylesheet" href="/css/select2.min.css">
+   <!--Slicknav css-->
+   <link rel="stylesheet" href="/css/slicknav.min.css">
+   <!--Bootstrap-Datepicker css-->
+   <link rel="stylesheet" href="/css/bootstrap-datepicker.min.css">
+   <!--Jquery UI css-->
+   <link rel="stylesheet" href="/css/jquery-ui.min.css">
+   <!--Perfect-Scrollbar css-->
+   <link rel="stylesheet" href="/css/perfect-scrollbar.min.css">
+   <!--Site Main Style css-->
+   <link rel="stylesheet" href="/css/style.css">
+   <!--Responsive css-->
+   <link rel="stylesheet" href="/css/responsive.css">
+
+   <link rel="stylesheet" href="/layui/css/layui.css">
+</head>
+<body>
+
+<!-- 导航栏开始 -->
+<header class="jobguru-header-area stick-top forsticky" th:replace="head::myMenu">
+</header>
+<!-- 导航栏结束 -->
+
+<!-- 浏览工作主要标题开始 -->
+<section class="jobguru-breadcromb-area">
+   <div class="breadcromb-top section_100">
+      <div class="layui-container">
+         <div class="layui-row">
+            <div class="col-md-12">
+               <div class="breadcromb-box">
+                  <h3>浏览工作</h3>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- 浏览工作主要标题结束 -->
+
+<!-- 公司列表开始-->
+<section class="jobguru-top-job-area browse-page section_70">
+   <form class="layui-container">
+      <div class="row">
+         <div class="col-md-12 col-lg-3 dashboard-left-border" th:replace="head::myuserDashboard">
+         </div>
+         <div class="col-md-12 col-lg-9">
+            <div class="job-grid-center">
+               <!-- Single Job Sidebar Start -->
+               <form method="post" th:action="@{/user/joblist}">
+                  <div class="banner-form-box">
+                     <div class="layui-form-item">
+                        <div class="layui-input-inline">
+                           <input type="text" name="job_name" th:value="${job_name}" placeholder="搜索职位..." autocomplete="off" class="layui-input">
+                        </div>
+                     </div>
+                     <div class="layui-form-item">
+                        <div class="layui-input-inline">
+                           <input type="text" name="company_industry" th:value="${company_industry}" placeholder="行业" autocomplete="off" class="layui-input">
+                        </div>
+                     </div>
+                     <button type="submit"><i class="layui-btn"><i class="layui-icon layui-icon-search"></i></i></button>
+                     <div>
+                        <a th:href="@{'report1/'+${company_industry}}" class="layui-btn layui-btn-lg">行业分析</a>
+                     </div>
+                     <div>
+                        <a th:href="@{'report/'+${job_name}}" class="layui-btn layui-btn-lg">职位分析</a>
+                     </div>
+                  </div>
+               </form>
+            </div>
+            <div class="job-sidebar-list-single">
+               <tr th:each="RecruitmentInfo,userStat:${selects.list}">
+                  <div class="sidebar-list-single" >
+                     <div class="top-company-list">
+                        <div class="company-list-logo">
+                           <a href="#">
+                              <img src="/img/company-logo-1.png" alt="company list 1">
+                           </a>
+                        </div>
+                        <div class="company-list-details">
+                           <h3 th:text="${RecruitmentInfo.company_name}"><a href="${RecruitmentInfo.company_link}">Regional Sales Manager</a></h3>
+                           <div class="layui-row layui-col-space10">
+                              <p class="layui-col-md4" th:text="${RecruitmentInfo.job_name}"><i class="fa fa-map-marker"></i> shuju</p>
+                              <p class="layui-col-md4" th:text="${RecruitmentInfo.company_industry}"><i class="fa fa-map-marker"></i> shuju</p>
+                              <p class="layui-col-md4" th:text="${RecruitmentInfo.company_address}"><i class="fa fa-map-marker"></i> Chicago, Michigan</p>
+                              <p class="layui-col-md4" th:text=" ${#dates.format(RecruitmentInfo.postdate,'yyyy/MM/dd')}"><i class="fa fa-clock-o"></i>2 minutes ago</p>
+                              <p class="layui-col-md4" th:text="${RecruitmentInfo.salary}"><i class="fa fa-check"></i>Fixed price : $1200-$2000</p>
+                           </div>
+                        </div>
+                        <a th:href="${RecruitmentInfo.company_link}" class="layui-btn " lay-submit lay-filter="formDemo">详细</a>
+                     </div>
+                  </div>
+               </tr>
+            </div>
+            <!--分页开始-->
+            <nav aria-label="Page navigation">
+               <ul class="pagination">
+                  <li>
+                     <a th:href="@{/user/joblist(pageIndex=${selects.pageNum-1},pageSize=7,job_name=${job_name},company_city=${company_city}, company_industry=${company_industry})}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                     </a>
+                  </li>
+                  <th:block th:each="nav : ${selects.navigatepageNums}">
+                     <li th:class="${nav==selects.pageNum}?'active':''">
+                        <a th:href="@{/user/joblist(pageIndex=${nav},job_name=${job_name},company_city=${company_city}, company_industry=${company_industry})}"
+                           th:text="${nav}"></a>
+                     </li>
+                  </th:block>
+                  <li>
+                     <a th:href="@{/user/joblist(pageIndex=${selects.pageNum+1},pageSize=7,job_name=${job_name},company_city=${company_city}, company_industry=${company_industry})}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                     </a>
+                  </li>
+               </ul>
+            </nav>
+            <!-- 分页结束-->
+         </div>
+      </div>
+   </form>
+</section>
+<!-- 公司列表结束 -->
+
+
+<!-- 底部导航栏开始-->
+<footer class="jobguru-footer-area" th:replace="head::myunder">
+</footer>
+<!-- 底部导航栏结束 -->
+
+<!--Jquery js-->
+<script src="/js/jquery-3.0.0.min.js"></script>
+<!--Popper js-->
+<script src="/js/popper.min.js"></script>
+<!--Bootstrap js-->
+<script src="/js/bootstrap.min.js"></script>
+<!--Bootstrap Datepicker js-->
+<script src="/js/bootstrap-datepicker.min.js"></script>
+<!--Perfect Scrollbar js-->
+<script src="/js/jquery-perfect-scrollbar.min.js"></script>
+<!--Owl-Carousel js-->
+<script src="/js/owl.carousel.min.js"></script>
+<!--SlickNav js-->
+<script src="/js/jquery.slicknav.min.js"></script>
+<!--Magnific js-->
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<!--Select2 js-->
+<script src="/js/select2.min.js"></script>
+<!--jquery-ui js-->
+<script src="/js/jquery-ui.min.js"></script>
+<!--Custom-Scrollbar js-->
+<script src="/js/custom-scrollbar.js"></script>
+<!--Main js-->
+<script src="/js/main.js"></script>
+</body>
+</html>
+

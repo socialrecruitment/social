@@ -1,0 +1,480 @@
+﻿<!DOCTYPE html>
+<html lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="description" content="jobguru | Job Board HTML Templates from Themescare">
+   <meta name="keyword" content="Job, freelancer, employee, marketplace">
+   <meta name="author" content="Themescare">
+   <!-- Title -->
+   <title>jobguru</title>
+   <!-- Favicon -->
+   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+   <!--Bootstrap css-->
+   <link rel="stylesheet" href="/css/bootstrap.css">
+   <!--Font Awesome css-->
+   <link rel="stylesheet" href="/css/font-awesome.min.css">
+   <!--Magnific css-->
+   <link rel="stylesheet" href="/css/magnific-popup.css">
+   <!--Owl-Carousel css-->
+   <link rel="stylesheet" href="/css/owl.carousel.min.css">
+   <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+   <!--Animate css-->
+   <link rel="stylesheet" href="/css/animate.min.css">
+   <!--Select2 css-->
+   <link rel="stylesheet" href="/css/select2.min.css">
+   <!--Slicknav css-->
+   <link rel="stylesheet" href="/css/slicknav.min.css">
+   <!--Bootstrap-Datepicker css-->
+   <link rel="stylesheet" href="/css/bootstrap-datepicker.min.css">
+   <!--Jquery UI css-->
+   <link rel="stylesheet" href="/css/jquery-ui.min.css">
+   <!--Perfect-Scrollbar css-->
+   <link rel="stylesheet" href="/css/perfect-scrollbar.min.css">
+   <!--Site Main Style css-->
+   <link rel="stylesheet" href="/css/style.css">
+   <!--Responsive css-->
+   <link rel="stylesheet" href="/css/responsive.css">
+
+   <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+</head>
+<body>
+
+
+<!-- 导航栏开始 -->
+<header class="jobguru-header-area stick-top forsticky" th:replace="head::myMenu">
+</header>
+<!-- 导航栏结束 -->
+
+
+<!-- 首页查询框开始 -->
+<section class="jobguru-banner-area">
+   <div class="layui-carousel" id="test1">
+      <div carousel-item>
+         <div>条目1</div>
+         <div>条目2</div>
+         <div>条目3</div>
+         <div>条目4</div>
+         <div>条目5</div>
+      </div>
+   </div>
+
+</section>
+<!-- 首页查询框结束 -->
+<section class="jobguru-categories-area section_70">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="site-heading">
+               <h2>好工作，你值得拥有！</h2>
+               <h4>易析——给你想要的</h4>
+               <form method="POST" th:action="@{/user/joblist}">
+                  <div class="banner-form-box">
+                     <div class="banner-form-input">
+                        <input type="text" name="job_name" placeholder="职位">
+                     </div>
+                     <div class="banner-form-input">
+                        <input type="text" name="company_industry" placeholder="行业类型">
+                     </div>
+                     <div class="banner-form-input">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- 热门类别开始-->
+<section class="jobguru-categories-area section_70">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="site-heading">
+               <h2>热门<span>类别</span></h2>
+               <p>外面有更好的职业。我们会帮你找到的。我们是你成为你想成为的一切的第一步。</p>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-lg-3 col-md-6 col-sm-6">
+            <a th:href="@{'industry/1/'}" class="single-category-holder account_cat">
+               <div class="category-holder-icon">
+                  <i class="fa fa-briefcase"></i>
+               </div>
+               <div class="category-holder-text">
+                  <h3>金融</h3>
+               </div>
+               <img src="/img/account_cat.jpg" alt="category" />
+            </a>
+         </div>
+         <div class="col-lg-3 col-md-6 col-sm-6">
+            <a th:href="@{'industry/2/'}" class="single-category-holder design_cat">
+               <div class="category-holder-icon">
+                  <i class="fa fa-pencil-square-o"></i>
+               </div>
+               <div class="category-holder-text">
+                  <h3>媒体</h3>
+               </div>
+               <img src="/img/design_art.jpg" alt="category" />
+            </a>
+         </div>
+         <div class="col-lg-3 col-md-6 col-sm-6">
+            <a th:href="@{'industry/3/'}" class="single-category-holder restaurant_cat">
+               <div class="category-holder-icon">
+                  <i class="fa fa-cutlery"></i>
+               </div>
+               <div class="category-holder-text">
+                  <h3>运营</h3>
+               </div>
+               <img src="/img/restaurent.jpg" alt="category" />
+            </a>
+         </div>
+         <div class="col-lg-3 col-md-6 col-sm-6">
+            <a th:href="@{'industry/4/'}" class="single-category-holder tech_cat">
+               <div class="category-holder-icon">
+                  <i class="fa fa-code"></i>
+               </div>
+               <div class="category-holder-text">
+                  <h3>技术</h3>
+               </div>
+               <img src="/img/programing_cat.jpeg.jpg" alt="category" />
+            </a>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-lg-3 col-md-6 col-sm-6">
+            <a th:href="@{'industry/5/'}" class="single-category-holder data_cat">
+               <div class="category-holder-icon">
+                  <i class="fa fa-bar-chart"></i>
+               </div>
+               <div class="category-holder-text">
+                  <h3>设计</h3>
+               </div>
+               <img src="/img/data_cat.png" alt="category" />
+            </a>
+         </div>
+         <div class="col-lg-3 col-md-6 col-sm-6">
+            <a th:href="@{'industry/6/'}" class="single-category-holder writing_cat">
+               <div class="category-holder-icon">
+                  <i class="fa fa-pencil"></i>
+               </div>
+               <div class="category-holder-text">
+                  <h3>产品</h3>
+               </div>
+               <img src="/img/writing_cat.jpg" alt="category" />
+            </a>
+         </div>
+         <div class="col-lg-3 col-md-6 col-sm-6">
+            <a th:href="@{'industry/7/'}" class="single-category-holder edu_cat">
+               <div class="category-holder-icon">
+                  <i class="fa fa-graduation-cap"></i>
+               </div>
+               <div class="category-holder-text">
+                  <h3>教育培训</h3>
+               </div>
+               <img src="/img/edu_cat.jpg" alt="category" />
+            </a>
+         </div>
+         <div class="col-lg-3 col-md-6 col-sm-6">
+            <a th:href="@{'industry/8/'}" class="single-category-holder sale_cat">
+               <div class="category-holder-icon">
+                  <i class="fa fa-bullhorn"></i>
+               </div>
+               <div class="category-holder-text">
+                  <h3>销售</h3>
+               </div>
+               <img src="/img/sale_cat.png" alt="category" />
+            </a>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- 热门类别结束 -->
+<!-- 公司&岗位提供开始 -->
+<section class="jobguru-job-tab-area section_70">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="site-heading">
+               <h2>公司 &<span>岗位提供</span></h2>
+               <p>你只需要在这里选取你最喜欢的，我们会提供给你所想要的信息</p>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-12">
+            <div class=" job-tab">
+               <ul class="nav nav-pills job-tab-switch" id="pills-tab" role="tablist">
+                  <li class="nav-item">
+                     <a class="nav-link active" id="pills-companies-tab" data-toggle="pill" href="#pills-companies" role="tab" aria-controls="pills-companies" aria-selected="true">热门公司</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" id="pills-job-tab" data-toggle="pill" href="#pills-job" role="tab" aria-controls="pills-job" aria-selected="false">热门职位</a>
+                  </li>
+               </ul>
+            </div>
+            <div class="tab-content" id="pills-tabContent">
+               <div class="tab-pane fade show active" id="pills-companies" role="tabpanel" aria-labelledby="pills-companies-tab">
+                  <div class="top-company-tab">
+                     <ul>
+                        <li>
+                           <div class="top-company-list">
+                              <div class="company-list-logo">
+                                 <a href="#">
+                                    <img src="/img/xiaomi.jpg" alt="company list 1" />
+                                 </a>
+                              </div>
+                              <div class="company-list-details">
+                                 <h3><a href="https://www.zhipin.com/gongsi/6f1aa1d6b1d033ad33B43N0~.html?ka=search_rcmd_company_6f1aa1d6b1d033ad33B43N0~_custompage">小米</a></h3>
+                                 <p class="company-state"><i class="fa fa-map-marker"></i> 武汉市 江夏区 金融港B24栋</p>
+                                 <p class="open-icon"><i class="fa fa-briefcase"></i>1208职位公开</p>
+                                 <p class="varify"><i class="fa fa-check"></i>已验证</p>
+                                 <p class="rating-company">4.9</p>
+                              </div>
+                              <div class="company-list-btn">
+                                 <a href="https://www.zhipin.com/gongsi/6f1aa1d6b1d033ad33B43N0~.html?ka=search_rcmd_company_6f1aa1d6b1d033ad33B43N0~_custompage" class="jobguru-btn">详细</a>
+                                 <!--                                        点击详细链接到single_company!!!!!-->
+                              </div>
+                           </div>
+                        </li>
+                        <li>
+                           <div class="top-company-list">
+                              <div class="company-list-logo">
+                                 <a href="#">
+                                    <img src="/img/huawei.jpg" alt="company list 1" />
+                                 </a>
+                              </div>
+                              <div class="company-list-details">
+                                 <h3><a href="https://www.zhipin.com/gongsi/02cd05cce753437e33V50w~~.html?ka=brand_list_company_12">华为</a></h3>
+                                 <p class="company-state"><i class="fa fa-map-marker"></i> 杭州滨江区华为技术有限公司杭州研究所</p>
+                                 <p class="open-icon"><i class="fa fa-briefcase"></i>3047个职位公开</p>
+                                 <p class="varify"><i class="fa fa-check"></i>已验证</p>
+                                 <p class="rating-company">4.8</p>
+                              </div>
+                              <div class="company-list-btn">
+                                 <a href="https://www.zhipin.com/gongsi/02cd05cce753437e33V50w~~.html?ka=brand_list_company_12" class="jobguru-btn">详细</a>
+                              </div>
+                           </div>
+                        </li>
+                        <li>
+                           <div class="top-company-list">
+                              <div class="company-list-logo">
+                                 <a href="#">
+                                    <img src="/img/ali.png" alt="company list 1" />
+                                 </a>
+                              </div>
+                              <div class="company-list-details">
+                                 <h3><a href="https://www.zhipin.com/gongsi/5d627415a46b4a750nJ9.html?ka=brand_list_company_5">阿里巴巴</a></h3>
+                                 <p class="company-state"><i class="fa fa-map-marker"></i>杭州余杭区阿里巴巴西溪园区</p>
+                                 <p class="open-icon"><i class="fa fa-briefcase"></i>8078个职位公开</p>
+                                 <p class="varify"><i class="fa fa-check"></i>已验证</p>
+                                 <p class="rating-company">4.7</p>
+                              </div>
+                              <div class="company-list-btn">
+                                 <a href="https://www.zhipin.com/gongsi/5d627415a46b4a750nJ9.html?ka=brand_list_company_5" class="jobguru-btn">详细</a>
+                              </div>
+                           </div>
+                        </li>
+                        <li>
+                           <div class="top-company-list">
+                              <div class="company-list-logo">
+                                 <a href="#">
+                                    <img src="/img/lppz.jpg" alt="company list 1" />
+                                 </a>
+                              </div>
+                              <div class="company-list-details">
+                                 <h3><a href="https://www.zhipin.com/gongsi/b1474b2e9d9ad3711XN-3NQ~.html?ka=search_rcmd_company_b1474b2e9d9ad3711XN-3NQ~_custompage">良品铺子</a></h3>
+                                 <p class="company-state"><i class="fa fa-map-marker"></i> 武汉市 东西湖区 东西湖区 金银湖办事处航天路1号良品大厦</p>
+                                 <p class="open-icon"><i class="fa fa-briefcase"></i>57个职位公开</p>
+                                 <p class="varify"><i class="fa fa-check"></i>已验证</p>
+                                 <p class="rating-company">4.7</p>
+                              </div>
+                              <div class="company-list-btn">
+                                 <a href="https://www.zhipin.com/gongsi/b1474b2e9d9ad3711XN-3NQ~.html?ka=search_rcmd_company_b1474b2e9d9ad3711XN-3NQ~_custompage" class="jobguru-btn">详细</a>
+                              </div>
+                           </div>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="tab-pane fade" id="pills-job" role="tabpanel" aria-labelledby="pills-job-tab">
+                  <div class="top-company-tab">
+                     <ul>
+                        <li>
+                           <div class="top-company-list">
+                              <div class="company-list-logo">
+                                 <a href="#">
+                                    <img src="/img/xiaomi.jpg" alt="company list 1" />
+                                 </a>
+                              </div>
+                              <div class="company-list-details">
+                                 <h3><a href="#">推荐算法工程师</a></h3>
+                                 <p class="company-state"><i class="fa fa-map-marker"></i> 上海外滩</p>
+                                 <p class="open-icon"><i class="fa fa-clock-o"></i>2019-12-13</p>
+                                 <p class="varify"><i class="fa fa-check"></i>薪资:20k-40k</p>
+                                 <p class="rating-company">4.1</p>
+                              </div>
+                              <div class="company-list-btn">
+                                 <a href="https://www.zhipin.com/job_detail/a62aeb348268ed741HV_2di-FFs~.html?ka=search_list_3_blank&lid=3YxTfsJWnY8.search.3"   class=jobguru-btn>详情</a>
+                              </div>
+                           </div>
+                        </li>
+                        <li>
+                           <div class="top-company-list">
+                              <div class="company-list-logo">
+                                 <a href="#">
+                                    <img src="/img/huawei.jpg" alt="company list 1" />
+                                 </a>
+                              </div>
+                              <div class="company-list-details">
+                                 <h3><a href="#">软件开发工程师</a></h3>
+                                 <p class="company-state"><i class="fa fa-map-marker"></i> 武汉</p>
+                                 <p class="open-icon"><i class="fa fa-clock-o"></i>2019-12-23</p>
+                                 <p class="varify"><i class="fa fa-check"></i>25k-45k,14薪</p>
+                                 <p class="rating-company">4.9</p>
+                              </div>
+                              <div class="company-list-btn">
+                                 <a href="https://www.zhipin.com/job_detail/8f0286a5a53cad180n1539W8EVM~.html?ka=search_list_2_blank&lid=3ZvZP162vp1.search.2" class="jobguru-btn">详情</a>
+                              </div>
+                           </div>
+                        </li>
+                        <li>
+                           <div class="top-company-list">
+                              <div class="company-list-logo">
+                                 <a href="#">
+                                    <img src="/img/ali.png" alt="company list 1" />
+                                 </a>
+                              </div>
+                              <div class="company-list-details">
+                                 <h3><a href="#">前端开发专家</a></h3>
+                                 <p class="company-state"><i class="fa fa-map-marker"></i> 武汉</p>
+                                 <p class="open-icon"><i class="fa fa-clock-o"></i>2019-12-23</p>
+                                 <p class="varify"><i class="fa fa-check"></i>25k-40k</p>
+                                 <p class="rating-company">4.3</p>
+                              </div>
+                              <div class="company-list-btn">
+                                 <a href="https://www.zhipin.com/job_detail/7cbc9358d89e28b31XF62Nu-GFc~.html?ka=search_list_1_blank&lid=3Yqm8dDC0MN.search.1" class="jobguru-btn">详情</a>
+                              </div>
+                           </div>
+                        </li>
+                        <li>
+                           <div class="top-company-list">
+                              <div class="company-list-logo">
+                                 <a href="#">
+                                    <img src="/img/lppz.jpg" alt="company list 1" />
+                                 </a>
+                              </div>
+                              <div class="company-list-details">
+                                 <h3><a href="#">品牌经理</a></h3>
+                                 <p class="company-state"><i class="fa fa-map-marker"></i> 武汉</p>
+                                 <p class="open-icon"><i class="fa fa-clock-o"></i>2019-12-23</p>
+                                 <p class="varify"><i class="fa fa-check"></i>10-12k</p>
+                                 <p class="rating-company">4.7</p>
+                              </div>
+                              <div class="company-list-btn">
+                                 <a href="https://www.zhipin.com/job_detail/dae06fa1be166bce03R_3tu_GFc~.html?ka=search_list_2_blank&lid=3YmtgMciTNM.search.2" class="jobguru-btn">详情</a>
+                              </div>
+                           </div>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- 公司&岗位提供结束 -->
+
+<!-- 如何使用说明开始 -->
+<section class="how-works-area section_70">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="site-heading">
+               <h2>如何<span>使用</span></h2>
+               <p>很简单，你只需要登录，搜索工作，然后点击分析报告即可</p>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-4">
+            <div class="how-works-box box-1">
+               <img src="/img/arrow-right-top.png" alt="works" />
+               <div class="works-box-icon">
+                  <i class="fa fa-user"></i>
+               </div>
+               <div class="works-box-text">
+                  <p>注册/登录</p>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="how-works-box box-2">
+               <img src="/img/arrow-right-bottom.png" alt="works" />
+               <div class="works-box-icon">
+                  <i class="fa fa-gavel"></i>
+               </div>
+               <div class="works-box-text">
+                  <p>搜索职位</p>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="how-works-box box-3">
+               <div class="works-box-icon">
+                  <i class="fa fa-thumbs-up"></i>
+               </div>
+               <div class="works-box-text">
+                  <p>生成分析报告</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- 如何使用说明结束 -->
+<!-- 底部菜单项开始 -->
+<footer class="jobguru-footer-area" th:replace="head::myunder">
+</footer>
+<!-- 底部菜单项结束 -->
+</body>
+<!--Jquery js-->
+<script src="/js/jquery-3.0.0.min.js"></script>
+<!--Popper js-->
+<script src="/js/popper.min.js"></script>
+<!--Bootstrap js-->
+<script src="/js/bootstrap.min.js"></script>
+<!--Bootstrap Datepicker js-->
+<script src="/js/bootstrap-datepicker.min.js"></script>
+<!--Perfect Scrollbar js-->
+<script src="/js/jquery-perfect-scrollbar.min.js"></script>
+<!--Owl-Carousel js-->
+<script src="/js/owl.carousel.min.js"></script>
+<!--SlickNav js-->
+<script src="/js/jquery.slicknav.min.js"></script>
+<!--Magnific js-->
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<!--Select2 js-->
+<script src="/js/select2.min.js"></script>
+<!--jquery-ui js-->
+<script src="/js/jquery-ui.min.js"></script>
+<!--Main js-->
+<script src="/js/main.js"></script>
+<script src="/layui/layui.js"></script>
+<script>
+   layui.use('carousel', function(){
+      var carousel = layui.carousel;
+      //建造实例
+      carousel.render({
+         elem: '#test1'
+         ,width: '100%' //设置容器宽度
+         ,arrow: 'always' //始终显示箭头
+         //,anim: 'updown' //切换动画方式
+      });
+   });
+</script>
+</html>

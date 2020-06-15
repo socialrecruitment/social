@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>易析职位分析平台</title>
+</head>
+<body>
+<!-- 首页菜单开始-->
+<header class="jobguru-header-area stick-top forsticky" th:fragment="myMenu">
+    <div class="menu-animation">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="site-logo">
+                        <a href="index.html">
+                            <img src="/img/logo.png" alt="jobguru" class="non-stick-logo" />
+                            <img src="/img/logo-2.png" alt="jobguru" class="stick-logo" />
+                        </a>
+                    </div>
+                    <div class="jobguru-responsive-menu"></div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="header-menu">
+                        <nav id="navigation">
+                            <ul id="jobguru_navigation">
+                                <li class="active has-children">
+                                    <a href="/user/index">首页</a>
+                                </li>
+                                <li class=" has-children">
+                                    <a href="#">我要求职</a>
+                                    <ul>
+                                        <li><a href="/user/joblist">公司列表</a></li>
+                                        <li ><a href="/user/test">地区分布</a></li>
+                                        <li><a href="/user/companycate">浏览行业</a></li>
+                                        <li><a href="/user/userinformation">个人信息</a></li>
+                                        <li class="has-inner-child">
+                                        <li><a href="/user/usermessage">留言板</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-children">
+                                    <a href="#">我要招聘</a>
+                                    <ul>
+                                        <li><a href="/user/postjob">发布工作</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-children">
+                                    <a href="#">其他</a>
+                                    <ul>
+                                        <li><a href="/user/login">登录</a></li>
+                                        <li><a href="/user/register">注册</a></li>
+                                        <li><a href="/user/useruppwd">修改密码</a></li>
+                                        <li><a href="/user/about">关于我们</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <img src="/img/ee.jpg" class="img-circle" alt="logo" width="30px" height="30px" >
+                                </li>
+                                <li class="has-children">
+                                    <div th:text="${session.user.user_name}"></div>
+                                    <ul>
+                                        <li>
+                                            <a href="/user/login">退出登录</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="header-right-menu">
+                        <ul>
+                            <li><a href="/user/postjob" class="post-jobs">发布工作</a></li>
+                            <li><a href="/user/register"><i class="fa fa-user"></i>注册</a></li>
+                            <li><a href="/user/login"><i class="fa fa-lock"></i>登录</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- 首页菜单结束 -->
+<!-- 底部菜单开始 -->
+<footer class="jobguru-footer-area" th:fragment="myunder">
+    <div class="footer-top section_50">
+        <div class="container">
+            <div class="row">
+                <div >
+                    <div class="single-footer-widget footer-contact">
+                        <h3>联系我们</h3>
+                        <p><i class="fa fa-map-marker"></i> 湖北省，武汉市，洪山区
+                            <i class="fa fa-phone"></i> 012-3456-789
+                            <i class="fa fa-envelope-o"></i> social@163.com
+                            <i class="fa fa-fax"></i> 112-3456-7898</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="copyright-left">
+                        <p>Copyright &copy; 2019 blogroll <a href="https://www.zhipin.com/?sid=sem_pz_360pc_title" >Reserved</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- 底部菜单结束 -->
+<!--我要求职侧菜单开始-->
+<div class="col-lg-3 col-md-12 dashboard-left-border" th:fragment="myuserDashboard">
+    <div class="dashboard-left">
+        <ul class="dashboard-menu">
+
+            <li><a href="/user/joblist"><i class="fa fa-envelope-open"></i>公司列表</a></li>
+            <li ><a href="/user/test"><i class="fa fa-lock"></i>地区分布</a></li>
+            <li ><a href="/user/companycate"><i class="fa fa-lock"></i>浏览行业</a></li>
+            <li><a href="/user/userinformation"><i class="fa fa-envelope-open"></i>个人信息</a></li>
+            <li ><a href="/user/add"><i class="fa fa-lock"></i>我要留言</a></li>
+            <li ><a href="/user/usermessage"><i class="fa fa-lock"></i>我要看帖</a></li>
+        </ul>
+    </div>
+</div>
+<!--我要求职侧菜单结束-->
+<!--我要招聘侧菜单开始-->
+<div class="col-lg-3 col-md-12 dashboard-left-border" th:fragment="mycomDashboard">
+    <div class="dashboard-left">
+        <ul class="dashboard-menu">
+            <li><a href="/user/postjob"><i class="fa fa-lock"></i>发布工作</a></li>
+        </ul>
+    </div>
+</div>
+<!--我要招聘侧菜单结束-->
+<!--其他侧菜单开始-->
+<div class="col-lg-3 col-md-12 dashboard-left-border" th:fragment="mymyDashboard">
+    <div class="dashboard-left">
+        <ul class="dashboard-menu">
+            <li><a href="/user/login"><i class="fa fa-lock"></i>登录</a></li>
+            <li><a href="/user/register"><i class="fa fa-envelope-open"></i>注册</a></li>
+            <li><a href="/user/useruppwd"><i class="fa fa-lock"></i>修改密码</a></li>
+            <li><a href="/user/about"><i class="fa fa-envelope-open"></i>关于我们</a></li>
+        </ul>
+    </div>
+</div>
+<!--其他侧菜单结束-->
+</body>
+</html>

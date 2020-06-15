@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="jobguru | Job Board HTML Templates from Themescare">
+    <meta name="keyword" content="Job, freelancer, employee, marketplace">
+    <meta name="author" content="Themescare">
+    <!-- Title -->
+    <title>社会职位变化分析</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+    <!--Bootstrap css-->
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <!--Font Awesome css-->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <!--Magnific css-->
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+    <!--Owl-Carousel css-->
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+    <!--Animate css-->
+    <link rel="stylesheet" href="/css/animate.min.css">
+    <!--Select2 css-->
+    <link rel="stylesheet" href="/css/select2.min.css">
+    <!--Slicknav css-->
+    <link rel="stylesheet" href="/css/slicknav.min.css">
+    <!--Bootstrap-Datepicker css-->
+    <link rel="stylesheet" href="/css/bootstrap-datepicker.min.css">
+    <!--Jquery UI css-->
+    <link rel="stylesheet" href="/css/jquery-ui.min.css">
+    <!--Perfect-Scrollbar css-->
+    <link rel="stylesheet" href="/css/perfect-scrollbar.min.css">
+    <!--Site Main Style css-->
+    <link rel="stylesheet" href="/css/style.css">
+    <!--Responsive css-->
+    <link rel="stylesheet" href="/css/responsive.css">
+    <!--layui-->
+    <link rel="stylesheet" href="../layui/css/layui.css">
+</head>
+<body>
+
+
+<!-- 导航栏开始 -->
+<header class="jobguru-header-area stick-top forsticky" th:replace="head::myMenu">
+</header>
+<!-- 导航栏结束 -->
+<!-- 投递简历标题开始-->
+<section class="jobguru-breadcromb-area">
+    <div class="breadcromb-top section_100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcromb-box">
+                        <h3>投递简历</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--投递简历标题结束 -->
+<!-- 个人信息修改开始-->
+<section class="jobguru-submit-resume-area section_70">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="submit-resume-box">
+                    <div class="resume-box">
+                        <h3>个人信息</h3>
+                        <div class="single-resume-feild feild-flex-2">
+                            <div class="single-input">
+                                <label for="user_email" class="layui-form">邮箱:</label>
+                                <div name="user_email" th:text="${session.user.user_email}"></div>
+                            </div>
+                            <div class="single-input">
+                                <label for="user_name" class="layui-form">名字:</label>
+                                <div name="user_name" th:text="${session.user.user_name}"></div>
+                            </div>
+                        </div>
+                        <div class="single-resume-feild feild-flex-2">
+                            <div class="single-input">
+                                <label for="user_sex" class="layui-form">性别:</label>
+                                <div class="col-sm-10">
+                                    <label class="radio-inline">
+                                        <div name="user_sex" th:text="${session.user.user_sex}==true?'男':'女'"></div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="single-input">
+                                <label for="user_birthday" class="layui-form">出生日期:</label>
+                               <div name="user_birthday " th:text=" ${#dates.format(session.user.user_birthday,'yyyy/MM/dd')}"></div>
+                            </div>
+                        </div>
+                        <div class="single-resume-feild feild-flex-2">
+                            <div class="single-input">
+                                <label for="user_phone" class="layui-form">电话:</label>
+                                <div name="user_phone" th:text="${session.user.user_phone}" ></div>
+                            </div>
+                            <div class="single-input">
+                                <label for="user_address" class="layui-form">地址:</label>
+                                <div name="user_address" th:text="${session.user.user_address}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="resume-box">
+                        <h3>专业与技能</h3>
+                        <div class="single-resume-feild feild-flex-2">
+
+                            <div class="single-input">
+                                <label for="user_school" class="layui-form">毕业院校:</label>
+                                <div name="user_school" th:text="${session.user.user_school}"></div>
+                            </div>
+
+                            <div class="single-input">
+                                <label for="user_major" class="layui-form">专业:</label>
+                                <div name="user_major" th:text="${session.user.user_major}"></div>
+                            </div>
+                        </div>
+                        <div class="single-resume-feild feild-flex-2">
+                            <div class="single-input">
+                                <label for="user_education" class="layui-form">学历:</label>
+                                <div name="user_education" th:text="${session.user.user_education}"></div>
+                            </div>
+                            <div class="single-input">
+                                <label for="user_expection" class="layui-form">期望薪资:</label>
+                                <div name="user_expection" th:text="${session.user.user_expection}" ></div>
+                            </div>
+                        </div>
+                        <div class="single-resume-feild ">
+                            <div class="single-input">
+                                <label for="Bio" class="layui-form">工作经验:</label>
+                                <div name="user_experience" th:text="${session.user.user_experience}" ></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class=layui-btn-group>
+                            <a th:href="@{'submit/'+${session.user.user_email}}" class="layui-btn" lay-submit lay-filter="formDemo">编辑简历<i class="layui-icon">&#xe642;</i></a>
+                        </div>
+                    </div>
+<!--                    <div class="submit-resume">-->
+<!--                        <a th:href="@{'submit/'+${session.user.user_email}}" title="编辑简历">编辑简历<i class="fa fa-edit text-navy"></i></a>-->
+<!--                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- 个人信息修改结束-->
+
+<!-- 底部菜单项开始 -->
+<footer class="jobguru-footer-area" th:replace="head::myunder">
+</footer>
+<!-- 底部菜单项结束-->
+<!--layui-->
+<script src="../layui/layui.js"></script>
+<!--Jquery js-->
+<script src="/js/jquery-3.0.0.min.js"></script>
+<!--Popper js-->
+<script src="/js/popper.min.js"></script>
+<!--Bootstrap js-->
+<script src="/js/bootstrap.min.js"></script>
+<!--Bootstrap Datepicker js-->
+<script src="/js/bootstrap-datepicker.min.js"></script>
+<!--Perfect Scrollbar js-->
+<script src="/js/jquery-perfect-scrollbar.min.js"></script>
+<!--Owl-Carousel js-->
+<script src="/js/owl.carousel.min.js"></script>
+<!--SlickNav js-->
+<script src="/js/jquery.slicknav.min.js"></script>
+<!--Magnific js-->
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<!--Select2 js-->
+<script src="/js/select2.min.js"></script>
+<!--jquery-ui js-->
+<script src="/js/jquery-ui.min.js"></script>
+<!--Custom-Scrollbar js-->
+<script src="/js/custom-scrollbar.js"></script>
+<!--Main js-->
+<script src="/js/main.js"></script>
+</body>
+</html>
+

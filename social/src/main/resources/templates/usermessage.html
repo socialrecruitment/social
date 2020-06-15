@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="description" content="jobguru | Job Board HTML Templates from Themescare">
+   <meta name="keyword" content="Job, freelancer, employee, marketplace">
+   <meta name="author" content="Themescare">
+   <!-- Title -->
+   <title>jobguru</title>
+   <!-- Favicon -->
+   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+   <!--Bootstrap css-->
+   <link rel="stylesheet" href="/css/bootstrap.css">
+   <!--Font Awesome css-->
+   <link rel="stylesheet" href="/css/font-awesome.min.css">
+   <!--Magnific css-->
+   <link rel="stylesheet" href="/css/magnific-popup.css">
+   <!--Owl-Carousel css-->
+   <link rel="stylesheet" href="/css/owl.carousel.min.css">
+   <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+   <!--Animate css-->
+   <link rel="stylesheet" href="/css/animate.min.css">
+   <!--Select2 css-->
+   <link rel="stylesheet" href="/css/select2.min.css">
+   <!--Slicknav css-->
+   <link rel="stylesheet" href="/css/slicknav.min.css">
+   <!--Bootstrap-Datepicker css-->
+   <link rel="stylesheet" href="/css/bootstrap-datepicker.min.css">
+   <!--Jquery UI css-->
+   <link rel="stylesheet" href="/css/jquery-ui.min.css">
+   <!--Perfect-Scrollbar css-->
+   <link rel="stylesheet" href="/css/perfect-scrollbar.min.css">
+   <!--Site Main Style css-->
+   <link rel="stylesheet" href="/css/style.css">
+   <!--Responsive css-->
+   <link rel="stylesheet" href="/css/responsive.css">
+    <!--layui-->
+    <link rel="stylesheet" href="../layui/css/layui.css">
+</head>
+<body>
+<!-- 导航栏开始 -->
+<header class="jobguru-header-area stick-top forsticky" th:replace="head::myMenu">
+</header>
+<!-- 导航栏结束-->
+<!-- 留言板标题开始 -->
+<section class="jobguru-breadcromb-area">
+   <div class="breadcromb-top section_100">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="breadcromb-box">
+                  <h3>留言板</h3>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- 留言板标题结束 -->
+
+<!-- 留言板开始 -->
+<section class="candidate-dashboard-area section_70">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12 col-lg-3 dashboard-left-border" th:replace="head::myuserDashboard">
+         </div>
+         <div class="col-lg-9 col-md-12">
+            <div class="dashboard-right message-page-box">
+               <div class="row">
+                  <div class="col-md-12">
+                               <form class="layui-form" method="POST" th:action="@{/user/add}">
+                                   <div class="layui-form-item">
+                                           <label for="inputEmail" class="layui-form-label">邮箱</label>
+                                           <div class="layui-input-block">
+                                               <input type="email" name="user_email"  class="layui-input" id="user_email" placeholder="请输入邮箱" lay-verify="title">
+                                           </div>
+                                       </div>
+                                       <div class="layui-form-item">
+                                           <label for="inputtheme" class="layui-form-label">主题</label>
+                                           <div class="layui-input-block">
+                                               <input type="theme" name="theme" class="layui-input" id="theme" placeholder="请输入主题" lay-verify="title">
+                                           </div>
+                                       </div>
+                                   <div class="layui-form-item">
+                                       <label for="inputcontent" class="layui-form-label">内容</label>
+                                       <div class="layui-input-block">
+                                           <input type="content" name="content" class="layui-input" id="content" placeholder="请输入内容" lay-verify="title">
+                                       </div>
+                                   </div>
+
+                                   <div class="layui-form-item">
+                                       <div class="layui-input-block">
+                                           <button  type="submit" class="layui-btn" lay-submit lay-filter="formDemo">发布</button>
+                                           <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                       </div>
+                                   </div>
+                               </form>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+</section>
+<!-- 留言板结束-->
+
+<!-- 底部菜单项开始 -->
+<footer class="jobguru-footer-area" th:replace="head::myunder">
+</footer>
+<!-- 底部菜单项结束 -->
+<!--Jquery js-->
+
+<!--layui-->
+<script src="../layui/layui.js"></script>
+
+<script src="/js/jquery-3.0.0.min.js"></script>
+<!--Popper js-->
+<script src="/js/popper.min.js"></script>
+<!--Bootstrap js-->
+<script src="/js/bootstrap.min.js"></script>
+<!--Bootstrap Datepicker js-->
+<script src="/js/bootstrap-datepicker.min.js"></script>
+<!--Perfect Scrollbar js-->
+<script src="/js/jquery-perfect-scrollbar.min.js"></script>
+<!--Owl-Carousel js-->
+<script src="/js/owl.carousel.min.js"></script>
+<!--SlickNav js-->
+<script src="/js/jquery.slicknav.min.js"></script>
+<!--Magnific js-->
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<!--Select2 js-->
+<script src="/js/select2.min.js"></script>
+<!--jquery-ui js-->
+<script src="/js/jquery-ui.min.js"></script>
+<!--Custom-Scrollbar js-->
+<script src="/js/custom-scrollbar.js"></script>
+<!--Main js-->
+<script src="/js/main.js"></script>
+</body>
+</html>
+

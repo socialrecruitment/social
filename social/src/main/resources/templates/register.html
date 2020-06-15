@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="description" content="jobguru | Job Board HTML Templates from Themescare">
+   <meta name="keyword" content="Job, freelancer, employee, marketplace">
+   <meta name="author" content="Themescare">
+   <!-- Title -->
+   <title>易析职位分析平台</title>
+   <!-- Favicon -->
+   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+   <!--Bootstrap css-->
+   <link rel="stylesheet" href="/css/bootstrap.css">
+   <!--Font Awesome css-->
+   <link rel="stylesheet" href="/css/font-awesome.min.css">
+   <!--Magnific css-->
+   <link rel="stylesheet" href="/css/magnific-popup.css">
+   <!--Owl-Carousel css-->
+   <link rel="stylesheet" href="/css/owl.carousel.min.css">
+   <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+   <!--Animate css-->
+   <link rel="stylesheet" href="/css/animate.min.css">
+   <!--Select2 css-->
+   <link rel="stylesheet" href="/css/select2.min.css">
+   <!--Slicknav css-->
+   <link rel="stylesheet" href="/css/slicknav.min.css">
+   <!--Bootstrap-Datepicker css-->
+   <link rel="stylesheet" href="/css/bootstrap-datepicker.min.css">
+   <!--Jquery UI css-->
+   <link rel="stylesheet" href="/css/jquery-ui.min.css">
+   <!--Perfect-Scrollbar css-->
+   <link rel="stylesheet" href="/css/perfect-scrollbar.min.css">
+   <!--Site Main Style css-->
+   <link rel="stylesheet" href="/css/style.css">
+   <!--Responsive css-->
+   <link rel="stylesheet" href="/css/responsive.css">
+
+   <link rel="stylesheet" href="/css/styles.css">
+
+   <link rel="stylesheet" href="/layui/css/layui.css">
+
+   <style>
+
+      .layui-input {
+         width: 100%;
+         border: 2px solid #e8ecec;
+         padding: 7px 10px;
+         border-radius: 5px;
+         color: #333;
+      }
+   </style>
+</head>
+<body>
+<!--背景开始 -->
+<div id="login-bg" class="container-fluid">
+   <div class="bg-img"></div>
+   <div class="bg-color"></div>
+</div>
+<!--背景结束-->
+<!--   注册开始-->
+<section class="jobguru-login-area section_70">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="login-box">
+               <div class="login-title">
+                  <h3>注册</h3>
+               </div>
+               <form class="layui-form layui-form-pane" > <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+                  <div class="layui-form-item">
+                     <label class="layui-form-label">用户名</label>
+                     <div class="layui-input-block">
+                        <input type="text" id="user_name"  name="user_name" placeholder="输入用户名" autocomplete="off" class="layui-input">
+                     </div>
+                  </div>
+
+                  <div class="layui-form-item">
+                     <label class="layui-form-label">邮箱</label>
+                     <div class="layui-input-block">
+                        <input type="email" id="user_email" name="user_email" placeholder="输入邮箱" autocomplete="off" class="layui-input">
+                     </div>
+                  </div>
+
+                  <div class="layui-form-item">
+                     <label class="layui-form-label">密码</label>
+                     <div class="layui-input-block">
+                        <input type="password" id="user_password" name="user_password" required lay-verify="required" placeholder="输入密码" autocomplete="off" class="layui-input">
+                     </div>
+                  </div>
+
+                  <div class="remember-row single-login-field clearfix">
+                     <p class="checkbox remember">
+                        <input class="checkbox-spin" type="checkbox" id="Freelance">
+                        <label for="Freelance"><span></span>接受条款及条件</label>
+                     </p>
+                  </div>
+                  <button type="button" id="btnRegister" class="layui-btn layui-btn-sm">注册</button>
+                  <input onclick="gotoLogin()" type="submit" value="已有账户？" class="layui-btn layui-btn-sm">
+               </form>
+
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!--注册结束-->
+</body>
+<script src="/js/jquery-3.0.0.min.js"></script>
+<!--Popper js-->
+<script src="/js/popper.min.js"></script>
+<!--Bootstrap js-->
+<script src="/js/bootstrap.min.js"></script>
+<!--Bootstrap Datepicker js-->
+<script src="/js/bootstrap-datepicker.min.js"></script>
+<!--Perfect Scrollbar js-->
+<script src="/js/jquery-perfect-scrollbar.min.js"></script>
+<!--Owl-Carousel js-->
+<script src="/js/owl.carousel.min.js"></script>
+<!--SlickNav js-->
+<script src="/js/jquery.slicknav.min.js"></script>
+<!--Magnific js-->
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<!--Select2 js-->
+<script src="/js/select2.min.js"></script>
+<!--jquery-ui js-->
+<script src="/js/jquery-ui.min.js"></script>
+<!--Custom-Scrollbar js-->
+<script src="/js/custom-scrollbar.js"></script>
+<!--Main js-->
+<script src="/js/main.js"></script>
+
+<script src="/script/jquery.min.js"></script>
+<script src="/layui/layui.js"></script>
+
+<script type="text/javascript">
+
+   $(function () {
+      $("#btnRegister").click(function () {
+         var user_name=$("#user_name").val();
+         var user_password=$("#user_password").val();
+         var user_email=$("#user_email").val();
+         $.ajax({
+            type:"post",
+            url:"/ajax/registercheck",
+            data:{user_name:user_name,user_email:user_email,user_password:user_password},
+            success:function (result) {
+               if(result=="200") {
+                  location.href="/user/login";
+               }else {
+                  alert("注册失败，请重新尝试！");
+               }
+            }
+         })
+      })
+   })
+   function gotoLogin() {
+      location.href = "/user/login";
+   }
+<!--Jquery js-->
+</script>
+
+
+</html>
+
