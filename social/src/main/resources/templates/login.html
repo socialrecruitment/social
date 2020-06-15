@@ -72,17 +72,17 @@
                </div>
                <div class="layui-form-item">
 
-                  <form th:action="@{/user/login}" class="layui-form layui-form-pane" method="POST">
+                  <form  class="layui-form layui-form-pane">
                      <div class="layui-form-item ">
                         <label class="layui-form-label">邮箱</label>
                         <div class="layui-input-block">
-                           <input type="text" name="user_email" placeholder="输入邮箱" lay-verify="required|email" autocomplete="off" class="layui-input">
+                           <input type="text" id="user_email" name="user_email" placeholder="输入邮箱" lay-verify="required|email" autocomplete="off" class="layui-input">
                         </div>
                      </div>
                      <div class="layui-form-item">
                         <label class="layui-form-label">密码</label>
                         <div class="layui-input-block">
-                           <input type="password" name="user_password"placeholder="输入密码" lay-verify="password" autocomplete="off" class="layui-input">
+                           <input type="password" id="user_password" name="user_password" placeholder="输入密码" lay-verify="password" autocomplete="off" class="layui-input">
                         </div>
                      </div>
                      <div class="remember-row single-login-field clearfix">
@@ -91,7 +91,7 @@
                            <label for="Freelance"><span></span>记住密码</label>
                         </p>
                      </div>
-                     <input onclick="submit()" type="submit" value="登录" class="layui-btn layui-btn-sm">
+                     <button type="button" id="btnLogin" class="layui-btn layui-btn-sm">登录</button>
                      <a href="/user/register" class="layui-btn layui-btn-sm">还没有账户?</a>
                   </form>
 
@@ -102,7 +102,7 @@
    </div>
 </section>
 <!--      登录结束-->
-
+</body>
 <!--Jquery js-->
 <script src="/js/jquery-3.0.0.min.js"></script>
 <!--Popper js-->
@@ -127,6 +127,33 @@
 <script src="/js/custom-scrollbar.js"></script>
 <!--Main js-->
 <script src="/js/main.js"></script>
-</body>
+
+<script src="/script/jquery.min.js"></script>
+<script src="/layui/layui.js"></script>
+
+<script type="text/javascript">
+
+   $(function () {
+      $("#btnLogin").click(function () {
+         var user_password=$("#user_password").val();
+         var user_email=$("#user_email").val();
+         $.ajax({
+            type:"post",
+            url:"/ajax/logincheck",
+            data:{user_email:user_email,user_password:user_password},
+            success:function (result) {
+               if(result=="200") {
+                  location.href="/user/index";
+               }else {
+                  alert("登录失败，请重新尝试！");
+               }
+            }
+         })
+      })
+   })
+
+   <!--Jquery js-->
+</script>
+
 </html>
 

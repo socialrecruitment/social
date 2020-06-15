@@ -66,11 +66,11 @@ public class UserController {
      * @param userInfo userInfo对象，用于存放用户注册信息
      * @return 返回login页面
      */
-//    @PostMapping("/register")
-//    public String UserRegister(UserInfo userInfo) {
-//        int i=userMapper.saveUserAccount(userInfo);
-//        return "login.html";
-//    }
+    @PostMapping("/register")
+    public String UserRegister(UserInfo userInfo) {
+        int i=userMapper.saveUserAccount(userInfo);
+        return "login.html";
+    }
 
     /**用于index页面功能，主要用于显示首页信息
      * @param session 用户session对象，用于识别是否为同一对象

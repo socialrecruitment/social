@@ -31,4 +31,17 @@ public class ajaxController {
         }
     }
 
+    @PostMapping("/logincheck")
+    @ResponseBody()
+    private String CheckLogin(@RequestParam("user_email") String user_email,
+                                 @RequestParam("user_password") String user_password,HttpSession session){
+        session.setAttribute("test",123456);
+        UserInfo userInfo=userMapper.userLogin(user_email,user_password);
+        if(userInfo!=null){
+            session.setAttribute("user",userInfo);
+            return "200";
+        }else {
+            return "300";
+        }
+    }
 }
