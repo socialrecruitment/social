@@ -559,5 +559,17 @@ public class UserController {
 
         return "report1.html";
     }
+
+
+    //公司详情
+    @GetMapping("/companydetail/{id}")
+    public String singleCompany(@PathVariable("id") Integer company_id, Model model) {
+        List<CompanyInfo> lists = companyMapper.companyDetail(company_id);
+        model.addAttribute("company",lists);
+        return "single-company.html";
+    }
+
+
+
 }
 

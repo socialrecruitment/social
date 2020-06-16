@@ -33,7 +33,7 @@ public interface RecruitmentMapper {
     @Select("select rec.*,com.company_name,com.company_link,com.company_address," +
             "com.company_location,com.company_industry,com.company_city,com.detail_information\n" +
             "from company com join recruitment rec on com.company_id=rec.company_id\n" +
-            "where company_industry like #{company_industry}  and job_name like #{job_name}\n")
+            "where company_industry like #{company_industry}  and rec.job_name like #{job_name}\n")
     List<RecruitmentInfo> selectinduJob(
             @Param("company_industry") String company_industry,
             @Param("job_name") String job_name);
@@ -74,7 +74,7 @@ public interface RecruitmentMapper {
     //行业和职位名模糊查询
     @Select("select rec.*,com.company_name,com.company_link,com.company_address,com.company_location,com.company_industry,com.company_city,com.detail_information\n" +
             "from company com join recruitment rec on com.company_id=rec.company_id\n" +
-            "where company_industry like #{company_industry}and job_name like #{job_name}\n")
+            "where company_industry like #{company_industry}and rec.job_name like #{job_name}\n")
     List<RecruitmentInfo> userselectinduJob(
     @Param("company_industry") String company_industry,
     @Param("job_name") String job_name,

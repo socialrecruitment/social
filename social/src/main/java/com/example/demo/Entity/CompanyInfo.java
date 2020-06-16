@@ -1,5 +1,7 @@
 package com.example.demo.Entity;
 
+import java.util.Date;
+
 public class CompanyInfo {
     private Integer company_id;
     private String company_name;
@@ -13,13 +15,15 @@ public class CompanyInfo {
     private String job_id;
     private String job_name;
 
-    private Integer recruitment_numbers;
+        private String recruiting_numbers;
     private String education_required;
     private Integer salary;
 
     private String job_experience;
     private String education;
     private String job_information;
+    private String welfare;
+    private Date postdate;
 
     public Integer getCompany_id() {
         return company_id;
@@ -109,12 +113,12 @@ public class CompanyInfo {
         this.job_name = job_name;
     }
 
-    public Integer getRecruitment_numbers() {
-        return recruitment_numbers;
+    public String getRecruiting_numbers() {
+        return recruiting_numbers;
     }
 
-    public void setRecruitment_numbers(Integer recruitment_numbers) {
-        this.recruitment_numbers = recruitment_numbers;
+    public void setRecruiting_numbers(String recruiting_numbers) {
+        this.recruiting_numbers = recruiting_numbers;
     }
 
     public String getEducation_required() {
@@ -155,5 +159,21 @@ public class CompanyInfo {
 
     public void setJob_information(String job_information) {
         this.job_information = job_information;
+    }
+
+    public String getWelfare() {
+        return welfare;
+    }
+
+    public void setWelfare(String welfare) {
+        this.welfare = welfare;
+    }
+
+    public Date getPostdate() {
+        return postdate;
+    }
+
+    public void setPostdate(Date postdate) {
+        this.postdate = postdate;
     }
 }

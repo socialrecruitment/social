@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="description" content="jobguru | Job Board HTML Templates from Themescare">
+      <meta name="keyword" content="Job, freelancer, employee, marketplace">
+      <meta name="author" content="Themescare">
+      <!-- Title -->
+      <title>易析职位分析平台</title>
+      <!-- Favicon -->
+      <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+      <!--Bootstrap css-->
+      <link rel="stylesheet" href="/css/bootstrap.css">
+      <link rel="stylesheet" href="/css/bootstrap.min.css">
+      <!--Font Awesome css-->
+      <link rel="stylesheet" href="/css/font-awesome.min.css">
+      <!--Magnific css-->
+      <link rel="stylesheet" href="/css/magnific-popup.css">
+      <!--Owl-Carousel css-->
+      <link rel="stylesheet" href="/css/owl.carousel.min.css">
+      <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+      <!--Animate css-->
+      <link rel="stylesheet" href="/css/animate.min.css">
+      <!--Select2 css-->
+      <link rel="stylesheet" href="/css/select2.min.css">
+      <!--Slicknav css-->
+      <link rel="stylesheet" href="/css/slicknav.min.css">
+      <!--Bootstrap-Datepicker css-->
+      <link rel="stylesheet" href="/css/bootstrap-datepicker.min.css">
+      <!--Jquery UI css-->
+      <link rel="stylesheet" href="/css/jquery-ui.min.css">
+      <!--Perfect-Scrollbar css-->
+      <link rel="stylesheet" href="/css/perfect-scrollbar.min.css">
+      <!--Site Main Style css-->
+      <link rel="stylesheet" href="/css/style.css">
+      <!--Responsive css-->
+      <link rel="stylesheet" href="/css/responsive.css">
+   </head>
+   <body>
+
+
+   <!-- 导航栏开始 -->
+   <header class="jobguru-header-area stick-top forsticky" th:replace="head::myMenu">
+   </header>
+   <!-- 导航栏结束 -->
+   <tr th:each="CompanyInfo,userStat:${company}">
+      <!-- Single Candidate Start -->
+      <section class="single-candidate-page section_70">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6" >
+                  <div class="single-candidate-box">
+                     <div class="single-candidate-img">
+                        <img src="/img/company_page_logo.jpg" alt="single candidate" />
+                     </div>
+                     <div class="single-candidate-box-right">
+                        <h4 th:text="${CompanyInfo.company_name}"></h4>
+                        <p th:text="${CompanyInfo.company_location}"></p>
+                        <p th:text="${CompanyInfo.company_address}"></p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="single-candidate-action">
+                     <a href="/user/joblist" class="candidate-contact"><i class="fa fa-gavel"></i>return</a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Single Candidate End -->
+
+       
+      <!-- Single Candidate Bottom Start -->
+      <div class="single-candidate-bottom-area section_70">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-9 col-md-8">
+                  <div class="single-candidate-bottom-left">
+                     <div class="single-candidate-widget">
+                        <h3>公司描述</h3>
+                        <p th:text="${CompanyInfo.detail_information}"></p>
+                     </div>
+                     <div class="single-candidate-widget">
+                        <h3>所发布的工作</h3>
+                        <div class="single-work-history company-single-page">
+                           <div class="single-candidate-list">
+                              <div class="main-comment">
+                                 <div class="candidate-text">
+                                    <div class="candidate-info">
+                                       <div class="candidate-title">
+                                          <h3 th:text="'职位名：'+${CompanyInfo.job_name}"></h3>
+                                       </div>
+                                       <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                       <p th:text="'薪水：'+${CompanyInfo.salary}"></p>
+
+                                       <span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span>
+                                       <p th:text="'学历要求:'+${CompanyInfo.education_required}"></p>
+
+                                       <span class="glyphicon glyphicon-retweet" aria-hidden="true"></span>
+                                       <p th:text="'工作经验要求:'+${CompanyInfo.job_experience}"></p>
+
+                                       <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                       <p th:text="'人员需求:'+${CompanyInfo.recruiting_numbers}"></p>
+
+                                       <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                                       <p th:text="'发布日期:'+ ${#dates.format(CompanyInfo.postdate,'yyyy/MM/dd')}"></p>
+                                       <div class="candidate-title"><h3>工作详情</h3></div>
+                                       <p th:text="${CompanyInfo.job_information}"></p>
+                                       <div class="candidate-title"><h3>福利待遇</h3></div>
+                                       <p th:text="${CompanyInfo.welfare}"></p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Single Candidate Bottom End -->
+   </tr>
+
+   <!-- 底部导航栏开始-->
+   <footer class="jobguru-footer-area" th:replace="head::myunder">
+   </footer>
+   <!-- 底部导航栏结束 -->
+
+   <!--Jquery js-->
+   <script src="/js/jquery-3.0.0.min.js"></script>
+   <!--Popper js-->
+   <script src="/js/popper.min.js"></script>
+   <!--Bootstrap js-->
+   <script src="/js/bootstrap.min.js"></script>
+   <!--Bootstrap Datepicker js-->
+   <script src="/js/bootstrap-datepicker.min.js"></script>
+   <!--Perfect Scrollbar js-->
+   <script src="/js/jquery-perfect-scrollbar.min.js"></script>
+   <!--Owl-Carousel js-->
+   <script src="/js/owl.carousel.min.js"></script>
+   <!--SlickNav js-->
+   <script src="/js/jquery.slicknav.min.js"></script>
+   <!--Magnific js-->
+   <script src="/js/jquery.magnific-popup.min.js"></script>
+   <!--Select2 js-->
+   <script src="/js/select2.min.js"></script>
+   <!--jquery-ui js-->
+   <script src="/js/jquery-ui.min.js"></script>
+   <!--Custom-Scrollbar js-->
+   <script src="/js/custom-scrollbar.js"></script>
+   <!--Main js-->
+   <script src="/js/main.js"></script>
+   </body>
+</html>
+

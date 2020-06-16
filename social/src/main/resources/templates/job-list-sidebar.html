@@ -105,14 +105,15 @@
                         <div class="company-list-details">
                            <h3 th:text="${RecruitmentInfo.company_name}"><a href="${RecruitmentInfo.company_link}">Regional Sales Manager</a></h3>
                            <div class="layui-row layui-col-space10">
-                              <p class="layui-col-md4" th:text="${RecruitmentInfo.job_name}"><i class="fa fa-map-marker"></i> shuju</p>
-                              <p class="layui-col-md4" th:text="${RecruitmentInfo.company_industry}"><i class="fa fa-map-marker"></i> shuju</p>
-                              <p class="layui-col-md4" th:text="${RecruitmentInfo.company_address}"><i class="fa fa-map-marker"></i> Chicago, Michigan</p>
-                              <p class="layui-col-md4" th:text=" ${#dates.format(RecruitmentInfo.postdate,'yyyy/MM/dd')}"><i class="fa fa-clock-o"></i>2 minutes ago</p>
-                              <p class="layui-col-md4" th:text="${RecruitmentInfo.salary}"><i class="fa fa-check"></i>Fixed price : $1200-$2000</p>
+                              <p class="layui-hide" th:text="${RecruitmentInfo.company_id}"></p>
+                              <p class="layui-col-md4" th:text="${RecruitmentInfo.job_name}"><i class="fa fa-map-marker"></i> </p>
+                              <p class="layui-col-md4" th:text="${RecruitmentInfo.company_industry}"><i class="fa fa-map-marker"></i> </p>
+                              <p class="layui-col-md4" th:text="${RecruitmentInfo.company_address}"><i class="fa fa-map-marker"></i> </p>
+                              <p class="layui-col-md4" th:text=" ${#dates.format(RecruitmentInfo.postdate,'yyyy/MM/dd')}"><i class="fa fa-clock-o"></i></p>
+                              <p class="layui-col-md4" th:text="${RecruitmentInfo.salary}"><i class="fa fa-check"></i></p>
                            </div>
                         </div>
-                        <a th:href="${RecruitmentInfo.company_link}" class="layui-btn " lay-submit lay-filter="formDemo">详细</a>
+                        <a th:href="@{'companydetail/'+${RecruitmentInfo.company_id}}" class="layui-btn " lay-submit lay-filter="formDemo">详细</a>
                      </div>
                   </div>
                </tr>
