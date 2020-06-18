@@ -9,7 +9,7 @@
     <meta name="author" content="Themescare">
 
     <!-- Title -->
-    <title>jobguru</title>
+    <title>易析职位分析平台</title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
     <!--Bootstrap css-->
@@ -89,6 +89,8 @@
                                                     </div>
                                                 </div>
                                                 <a th:href="@{'content/'+${MessageInfo.message_id}}" class="layui-btn " lay-submit lay-filter="formDemo">查看</a>
+                                                <!--                                                <a th:href="@{'send/'+${MessageInfo.message_id}}" class="layui-btn " lay-submit lay-filter="formDemo">私信</a>-->
+                                                <a href="/user/send" class="layui-btn layui-btn-sm">私信</a>
                                             </div>
                                         </div>
                                 </div>

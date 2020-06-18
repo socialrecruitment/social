@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
@@ -49,201 +48,252 @@
 <!--报告分析开始-->
 <section class="jobguru-categories-area section_70">
     <div class="container">
-<div class="row">
-    <div class="col-md-12">
-        <div class="card p-4">
-            <div >图表显示该行业的热门职位：<strong>[[${Jname}]]</strong>等职位发布数量</div>
-            <div id="main9" style="width: 800px;height:500px; "></div>
-            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
-            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
-            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
-            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
-            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
-            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
-            <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=x96lvzsWMdYmoZ2jrmXzMtOYNozXzrZV&__ec_v__=20191217"></script>
-            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
-            <script type="text/javascript">
-                var dom = document.getElementById("main9");
-                var myChart = echarts.init(dom);
-                var titleB =[];
-                var info='';
-                var index=0;
-                var onex="";
-                var bb = "[[${Jname}]]";
-                //aa = aa.substr(1,aa.length);
-                var len = 10;
-                for(var i=1;i<=len;i++){
-                    info += "第"+i+"次：&nbsp;&nbsp;&nbsp;";
-                    index = bb.indexOf(',');
-                    if(len==i){
-                        onex = bb.substring(0,bb.length-1);
-                    }else{
-                        onex = bb.substring(0,index);
-                    }
-                    info +="bb:  "+bb;
-                    info +="&nbsp;&nbsp;&nbsp; onex: "+onex+"<br/>";
-                    bb = bb.substr(index+1,bb.length);
-                    titleB.push(onex);
-                }
-
-                var app = {};
-                option = null;
-                app.title = '坐标轴刻度与标签对齐';
-
-                option = {
-                    title: {
-                        text: '该行业的热门职位发布数量'
-                    },
-                    color: ['#91db8c'],
-                    tooltip : {
-                        trigger: 'axis',
-                        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-                        }
-                    },
-                    grid: {
-                        left: '3%',
-                        right: '4%',
-                        bottom: '3%',
-                        containLabel: true
-                    },
-                    xAxis : [
-                        {
-                            type : 'category',
-                            data : titleB,
-                            axisTick: {
-                                alignWithLabel: true
-                            }
-                        }
-                    ],
-                    yAxis : [
-                        {
-                            type : 'value'
-                        }
-                    ],
-                    series : [
-                        {
-                            name:'招聘发布数量',
-                            type:'bar',
-                            barWidth: '30%',
-                            data:[[${Jnum}]]
-                        }
-                    ]
-                };
-                ;
-                if (option && typeof option === "object") {
-                    myChart.setOption(option, true);
-                }
-            </script>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="site-heading">
+                    <h2><span>行业报告分析</span></h2>
+                    <p>你只需要在这里选取你感兴趣的</p>
+                </div>
+            </div>
         </div>
-    </div></div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="card p-4">
-            <div >图表显示该行业的所有职位的TOP1信息</div>
-            <table class="table table-hover">
-                <tr class="success">
-                    <th>编号</th>
-                    <th>行业</th>
-                    <th>公司名</th>
-                    <th>职位名</th>
-                    <th>薪水</th>
-                    <th>学历要求</th>
-                    <th>公司所在地</th>
-                    <th>公司类型</th>
-                    <th>发布日期</th>
-                </tr>
-                <tr th:each="RecruitmentInfo,userStat:${lists}">
-                    <td th:text="${userStat.index+1}">abc</td>
-                    <td th:text="${RecruitmentInfo.company_industry}">abc</td>
-                    <td th:text="${RecruitmentInfo.company_name}">abc</td>
-                    <td th:text="${RecruitmentInfo.job_name}">abc</td>
-                    <td th:text="${RecruitmentInfo.salary}">abc</td>
-                    <td th:text="${RecruitmentInfo.education_required}">abc</td>
-                    <td th:text="${RecruitmentInfo.company_location}">abc</td>
-                    <td th:text="${RecruitmentInfo.company_type}">abc</td>
-                    <td th:text="${#dates.format(RecruitmentInfo.postdate,'yyyy/MM/dd')}">abc</td>
-                </tr>
-            </table>
-        </div></div></div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="card p-4">
-            <div >图表显示<strong>[[${topindu}]]</strong>等十大热门行业发布的职位数量</div>
-            <div id="main8" style="width: 800px;height:500px; "></div>
-            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
-            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
-            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
-            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
-            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
-            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
-            <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=x96lvzsWMdYmoZ2jrmXzMtOYNozXzrZV&__ec_v__=20191217"></script>
-            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
-            <script type="text/javascript">
-                var dom = document.getElementById("main8");
-                var myChart = echarts.init(dom);
-                var app = {};
-                var titleC =[];
-                option = null;
-                app.title = '';
-                var info='';
-                var index=0;
-                var onex="";
-                var aa1 = "[[${topindu}]]";
-                //aa = aa.substr(1,aa.length);
-                var len = 10;
-                for(var i=1;i<=len;i++){
-                    info += "第"+i+"次：&nbsp;&nbsp;&nbsp;";
-                    index = aa1.indexOf(',');
-                    if(len==i){
-                        onex = aa1.substring(0,aa1.length-1);
-                    }else{
-                        onex = aa1.substring(0,index);
-                    }
-                    info +="aa1:  "+aa1;
-                    info +="&nbsp;&nbsp;&nbsp; onex: "+onex+"<br/>";
-                    aa1 = aa1.substr(index+1,aa1.length);
-                    titleC.push(onex);
-                }
-                option = {
-                    title: {
-                        text: '十大热门行业发布的职位数量'
-                    },
-                    color: ['#91db8c'],
-                    tooltip: {
-                        trigger: 'axis',
-                        axisPointer: {
-                            type: 'shadow'
-                        }
-                    },
-                    grid: {
-                        left: '3%',
-                        right: '4%',
-                        bottom: '3%',
-                        containLabel: true
-                    },
-                    xAxis: {
-                        type: 'value',
-                        boundaryGap: [0, 0.01]
-                    },
-                    yAxis: {
-                        type: 'category',
-                        data: titleC
-                    },
-                    series: [
-                        {
-                            type: 'bar',
-                            data: [[${top}]]
-                        }
-                    ]
-                };
-                ;
-                if (option && typeof option === "object") {
-                    myChart.setOption(option, true);
-                }
-            </script>
+        <div class="row">
+            <div class="col-md-12">
+                <div class=" job-tab">
+                    <ul class="nav nav-pills job-tab-switch" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="pills-one-o" data-toggle="pill" href="#pills-one" role="tab"
+                               aria-controls="pills-one" aria-selected="true">行业热门职位</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-tw-o" data-toggle="pill" href="#pills-two" role="tab"
+                               aria-controls="pills-two" aria-selected="false">行业top1职位</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-three-o" data-toggle="pill" href="#pills-three" role="tab"
+                               aria-controls="pills-three" aria-selected="false">十大热门行业</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-one" role="tabpanel" aria-labelledby="pills-one-o">
+                        <div class="top-company-tab">
+                            <div class="card p-4">
+                                <div>图表显示该行业的热门职位：<strong>[[${Jname}]]</strong>等职位发布数量</div>
+                                <div id="main9" style="width: 800px;height:500px; "></div>
+                                <script type="text/javascript"
+                                        src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+                                <script type="text/javascript"
+                                        src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+                                <script type="text/javascript"
+                                        src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+                                <script type="text/javascript"
+                                        src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+                                <script type="text/javascript"
+                                        src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+                                <script type="text/javascript"
+                                        src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+                                <script type="text/javascript"
+                                        src="https://api.map.baidu.com/api?v=2.0&ak=x96lvzsWMdYmoZ2jrmXzMtOYNozXzrZV&__ec_v__=20191217"></script>
+                                <script type="text/javascript"
+                                        src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+                                <script type="text/javascript">
+                                    var dom1 = document.getElementById("main9");
+                                    var myChart1 = echarts.init(dom1);
+                                    var titleB = [];
+                                    var info = '';
+                                    var index = 0;
+                                    var onex = "";
+                                    var bb = "[[${Jname}]]";
+                                    //aa = aa.substr(1,aa.length);
+                                    var len = 10;
+                                    for (var i = 1; i <= len; i++) {
+                                        info += "第" + i + "次：&nbsp;&nbsp;&nbsp;";
+                                        index = bb.indexOf(',');
+                                        if (len == i) {
+                                            onex = bb.substring(0, bb.length - 1);
+                                        } else {
+                                            onex = bb.substring(0, index);
+                                        }
+                                        info += "bb:  " + bb;
+                                        info += "&nbsp;&nbsp;&nbsp; onex: " + onex + "<br/>";
+                                        bb = bb.substr(index + 1, bb.length);
+                                        titleB.push(onex);
+                                    }
+
+                                    var app1 = {};
+                                    option = null;
+                                    app1.title = '坐标轴刻度与标签对齐';
+
+                                    option = {
+                                        title: {
+                                            text: '该行业的热门职位发布数量'
+                                        },
+                                        color: ['#91db8c'],
+                                        tooltip: {
+                                            trigger: 'axis',
+                                            axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                                                type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                                            }
+                                        },
+                                        grid: {
+                                            left: '3%',
+                                            right: '4%',
+                                            bottom: '3%',
+                                            containLabel: true
+                                        },
+                                        xAxis: [
+                                            {
+                                                type: 'category',
+                                                data: titleB,
+                                                axisTick: {
+                                                    alignWithLabel: true
+                                                }
+                                            }
+                                        ],
+                                        yAxis: [
+                                            {
+                                                type: 'value'
+                                            }
+                                        ],
+                                        series: [
+                                            {
+                                                name: '招聘发布数量',
+                                                type: 'bar',
+                                                barWidth: '30%',
+                                                data: [[${Jnum}]]
+                                            }
+                                        ]
+                                    };
+                                    ;
+                                    if (option && typeof option === "object") {
+                                        myChart1.setOption(option, true);
+                                    }
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="pills-two" role="tabpanel" aria-labelledby="pills-two-o">
+                        <div class="top-company-tab">
+                            <div class="card p-4">
+                                <div>图表显示该行业的所有职位的TOP1信息</div>
+                                <table class="table table-hover">
+                                    <tr class="success">
+                                        <th>编号</th>
+                                        <th>行业</th>
+                                        <th>公司名</th>
+                                        <th>职位名</th>
+                                        <th>薪水</th>
+                                        <th>学历要求</th>
+                                        <th>公司所在地</th>
+                                        <th>公司类型</th>
+                                        <th>发布日期</th>
+                                    </tr>
+                                    <tr th:each="RecruitmentInfo,userStat:${lists}">
+                                        <td th:text="${userStat.index+1}">abc</td>
+                                        <td th:text="${RecruitmentInfo.company_industry}">abc</td>
+                                        <td th:text="${RecruitmentInfo.company_name}">abc</td>
+                                        <td th:text="${RecruitmentInfo.job_name}">abc</td>
+                                        <td th:text="${RecruitmentInfo.salary}">abc</td>
+                                        <td th:text="${RecruitmentInfo.education_required}">abc</td>
+                                        <td th:text="${RecruitmentInfo.company_location}">abc</td>
+                                        <td th:text="${RecruitmentInfo.company_type}">abc</td>
+                                        <td th:text="${#dates.format(RecruitmentInfo.postdate,'yyyy/MM/dd')}">abc</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-three" role="tabpanel" aria-labelledby="pills-three-o">
+                        <div class="top-company-tab">
+                            <div class="card p-4">
+                                <div>图表显示<strong>[[${topindu}]]</strong>等十大热门行业发布的职位数量</div>
+                                <div id="main8" style="width: 800px;height:500px; "></div>
+                                <script type="text/javascript"
+                                        src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+                                <script type="text/javascript"
+                                        src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+                                <script type="text/javascript"
+                                        src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+                                <script type="text/javascript"
+                                        src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+                                <script type="text/javascript"
+                                        src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+                                <script type="text/javascript"
+                                        src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+                                <script type="text/javascript"
+                                        src="https://api.map.baidu.com/api?v=2.0&ak=x96lvzsWMdYmoZ2jrmXzMtOYNozXzrZV&__ec_v__=20191217"></script>
+                                <script type="text/javascript"
+                                        src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+                                <script type="text/javascript">
+                                    var dom = document.getElementById("main8");
+                                    var myChart = echarts.init(dom);
+                                    var app = {};
+                                    var titleC = [];
+                                    option = null;
+                                    app.title = '';
+                                    var info = '';
+                                    var index = 0;
+                                    var onex = "";
+                                    var aa1 = "[[${topindu}]]";
+                                    //aa = aa.substr(1,aa.length);
+                                    var len = 10;
+                                    for (var i = 1; i <= len; i++) {
+                                        info += "第" + i + "次：&nbsp;&nbsp;&nbsp;";
+                                        index = aa1.indexOf(',');
+                                        if (len == i) {
+                                            onex = aa1.substring(0, aa1.length - 1);
+                                        } else {
+                                            onex = aa1.substring(0, index);
+                                        }
+                                        info += "aa1:  " + aa1;
+                                        info += "&nbsp;&nbsp;&nbsp; onex: " + onex + "<br/>";
+                                        aa1 = aa1.substr(index + 1, aa1.length);
+                                        titleC.push(onex);
+                                    }
+                                    option = {
+                                        title: {
+                                            text: '十大热门行业发布的职位数量'
+                                        },
+                                        color: ['#91db8c'],
+                                        tooltip: {
+                                            trigger: 'axis',
+                                            axisPointer: {
+                                                type: 'shadow'
+                                            }
+                                        },
+                                        grid: {
+                                            left: '3%',
+                                            right: '4%',
+                                            bottom: '3%',
+                                            containLabel: true
+                                        },
+                                        xAxis: {
+                                            type: 'value',
+                                            boundaryGap: [0, 0.01]
+                                        },
+                                        yAxis: {
+                                            type: 'category',
+                                            data: titleC
+                                        },
+                                        series: [
+                                            {
+                                                type: 'bar',
+                                                data: [[${top}]]
+                                            }
+                                        ]
+                                    };
+                                    ;
+                                    if (option && typeof option === "object") {
+                                        myChart.setOption(option, true);
+                                    }
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div></div>
     </div>
 </section>
 <!--报告分析结束-->

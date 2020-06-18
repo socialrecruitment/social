@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Mapper
+@Repository
 public interface RecruitmentMapper {
     //首页职位城市行业类型查询框查询post
     @Select("select rec.*,com.company_name,com.company_location,com.company_industry," +

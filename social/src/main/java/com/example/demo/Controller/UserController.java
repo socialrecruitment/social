@@ -2,9 +2,7 @@ package com.example.demo.Controller;
 
 
 import com.example.demo.Entity.*;
-import com.example.demo.Mapper.CompanyMapper;
-import com.example.demo.Mapper.RecruitmentMapper;
-import com.example.demo.Mapper.UserMapper;
+import com.example.demo.Mapper.*;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +22,10 @@ public class UserController {
     private UserMapper userMapper;
     @Autowired
     private CompanyMapper companyMapper;
+    @Autowired
+    private CollectMapper collectMapper;
+    @Autowired
+    private InformationMapper informationMapper;
 
     /**
      * 用于login页面功能，主要用于显示用户登录页面
@@ -209,7 +211,7 @@ public class UserController {
 
 
     /**用于report页面功能，主要用于根据用户选择的一条数据来获取相应的报告信息
-     * @param job_id 职位id
+     * @param job_name 职位名
      * @param model 调用model传值
      * @return 返回report页面，即分析报告页
      */
@@ -366,6 +368,9 @@ public class UserController {
             model.addAttribute("expn8", expn8);
             List<String> exp = recruitmentMapper.getexp(job_name);
             model.addAttribute("exp", exp);
+
+
+
         }
         return "report.html";
     }
@@ -379,7 +384,8 @@ public class UserController {
     @GetMapping("/userinformation")
     public String pageUserInformation(HttpSession session,Model model) {
         UserInfo userInfo =(UserInfo) session.getAttribute("user");
-        model.addAttribute("user", userInfo);
+        List<UserInfo> listu =userMapper.getalluserinfo(userInfo.getUser_email());
+        model.addAttribute("user", listu);
         return "userinformationindex.html";
     }
 
@@ -404,16 +410,6 @@ public class UserController {
         int i = userMapper.updateUserByid(userInfo);
         return "redirect:/user/userinformation";
     }
-
-
-    /**用于browse-categories页面功能，主要用于显示所有行业及职位名
-     * @return 返回browse-categories页面，即浏览行业页面
-     */
-    @GetMapping("/companycate")
-    public String pageCompanyCate() {
-        return "browse-categories.html";
-    }
-
 
     /**用于user-change-password页面功能，主要用于显示用户修改密码页面
      * @param id id，判断是否修改成功
@@ -477,6 +473,7 @@ public class UserController {
     public String GetMessagea(){
         return "usermessage.html";
     }
+
     @PostMapping("/add")
     public String GetMessage(MessageInfo messageInfo) {
         int i = userMapper.saveMessage(messageInfo);
@@ -556,7 +553,6 @@ public class UserController {
         List<Integer> Jnum=recruitmentMapper.getjobnumber(company_industry);
         model.addAttribute("Jnum",Jnum);
 
-
         return "report1.html";
     }
 
@@ -569,6 +565,76 @@ public class UserController {
         return "single-company.html";
     }
 
+
+    @GetMapping("/randlist")
+    public String randList(Model model) {
+        List<CompanyInfo> randlist=companyMapper.randlist();
+        model.addAttribute("randlist",randlist);
+        return "randlist.html";
+    }
+
+    @PostMapping("/addcollect")
+    public String postshopping(HttpSession session,
+                               @RequestParam("company_id") Integer company_id){
+        UserInfo userInfo=(UserInfo) session.getAttribute("user");
+        String user_email=userInfo.getUser_email();
+        Integer i=collectMapper.addshopping(user_email, company_id);
+        return "redirect:/user/collect";
+    }
+    /**
+     * 用于collect页面功能，主要用于进入收藏页面
+     * @param model 调用model传值
+     * @param session 设立session值
+     * @return 返回collect页面，即收藏页面
+     */
+    @GetMapping("/collect")
+    public String shoppingcarPage(Model model,HttpSession session) {
+        UserInfo userInfo=(UserInfo) session.getAttribute("user");
+        List<CollectInfo> list1 =userMapper.getAllcomputer(userInfo.getUser_email());
+        model.addAttribute("user",list1);
+        return "collect";
+    }
+    /**
+     * 用于collect页面，主要用于收藏页面的删除
+     * @param c_id 收藏单信息id
+     * @return 返回collect页面，即收藏页面
+     */
+    @GetMapping("/dell/{id}")
+    public String delshopping(@PathVariable("id") Integer c_id){
+        Integer i =userMapper.dell( c_id );
+        return "redirect:/user/collect";
+    }
+	
+	 @GetMapping("/userprmessage")
+    public String pageUserPrmessage(Model model) {
+        List<PrmessageInfo> lists = informationMapper.getallprmessage();
+        model.addAttribute("lists",lists);
+        return "messagecheck.html";
+    }
+    /**用于message页面功能，主要用于用户发布私信
+     * @return 返回message页面，即私信页面
+     */
+    @GetMapping("/send")
+    public String SendMessage(){
+        return "message.html";
+    }
+    @PostMapping("/send")
+    public String SendMessage(PrmessageInfo prmessageInfo) {
+        int i = informationMapper.savePrmessage(prmessageInfo);
+        return "redirect:/user/send";
+    }
+
+    /**用于usermessage页面功能，主要用于显示用户留言详情
+     * @param prmessage_id 消息id
+     * @param model 调用model传值
+     * @return 返回content页面，即留言详情页面
+     */
+    @GetMapping("/prcontext/{id}")
+    public String getallprmessage(@PathVariable("id") Integer prmessage_id,Model model){
+        List<PrmessageInfo> lists = informationMapper.getprmessage(prmessage_id);
+        model.addAttribute("lists",lists);
+        return "prcontxt.html";
+    }
 
 
 }

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
@@ -36,89 +36,84 @@
     <link href="/css/style.css" rel="stylesheet">
     <!--Responsive css-->
     <link href="/css/responsive.css" rel="stylesheet">
-    <!--layui-->
+
     <link href="/layui/css/layui.css" rel="stylesheet">
 </head>
 <body>
-<!-- 导航栏开始 -->
+
+
+<!-- 导航栏开始-->
 <header class="jobguru-header-area stick-top forsticky" th:replace="head::myMenu">
 </header>
-<!-- 导航栏结束-->
-<!-- 留言板标题开始 -->
+<!-- 导航栏结束 -->
+
+<!-- 浏览行业标题开始 -->
 <section class="jobguru-breadcromb-area">
     <div class="breadcromb-top section_100">
-        <div class="container">
-            <div class="row">
+        <div class="layui-container">
+            <div class="layui-row">
                 <div class="col-md-12">
                     <div class="breadcromb-box">
-                        <h3>留言板</h3>
+                        <h3>收藏列表</h3>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- 留言板标题结束 -->
+<!-- 浏览行业标题结束 -->
 
-<!-- 留言板开始 -->
-<section class="candidate-dashboard-area section_70">
-    <div class="container">
+<!-- 行业所有职位列表开始 -->
+<section class="jobguru-top-job-area browse-page section_70">
+    <form class="layui-container">
         <div class="row">
             <div class="col-md-12 col-lg-3 dashboard-left-border" th:replace="head::myuserDashboard">
             </div>
-            <div class="col-lg-9 col-md-12">
-                <div class="dashboard-right message-page-box">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <form class="layui-form" method="POST" th:action="@{/user/add}">
-                                <div class="layui-hide">
-                                    <div class="layui-input-block">
-                                        <input class="layui-input" id="user_email" lay-verify="title" name="user_email"
-                                               th:value="${session.user.user_email}" type="email">
+            <div class="col-md-12 col-lg-9">
+                <div class="job-sidebar-list-single">
+                    <li th:each="CollectInfo,userStat:${user}">
+                        <div class="sidebar-list-single">
+                            <div class="top-company-list">
+                                <div class="company-list-logo">
+                                    <a href="#">
+                                        <img alt="company list 1" src="/img/company-logo-1.png">
+                                    </a>
+                                </div>
+                                <div class="company-list-details">
+                                    <h3 th:text="${CollectInfo.company_name}"><a href="${CollectInfo.company_link}">Regional
+                                        Sales Manager</a></h3>
+                                    <div class="layui-row layui-col-space10">
+                                        <p class="layui-col-md4" th:text="${CollectInfo.job_name}"><i
+                                                class="fa fa-map-marker"></i> shuju</p>
+                                        <p class="layui-col-md4" th:text="${CollectInfo.company_industry}"><i
+                                                class="fa fa-map-marker"></i> shuju</p>
+                                        <p class="layui-col-md4" th:text="${CollectInfo.company_address}"><i
+                                                class="fa fa-map-marker"></i> Chicago, Michigan</p>
                                     </div>
                                 </div>
-                                <div class="layui-form-item">
-                                    <label class="layui-form-label" for="inputtheme">主题</label>
-                                    <div class="layui-input-block">
-                                        <input class="layui-input" id="theme" lay-verify="title" name="theme"
-                                               placeholder="请输入主题" type="text">
-                                    </div>
-                                </div>
-                                <div class="layui-form-item">
-                                    <label class="layui-form-label" for="inputcontent">内容</label>
-                                    <div class="layui-input-block">
-                                        <textarea class="layui-textarea" id="content" lay-verify="title" name="content"
-                                                  placeholder="请输入内容" rows="5"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="layui-form-item">
-                                    <div class="layui-input-block">
-                                        <button class="layui-btn" lay-filter="formDemo" lay-submit type="submit">发布
-                                        </button>
-                                        <button class="layui-btn layui-btn-primary" type="reset">重置</button>
-                                    </div>
-                                </div>
-                            </form>
+                                <a class="layui-btn " lay-filter="formDemo" lay-submit
+                                   th:href="@{'companydetail/'+${CollectInfo.company_id}}">详细</a>
+                                <a class="layui-btn " th:href="@{'dell/'+${CollectInfo.c_id}}" title="删除">删除</a>
+                            </div>
+                            <!--                     删除按钮-->
                         </div>
-                    </div>
+                    </li>
                 </div>
             </div>
         </div>
-    </div>
-
+        </tr>
+        </div>
+        </div>
+    </form>
 </section>
-<!-- 留言板结束-->
+<!-- 行业所有职位列表结束 -->
 
-<!-- 底部菜单项开始 -->
+<!-- 底部菜单开始 -->
 <footer class="jobguru-footer-area" th:replace="head::myunder">
 </footer>
-<!-- 底部菜单项结束 -->
+<!-- 底部菜单开始 -->
+
 <!--Jquery js-->
-
-<!--layui-->
-<script src="../layui/layui.js"></script>
-
 <script src="/js/jquery-3.0.0.min.js"></script>
 <!--Popper js-->
 <script src="/js/popper.min.js"></script>
@@ -144,4 +139,3 @@
 <script src="/js/main.js"></script>
 </body>
 </html>
-

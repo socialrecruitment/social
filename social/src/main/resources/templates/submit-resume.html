@@ -64,6 +64,7 @@
    <div class="container">
       <div class="row">
          <div class="col-md-12">
+            <tr th:each="UserInfo,userStat:${user}">
             <div class="submit-resume-box">
                <form method="POST" th:action="@{/user/submit}">
                   <div class="resume-box">
@@ -72,12 +73,12 @@
 
                         <div class="single-input">
                            <label for="user_email" class="layui-form-label">邮箱:</label>
-                           <input type="text" name="user_email" th:value="${session.user.user_email}" placeholder="邮箱" id="user_email" class="layui-input" autocomplete="off" lay-verify="title">
+                           <input type="text" name="user_email" th:value="${UserInfo.user_email}" placeholder="邮箱" id="user_email" class="layui-input" autocomplete="off" lay-verify="title">
                         </div>
 
                         <div class="single-input">
                            <label for="user_name" class="layui-form-label">名字:</label>
-                           <input type="text" name="user_name" th:value="${session.user.user_name}" placeholder="名字" id="user_name" class="layui-input" autocomplete="off" lay-verify="title">
+                           <input type="text" name="user_name" th:value="${UserInfo.user_name}" placeholder="名字" id="user_name" class="layui-input" autocomplete="off" lay-verify="title">
                         </div>
                      </div>
                      <div class="single-resume-feild feild-flex-2">
@@ -85,26 +86,26 @@
                            <label for="user_sex" class="layui-form-label">性别:</label>
                            <div class="col-sm-10">
                               <label class="radio-inline">
-                                 <input type="radio" th:checked="${session.user.user_sex}==true?1:0" name="user_sex" id="user_sex1" value="1">男
+                                 <input type="radio" th:checked="${UserInfo.user_sex}==true?1:0" name="user_sex" id="user_sex1" value="1">男
                               </label>
                               <label class="radio-inline">
-                                 <input type="radio" th:checked="${session.user.user_sex}==false?1:0" name="user_sex" id="user_sex2" value="0">女
+                                 <input type="radio" th:checked="${UserInfo.user_sex}==false?1:0" name="user_sex" id="user_sex2" value="0">女
                               </label>
                            </div>
                         </div>
                         <div class="single-input">
                            <label for="user_birthday" class="layui-form-label">出生日期:</label>
-                           <input type="date" name="user_birthday" th:value="${session.user.user_birthday}" placeholder="出生日期" id="user_birthday">
+                           <input type="date" name="user_birthday" th:value="${#dates.format(UserInfo.user_birthday,'yyyy/MM/dd')}" placeholder="出生日期" id="user_birthday">
                         </div>
                      </div>
                      <div class="single-resume-feild feild-flex-2">
                         <div class="single-input">
                            <label for="user_phone" class="layui-form-label">电话:</label>
-                           <input type="tel" name="user_phone" th:value="${session.user.user_phone}" placeholder="电话" id="user_phone">
+                           <input type="tel" name="user_phone" th:value="${UserInfo.user_phone}" placeholder="电话" id="user_phone">
                         </div>
                         <div class="single-input">
                            <label for="user_address" class="layui-form-label">地址:</label>
-                           <input type="text" name="user_address" th:value="${session.user.user_address}" id="user_address">
+                           <input type="text" name="user_address" th:value="${UserInfo.user_address}" id="user_address">
                         </div>
                      </div>
                   </div>
@@ -113,37 +114,38 @@
                      <div class="single-resume-feild feild-flex-2">
                         <div class="single-input">
                            <label for="user_school" class="layui-form-label">毕业院校:</label>
-                           <input type="text" name="user_school" th:value="${session.user.user_school}" placeholder="毕业院校" id="user_school">
+                           <input type="text" name="user_school" th:value="${UserInfo.user_school}" placeholder="毕业院校" id="user_school">
                         </div>
                         <div class="single-input">
                            <label for="user_major" class="layui-form-label">专业:</label>
-                           <input type="text" name="user_major" th:value="${session.user.user_major}" placeholder="专业" id="user_major">
+                           <input type="text" name="user_major" th:value="${UserInfo.user_major}" placeholder="专业" id="user_major">
                         </div>
                      </div>
                      <div class="single-resume-feild feild-flex-2">
                         <div class="single-input">
                            <label for="user_education" class="layui-form-label">学历:</label>
-                           <input type="text" name="user_education" th:value="${session.user.user_education}" placeholder="user_education" id="user_education">
+                           <input type="text" name="user_education" th:value="${UserInfo.user_education}" placeholder="学历" id="user_education">
                         </div>
                         <div class="single-input">
                            <label for="user_expection" class="layui-form-label">期望薪资:</label>
-                           <input type="text" name="user_expection" th:value="${session.user.user_expection}" placeholder="期望薪资" id="user_expection">
+                           <input type="text" name="user_expection" th:value="${UserInfo.user_expection}" placeholder="期望薪资" id="user_expection">
                         </div>
                      </div>
                      <div class="single-resume-feild ">
                         <div class="single-input">
                            <label for="Bio" class="layui-form-label">工作经验:</label>
-                           <input type="text" name="user_experience" th:value="${session.user.user_experience}" placeholder="在这里写下工作经验...">
+                           <input type="text" name="user_experience" th:value="${UserInfo.user_experience}" placeholder="在这里写下工作经验...">
                         </div>
                      </div>
                   </div>
                   <div class="layui-form-item">
                      <div class=layui-btn-group>
-                        <button class="layui-btn" lay-submit lay-filter="formDemo">保存简历<i class="layui-icon">&#xe642;</i></button>
+                        <button class="layui-btn" type="submit">保存简历<i class="layui-icon">&#xe642;</i></button>
                      </div>
                   </div>
                </form>
             </div>
+            </tr>
          </div>
       </div>
    </div>

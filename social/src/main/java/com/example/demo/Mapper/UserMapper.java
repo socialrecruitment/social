@@ -1,8 +1,10 @@
 package com.example.demo.Mapper;
 
+import com.example.demo.Entity.CollectInfo;
 import com.example.demo.Entity.CompanyInfo;
 import com.example.demo.Entity.MessageInfo;
 import com.example.demo.Entity.UserInfo;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -27,6 +29,8 @@ public interface UserMapper {
     @Select("SELECT * FROM social_work.user where `user_email` = #{user_email}")
     UserInfo getUserByid(String user_email);
 
+    @Select("SELECT * FROM social_work.user where `user_email` = #{user_email}")
+    List<UserInfo> getalluserinfo(String user_email);
 
     //发布工作
     //插入recruitment表
@@ -58,5 +62,14 @@ public interface UserMapper {
     @Insert(" INSERT INTO `social_work`.`message` (`content`, `message_id`, `user_email`, `posttime`, `theme`)" +
             " VALUES (#{content}, #{message_id},#{user_email},sysdate(), #{theme});")
     Integer saveMessage(MessageInfo messageInfo);
+
+    @Select( "SELECT company.job_name,company.company_name,company.company_id,company.company_link,company.company_address,company.company_industry,c_id\n" +
+            "FROM user join collect join company\n" +
+            "on user.user_email=collect.user_email and collect.company_id=company.company_id and user.user_email=#{user_email} ;" )
+    List<CollectInfo> getAllcomputer(String user_email);
+
+    @Delete("delete from collect where c_id=#{c_id}")
+    Integer dell(Integer c_id);
+
 
 }

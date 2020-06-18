@@ -33,4 +33,13 @@ public interface CompanyMapper {
             "where com.company_id=#{company_id}")
     List<CompanyInfo> companyDetail(Integer company_id);
 
+    @Select("select com.*,rec.salary,rec.job_experience,\n" +
+            "rec.education_required,rec.recruiting_numbers,rec.postdate,\n" +
+            "rec.welfare,rec.job_information,rec.job_id\n" +
+            "from recruitment rec join company com on com.company_id=rec.company_id\n" +
+            "order by rand() limit 10;")
+    List<CompanyInfo> randlist();
+
+
+
 }

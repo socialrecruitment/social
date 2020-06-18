@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="jobguru | Job Board HTML Templates from Themescare" name="description">
+    <meta content="Job, freelancer, employee, marketplace" name="keyword">
+    <meta content="Themescare" name="author">
+    <!-- Title -->
+    <title>jobguru</title>
+    <!-- Favicon -->
+    <link href="/img/favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+    <!--Bootstrap css-->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!--Font Awesome css-->
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <!--Magnific css-->
+    <link href="/css/magnific-popup.css" rel="stylesheet">
+    <!--Owl-Carousel css-->
+    <link href="/css/owl.carousel.min.css" rel="stylesheet">
+    <link href="/css/owl.theme.default.min.css" rel="stylesheet">
+    <!--Animate css-->
+    <link href="/css/animate.min.css" rel="stylesheet">
+    <!--Select2 css-->
+    <link href="/css/select2.min.css" rel="stylesheet">
+    <!--Slicknav css-->
+    <link href="/css/slicknav.min.css" rel="stylesheet">
+    <!--Bootstrap-Datepicker css-->
+    <link href="/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <!--Jquery UI css-->
+    <link href="/css/jquery-ui.min.css" rel="stylesheet">
+    <!--Perfect-Scrollbar css-->
+    <link href="/css/perfect-scrollbar.min.css" rel="stylesheet">
+    <!--Site Main Style css-->
+    <link href="/css/style.css" rel="stylesheet">
+    <!--Responsive css-->
+    <link href="/css/responsive.css" rel="stylesheet">
+
+    <link href="/layui/css/layui.css" rel="stylesheet">
+</head>
+<body>
+
+<!--导航栏开始-->
+<header class="jobguru-header-area stick-top forsticky" th:replace="head::myMenu">
+</header>
+<!--导航栏结束-->
+<!-- 随机推送主要标题开始 -->
+<section class="jobguru-breadcromb-area">
+    <div class="breadcromb-top section_100">
+        <div class="layui-container">
+            <div class="layui-row">
+                <div class="col-md-12">
+                    <div class="breadcromb-box">
+                        <h3>随机推送</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- 随机推送主要标题结束 -->
+
+<!-- 推送列表开始-->
+<section class="jobguru-top-job-area browse-page section_70">
+    <form class="layui-container">
+        <div class="row">
+            <div class="col-md-12 col-lg-3 dashboard-left-border" th:replace="head::myuserDashboard">
+            </div>
+
+            <div class="col-md-12 col-lg-9">
+                <div class="job-grid-center">
+                    <!-- Single Job Sidebar Start -->
+                    <form method="post" th:action="@{/user/randlist}">
+                        <button class="layui-btn layui-btn-radius" type="submit"> 刷新</button>
+                        <!--                  <button type="submit" class="layui-btn layui-btn-radius“>-->
+                        <!--                     刷新-->
+                        <!--                     <span class="glyphicon glyphicon-refresh"></span>-->
+                        <!--                  </button>-->
+                    </form>
+                </div>
+                <div class="job-sidebar-list-single">
+                    <tr th:each="CompanyInfo,userStat:${randlist}">
+                        <div class="sidebar-list-single">
+                            <div class="top-company-list">
+                                <div class="company-list-logo">
+                                    <a href="#">
+                                        <img alt="company list 1" src="/img/company-logo-1.png">
+                                    </a>
+                                </div>
+                                <div class="company-list-details">
+                                    <h3 th:text="${CompanyInfo.company_name}"><a href="${CompanyInfo.company_link}"></a>
+                                    </h3>
+                                    <div class="layui-row layui-col-space10">
+                                        <p class="layui-hide" th:text="${CompanyInfo.company_id}"></p>
+                                        <p class="layui-col-md4" th:text="${CompanyInfo.job_name}"><i
+                                                class="fa fa-map-marker"></i></p>
+                                        <p class="layui-col-md4" th:text="${CompanyInfo.company_industry}"><i
+                                                class="fa fa-map-marker"></i></p>
+                                        <p class="layui-col-md4" th:text="${CompanyInfo.company_address}"><i
+                                                class="fa fa-map-marker"></i></p>
+                                        <p class="layui-col-md4"
+                                           th:text=" ${#dates.format(CompanyInfo.postdate,'yyyy/MM/dd')}"><i
+                                                class="fa fa-clock-o"></i></p>
+                                        <p class="layui-col-md4" th:text="${CompanyInfo.salary}"><i
+                                                class="fa fa-check"></i></p>
+                                    </div>
+                                </div>
+                                <a class="layui-btn " lay-filter="formDemo" lay-submit
+                                   th:href="@{'companydetail/'+${CompanyInfo.company_id}}">详细</a>
+                            </div>
+                        </div>
+                    </tr>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</section>
+<!-- 推送列表结束 -->
+
+<!-- 随机推送结束 -->
+
+
+<!-- 底部菜单项开始 -->
+<footer class="jobguru-footer-area" th:replace="head::myunder">
+</footer>
+<!-- 底部菜单项结束 -->
+
+<!--layui js-->
+
+<script src="/layui/layui.js"></script>
+<script>
+    layui.use('carousel', function () {
+        var carousel = layui.carousel;
+        //建造实例
+        carousel.render({
+            elem: '#test1'
+            , width: '100%' //设置容器宽度
+            , arrow: 'always' //始终显示箭头
+            //,anim: 'updown' //切换动画方式
+        });
+    });
+</script>
+<!--Jquery js-->
+<script src="/js/jquery-3.0.0.min.js"></script>
+<!--Popper js-->
+<script src="/js/popper.min.js"></script>
+<!--Bootstrap js-->
+<script src="/js/bootstrap.min.js"></script>
+<!--Bootstrap Datepicker js-->
+<script src="/js/bootstrap-datepicker.min.js"></script>
+<!--Perfect Scrollbar js-->
+<script src="/js/jquery-perfect-scrollbar.min.js"></script>
+<!--Owl-Carousel js-->
+<script src="/js/owl.carousel.min.js"></script>
+<!--SlickNav js-->
+<script src="/js/jquery.slicknav.min.js"></script>
+<!--Magnific js-->
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<!--Select2 js-->
+<script src="/js/select2.min.js"></script>
+<!--jquery-ui js-->
+<script src="/js/jquery-ui.min.js"></script>
+<!--Main js-->
+<script src="/js/main.js"></script>
+</body>
+</html>
+
