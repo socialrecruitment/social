@@ -61,7 +61,11 @@
                 <div class=" job-tab">
                     <ul class="nav nav-pills job-tab-switch" id="pills-tab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="pills-one-o" data-toggle="pill" href="#pills-one" role="tab"
+                            <a class="nav-link active" id="pills-zero-o" data-toggle="pill" href="#pills-zero" role="tab"
+                               aria-controls="pills-zero" aria-selected="false">行业学历占比</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " id="pills-one-o" data-toggle="pill" href="#pills-one" role="tab"
                                aria-controls="pills-one" aria-selected="true">行业热门职位</a>
                         </li>
                         <li class="nav-item">
@@ -72,30 +76,164 @@
                             <a class="nav-link" id="pills-three-o" data-toggle="pill" href="#pills-three" role="tab"
                                aria-controls="pills-three" aria-selected="false">十大热门行业</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-four-o" data-toggle="pill" href="#pills-four" role="tab"
+                               aria-controls="pills-four" aria-selected="false">经验学历趋势</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-one" role="tabpanel" aria-labelledby="pills-one-o">
+                    <div class="tab-pane fade show active" id="pills-zero" role="tabpanel" aria-labelledby="pills-zero-o">
+                        <div class="top-company-tab">
+                            <div class="card p-4">
+                                <div >图表显示不同行业不同学历占比</div>
+                                <div id="main11" style="width: 800px;height:500px; "></div>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+                                <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=x96lvzsWMdYmoZ2jrmXzMtOYNozXzrZV&__ec_v__=20191217"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+                                <script type="text/javascript">
+                                    var domh = document.getElementById("main11");
+                                    var myCharth = echarts.init(domh);
+                                    var apph = {};
+                                    var titleC =[];
+                                    option = null;
+                                    apph.title = '';
+                                    var info='';
+                                    var index=0;
+                                    var onex="";
+                                    var ee = "";
+                                    //aa = aa.substr(1,aa.length);
+                                    var len = 10;
+                                    for(var i=1;i<=len;i++){
+                                        info += "第"+i+"次：&nbsp;&nbsp;&nbsp;";
+                                        index = ee.indexOf(',');
+                                        if(len==i){
+                                            onex = ee.substring(0,ee.length-1);
+                                        }else{
+                                            onex = ee.substring(0,index);
+                                        }
+                                        info +="ee:  "+ee;
+                                        info +="&nbsp;&nbsp;&nbsp; onex: "+onex+"<br/>";
+                                        ee = ee.substr(index+1,ee.length);
+                                        titleC.push(onex);
+                                    }
+                                    option = {
+                                        tooltip: {
+                                            trigger: 'axis',
+                                            axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                                                type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                                            }
+                                        },
+                                        legend: {
+                                            data: ['金融', '技术', '销售', '媒体', '互联网','餐饮', '医疗健康', '计算机软件', '其他']
+                                        },
+                                        grid: {
+                                            left: '3%',
+                                            right: '4%',
+                                            bottom: '3%',
+                                            containLabel: true
+                                        },
+                                        xAxis: [
+                                            {
+                                                type: 'category',
+                                                data: ['高中', '中专', '大专', '本科', '硕士', '博士','其他']
+                                            }
+                                        ],
+                                        yAxis: [
+                                            {
+                                                type: 'value'
+                                            }
+                                        ],
+                                        series: [
+                                            {
+                                                name: '金融',
+                                                type: 'bar',
+                                                data: [190, 260, 3140, 1710, 600, 228, 320]
+                                            },
+                                            {
+                                                name: '技术',
+                                                type: 'bar',
+                                                stack: '广告',
+                                                data: [100, 132, 145, 1134, 1262, 440, 100]
+                                            },
+                                            {
+                                                name: '销售',
+                                                type: 'bar',
+                                                stack: '广告',
+                                                data: [59, 58, 1135, 1018, 27, 4, 4]
+                                            },
+                                            {
+                                                name: '媒体',
+                                                type: 'bar',
+                                                stack: '广告',
+                                                data: [21, 38, 512, 898, 240, 130, 410]
+                                            },
+                                            {
+                                                name: '餐饮',
+                                                type: 'bar',
+                                                data: [62, 101, 500, 350, 40, 10, 1270],
+                                                markLine: {
+                                                    lineStyle: {
+                                                        type: 'dashed'
+                                                    },
+                                                    data: [
+                                                        [{type: 'min'}, {type: 'max'}]
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                name: '互联网',
+                                                type: 'bar',
+                                                barWidth: 5,
+                                                stack: '搜索引擎',
+                                                data: [15, 100, 195, 833, 1090, 930, 820]
+                                            },
+                                            {
+                                                name: '医疗健康',
+                                                type: 'bar',
+                                                stack: '搜索引擎',
+                                                data: [16, 22, 116, 1001, 478, 230, 220]
+                                            },
+                                            {
+                                                name: '计算机软件',
+                                                type: 'bar',
+                                                stack: '搜索引擎',
+                                                data: [1, 3, 108, 242, 657, 140, 110]
+                                            },
+                                            {
+                                                name: '其他',
+                                                type: 'bar',
+                                                stack: '搜索引擎',
+                                                data: [362, 582, 1391, 1584, 1109, 710, 520]
+                                            }
+                                        ]
+                                    };
+                                    if (option && typeof option === "object") {
+                                        myCharth.setOption(option, true);
+                                    }
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="pills-one" role="tabpanel" aria-labelledby="pills-one-o">
                         <div class="top-company-tab">
                             <div class="card p-4">
                                 <div>图表显示该行业的热门职位：<strong>[[${Jname}]]</strong>等职位发布数量</div>
                                 <div id="main9" style="width: 800px;height:500px; "></div>
-                                <script type="text/javascript"
-                                        src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
-                                <script type="text/javascript"
-                                        src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
-                                <script type="text/javascript"
-                                        src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
-                                <script type="text/javascript"
-                                        src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
-                                <script type="text/javascript"
-                                        src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
-                                <script type="text/javascript"
-                                        src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
-                                <script type="text/javascript"
-                                        src="https://api.map.baidu.com/api?v=2.0&ak=x96lvzsWMdYmoZ2jrmXzMtOYNozXzrZV&__ec_v__=20191217"></script>
-                                <script type="text/javascript"
-                                        src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+                                <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=xfhhaTThl11qYVrqLZii6w8qE5ggnhrY&__ec_v__=20190126"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
                                 <script type="text/javascript">
                                     var dom1 = document.getElementById("main9");
                                     var myChart1 = echarts.init(dom1);
@@ -209,22 +347,14 @@
                             <div class="card p-4">
                                 <div>图表显示<strong>[[${topindu}]]</strong>等十大热门行业发布的职位数量</div>
                                 <div id="main8" style="width: 800px;height:500px; "></div>
-                                <script type="text/javascript"
-                                        src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
-                                <script type="text/javascript"
-                                        src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
-                                <script type="text/javascript"
-                                        src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
-                                <script type="text/javascript"
-                                        src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
-                                <script type="text/javascript"
-                                        src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
-                                <script type="text/javascript"
-                                        src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
-                                <script type="text/javascript"
-                                        src="https://api.map.baidu.com/api?v=2.0&ak=x96lvzsWMdYmoZ2jrmXzMtOYNozXzrZV&__ec_v__=20191217"></script>
-                                <script type="text/javascript"
-                                        src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+                                <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=xfhhaTThl11qYVrqLZii6w8qE5ggnhrY&__ec_v__=20190126"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
                                 <script type="text/javascript">
                                     var dom = document.getElementById("main8");
                                     var myChart = echarts.init(dom);
@@ -291,6 +421,146 @@
                             </div>
                         </div>
                     </div>
+                    <div class="tab-pane fade" id="pills-four" role="tabpanel" aria-labelledby="pills-four-o">
+                        <div class="top-company-tab">
+                            <div class="card p-4">
+
+                                <div >图表显示<strong>[[${company_industry}]]</strong>行业对<strong>[[${exper}]]</strong>等工作经验的学历要求</div>
+                                <div id="main4" style="width: 800px;height:500px; "></div>
+
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+                                <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=xfhhaTThl11qYVrqLZii6w8qE5ggnhrY&__ec_v__=20190126"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+                                <script type="text/javascript">
+                                    var domd = document.getElementById("main4");
+                                    var myChartd = echarts.init(domd);
+                                    var app = {};
+                                    option = null;
+
+                                    option = {
+
+                                        tooltip: {
+                                            trigger: 'axis'
+                                        },
+                                        legend: {
+                                            data: ['高中','大专','中专','本科','硕士','博士']
+                                        },
+                                        grid: {
+                                            left: '3%',
+                                            right: '4%',
+                                            bottom: '3%',
+                                            containLabel: true
+                                        },
+                                        toolbox: {
+                                            feature: {
+                                                saveAsImage: {}
+                                            }
+                                        },
+                                        xAxis: {
+                                            type: 'category',
+                                            boundaryGap: false,
+                                            data:['无工作经验','1年经验','2年经验','3-4年经验','5-7年经验','8-9年经验','10年以上经验']
+                                        },
+                                        yAxis: {
+                                            type: 'value'
+                                        },
+                                        series: [
+                                            {
+                                                name: '高中',
+                                                type: 'line',
+                                                stack: '总量',
+                                                data: [
+                                                    {value: [[${ed1}]], name: "1"},
+                                                    {value: [[${aed1}]], name: "1"},
+                                                    {value: [[${bed1}]], name: "1"},
+                                                    {value: [[${ced1}]], name: "1"},
+                                                    {value: [[${ded1}]], name: "1"},
+                                                    {value: [[${eed1}]], name: "1"},
+                                                    {value: [[${fed1}]], name: "1"}]
+                                            },
+                                            {
+                                                name: '大专',
+                                                type: 'line',
+                                                stack: '总量',
+                                                data: [
+                                                    {value: [[${ed2}]], name: "1"},
+                                                    {value: [[${aed2}]], name: "1"},
+                                                    {value: [[${bed2}]], name: "1"},
+                                                    {value: [[${ced2}]], name: "1"},
+                                                    {value: [[${ded2}]], name: "1"},
+                                                    {value: [[${eed2}]], name: "1"},
+                                                    {value: [[${fed2}]], name: "1"}]
+                                            },
+                                            {
+                                                name: '中专',
+                                                type: 'line',
+                                                stack: '总量',
+                                                data: [
+                                                    {value: [[${ed3}]], name: "1"},
+                                                    {value: [[${aed3}]], name: "1"},
+                                                    {value: [[${bed3}]], name: "1"},
+                                                    {value: [[${ced3}]], name: "1"},
+                                                    {value: [[${ded3}]], name: "1"},
+                                                    {value: [[${eed3}]], name: "1"},
+                                                    {value: [[${fed3}]], name: "1"}]
+                                            },
+                                            {
+                                                name: '本科',
+                                                type: 'line',
+                                                stack: '总量',
+                                                data: [
+                                                    {value: [[${ed4}]], name: "1"},
+                                                    {value: [[${aed4}]], name: "1"},
+                                                    {value: [[${bed4}]], name: "1"},
+                                                    {value: [[${ced4}]], name: "1"},
+                                                    {value: [[${ded4}]], name: "1"},
+                                                    {value: [[${eed4}]], name: "1"},
+                                                    {value: "100", name: "1"}]
+                                            },
+                                            {
+                                                name: '硕士',
+                                                type: 'line',
+                                                stack: '总量',
+                                                data: [
+                                                    {value: [[${ed5}]], name: "1"},
+                                                    {value: [[${aed5}]], name: "1"},
+                                                    {value: "25", name: "1"},
+                                                    {value: [[${ced5}]], name: "1"},
+                                                    {value: [[${ded5}]], name: "1"},
+                                                    {value: [[${eed5}]], name: "1"},
+                                                    {value: [[${fed5}]], name: "1"}]
+                                            },
+                                            {
+                                                name: '博士',
+                                                type: 'line',
+                                                stack: '总量',
+                                                data: [
+                                                    {value: [[${ed6}]], name: "1"},
+                                                    {value: [[${aed6}]], name: "1"},
+                                                    {value: [[${bed6}]], name: "1"},
+                                                    {value: [[${ced6}]], name: "1"},
+                                                    {value: [[${ded6}]], name: "1"},
+                                                    {value: [[${eed6}]], name: "1"},
+                                                    {value: [[${fed6}]], name: "1"}]
+                                            }
+                                        ],
+                                        title: {
+                                            text: '不同工作经验的学历要求变化'
+                                        }
+                                    };
+                                    ;
+                                    if (option && typeof option === "object") {
+                                        myChartd.setOption(option, true);
+                                    }
+                                </script>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -301,6 +571,7 @@
 <footer class="jobguru-footer-area" th:replace="head::myunder">
 </footer>
 <!-- 底部菜单结束 -->
+
 <!--Jquery js-->
 <script src="/js/jquery-3.0.0.min.js"></script>
 <!--Popper js-->

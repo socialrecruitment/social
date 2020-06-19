@@ -312,5 +312,110 @@ public interface RecruitmentMapper {
     @Select("SELECT count(company_id)  from social_work.company where company_city='深圳'")
     Integer dq6();
     @Select("SELECT count(company_id)  from social_work.company where company_city='重庆'")
-    Integer dq7();
+    Integer dq7();//获取该行业的工作经验
+    @Select("select rec.job_experience from recruitment rec join company com on com.company_id=rec.company_id\n" +
+            "where com.company_industry like #{company_industry}" +
+            "group by job_experience")
+    List<String> getexper(String company_industry);
+
+    //获取行业列表选中的行业
+    @Select("select company_industry from company where company_industry like #{company_industry} limit 1")
+    List<String>  getindustry(String company_industry);
+    //    无工作经验','10年以上经验','8-9年经验','5-7年经验','3-4年经验','2年经验','1年经验'
+//    '高中','大专','中专','本科','硕士','博士学位对应的不同工作经验要求  行业
+//近七天部分职位发布数量变动趋势  --职位
+    @Select("select count(job_id) from recruitment where job_experience in ('无工作经验') and education_required ='高中'")
+    Integer ed1();
+    @Select("select count(job_id) from recruitment where job_experience in ('无工作经验') and education_required ='大专'")
+    Integer ed2();
+    @Select("select count(job_id) from recruitment where job_experience in ('无工作经验') and education_required ='中专'")
+    Integer ed3();
+    @Select("select count(job_id) from recruitment where job_experience in ('无工作经验') and education_required ='本科'")
+    Integer ed4();
+    @Select("select count(job_id) from recruitment where job_experience in ('无工作经验') and education_required ='硕士'")
+    Integer ed5();
+    @Select("select count(job_id) from recruitment where job_experience in ('无工作经验') and education_required ='博士'")
+    Integer ed6();
+    @Select("select count(job_id) from recruitment where job_experience in ('1年经验') and education_required ='高中'")
+    Integer aed1();
+    @Select("select count(job_id) from recruitment where job_experience in ('1年经验') and education_required ='大专'")
+    Integer aed2();
+    @Select("select count(job_id) from recruitment where job_experience in ('1年经验') and education_required ='中专'")
+    Integer aed3();
+    @Select("select count(job_id) from recruitment where job_experience in ('1年经验') and education_required ='本科'")
+    Integer aed4();
+    @Select("select count(job_id) from recruitment where job_experience in ('1年经验') and education_required ='硕士'")
+    Integer aed5();
+    @Select("select count(job_id) from recruitment where job_experience in ('1年经验') and education_required ='博士'")
+    Integer aed6();
+
+    @Select("select count(job_id) from recruitment where job_experience in ('2年经验') and education_required ='高中'")
+    Integer bed1();
+    @Select("select count(job_id) from recruitment where job_experience in ('2年经验') and education_required ='大专'")
+    Integer bed2();
+    @Select("select count(job_id) from recruitment where job_experience in ('2年经验') and education_required ='中专'")
+    Integer bed3();
+    @Select("select count(job_id) from recruitment where job_experience in ('2年经验') and education_required ='本科'")
+    Integer bed4();
+    @Select("select count(job_id) from recruitment where job_experience in ('2年经验') and education_required ='硕士'")
+    Integer bed5();
+    @Select("select count(job_id) from recruitment where job_experience in ('2年经验') and education_required ='博士'")
+    Integer bed6();
+
+    @Select("select count(job_id) from recruitment where job_experience in ('3-4年经验') and education_required ='高中'")
+    Integer ced1();
+    @Select("select count(job_id) from recruitment where job_experience in ('3-4年经验') and education_required ='大专'")
+    Integer ced2();
+    @Select("select count(job_id) from recruitment where job_experience in ('3-4年经验') and education_required ='中专'")
+    Integer ced3();
+    @Select("select count(job_id) from recruitment where job_experience in ('3-4年经验') and education_required ='本科'")
+    Integer ced4();
+    @Select("select count(job_id) from recruitment where job_experience in ('3-4年经验') and education_required ='硕士'")
+    Integer ced5();
+    @Select("select count(job_id) from recruitment where job_experience in ('3-4年经验') and education_required ='博士'")
+    Integer ced6();
+
+
+    @Select("select count(job_id) from recruitment where job_experience in ('5-7年经验') and education_required ='高中'")
+    Integer ded1();
+    @Select("select count(job_id) from recruitment where job_experience in ('5-7年经验') and education_required ='大专'")
+    Integer ded2();
+    @Select("select count(job_id) from recruitment where job_experience in ('5-7年经验') and education_required ='中专'")
+    Integer ded3();
+    @Select("select count(job_id) from recruitment where job_experience in ('5-7年经验') and education_required ='本科'")
+    Integer ded4();
+    @Select("select count(job_id) from recruitment where job_experience in ('5-7年经验') and education_required ='硕士'")
+    Integer ded5();
+    @Select("select count(job_id) from recruitment where job_experience in ('5-7年经验') and education_required ='博士'")
+    Integer ded6();
+
+    @Select("select count(job_id) from recruitment where job_experience in ('8-9年经验') and education_required ='高中'")
+    Integer eed1();
+    @Select("select count(job_id) from recruitment where job_experience in ('8-9年经验') and education_required ='大专'")
+    Integer eed2();
+    @Select("select count(job_id) from recruitment where job_experience in ('8-9年经验') and education_required ='中专'")
+    Integer eed3();
+    @Select("select count(job_id) from recruitment where job_experience in ('8-9年经验') and education_required ='本科'")
+    Integer eed4();
+    @Select("select count(job_id) from recruitment where job_experience in ('8-9年经验') and education_required ='硕士'")
+    Integer eed5();
+    @Select("select count(job_id) from recruitment where job_experience in ('8-9年经验') and education_required ='博士'")
+    Integer eed6();
+
+    @Select("select count(job_id) from recruitment where job_experience in ('10年以上经验') and education_required ='高中'")
+    Integer fed1();
+    @Select("select count(job_id) from recruitment where job_experience in ('10年以上经验') and education_required ='大专'")
+    Integer fed2();
+    @Select("select count(job_id) from recruitment where job_experience in ('10年以上经验') and education_required ='中专'")
+    Integer fed3();
+    @Select("select count(job_id) from recruitment where job_experience in ('10年以上经验') and education_required ='本科'")
+    Integer fed4();
+    @Select("select count(job_id) from recruitment where job_experience in ('10年以上经验') and education_required ='硕士'")
+    Integer fed5();
+    @Select("select count(job_id) from recruitment where job_experience in ('10年以上经验') and education_required ='博士'")
+    Integer fed6();
+
+
+
+
 }

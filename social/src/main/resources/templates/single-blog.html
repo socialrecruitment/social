@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="jobguru | Job Board HTML Templates from Themescare" name="description">
+    <meta content="Job, freelancer, employee, marketplace" name="keyword">
+    <meta content="Themescare" name="author">
+    <!-- Title -->
+    <title>jobguru</title>
+    <!-- Favicon -->
+    <!-- Favicon -->
+    <link href="/img/favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+    <!--Bootstrap css-->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <!--Font Awesome css-->
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <!--Magnific css-->
+    <link href="/css/magnific-popup.css" rel="stylesheet">
+    <!--Owl-Carousel css-->
+    <link href="/css/owl.carousel.min.css" rel="stylesheet">
+    <link href="/css/owl.theme.default.min.css" rel="stylesheet">
+    <!--Animate css-->
+    <link href="/css/animate.min.css" rel="stylesheet">
+    <!--Select2 css-->
+    <link href="/css/select2.min.css" rel="stylesheet">
+    <!--Slicknav css-->
+    <link href="/css/slicknav.min.css" rel="stylesheet">
+    <!--Bootstrap-Datepicker css-->
+    <link href="/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <!--Jquery UI css-->
+    <link href="/css/jquery-ui.min.css" rel="stylesheet">
+    <!--Perfect-Scrollbar css-->
+    <link href="/css/perfect-scrollbar.min.css" rel="stylesheet">
+    <!--Site Main Style css-->
+    <link href="/css/style.css" rel="stylesheet">
+    <!--Responsive css-->
+    <link href="/css/responsive.css" rel="stylesheet">
+    <!--layui-->
+    <link href="/layui/css/layui.css" rel="stylesheet">
+</head>
+<body>
+
+
+<!-- 导航栏开始 -->
+<header class="jobguru-header-area stick-top forsticky" th:replace="head::myMenu">
+</header>
+<!-- 导航栏结束-->
+
+
+<!-- Blog Page Area Start -->
+<section class="jobguru-blog-page-area section_70">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-3 dashboard-right-border" th:replace="head::myuserDashboard">
+            </div>
+
+            <div class="col-lg-8 col-md-12 col-sm-12 col-12">
+                <div class="single-blog-page-item">
+                    <tr th:each="BlogInfo,userStat:${blog}">
+                        <div class="single-blog-item-img">
+                            <img alt="blog" height="800px"
+                                 th:src="'http://localhost:8080/images/'+${BlogInfo.blog_photo}" width="1200px"/>
+                        </div>
+                        <div class="single-blog-item-date">
+                            <h4 th:text=" ${#dates.format(BlogInfo.blog_date,'yyyy/MM/dd')}"><span></span></h4>
+                        </div>
+                        <div class="blog-title">
+                            <h3 th:text="${BlogInfo.blog_title}"></h3>
+                            <p th:text="'由'+${BlogInfo.blog_user_email}+'发布'">
+                                <i class="fa fa-user"></i>
+                            </p>
+                            <p th:text="'#'+${BlogInfo.blog_tag}">
+                                <i class="fa fa-tag"></i>
+                            </p>
+                        </div>
+                        <div class="blog-content">
+                            <p th:text="${BlogInfo.blog_text}"></p>
+                        </div>
+                    </tr>
+                    <div class="comment-box">
+                        <h3>评论</h3>
+                        <ul>
+                            <li th:each="BlogCommentInfo,userStat:${list}">
+                                <div class="single-work-history">
+                                    <div class="single-candidate-list">
+                                        <div class="main-comment">
+                                            <div class="candidate-image">
+                                                <img alt="author" src="/img/ee.jpg">
+                                            </div>
+                                            <div class="candidate-text">
+                                                <div class="candidate-info">
+                                                    <div class="candidate-title">
+                                                        <h3 th:text="${BlogCommentInfo.blog_comment_email}"></h3>
+                                                    </div>
+                                                    <p th:text=" ${#dates.format(BlogCommentInfo.comment_date,'yyyy/MM/dd')}">
+                                                        <i class="fa fa-calendar-check-o"></i>15 Jan, 2018</p>
+                                                </div>
+                                                <div class="candidate-text-inner">
+                                                    <p th:text="${BlogCommentInfo.comment_text}"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="leave-comment ">
+                        <tr th:each="BlogInfo,userStat:${blog}">
+                        <h3>发送评论</h3>
+                        <form method="post" th:action="@{/blog/blogdetail}">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">评论</label>
+                                <div class="layui-input-block">
+                                        <textarea class="layui-textarea" id="comment_text" lay-verify="title"
+                                                  name="comment_text"
+                                                  placeholder="请输入评论内容" rows="2"></textarea>
+                                </div>
+                            </div>
+                            <div class="layui-hide">
+                                <div class="layui-input-block">
+                                    <input class="layui-input" id="blog_comment_email" lay-verify="title"
+                                           name="blog_comment_email"
+                                           th:value="${session.user.user_email}" type="email">
+                                </div>
+                            </div>
+                            <div class="layui-hide">
+                                <div class="layui-input-block">
+                                    <input class="layui-input" id="blog_id" lay-verify="title"
+                                           name="blog_id"
+                                           th:value="${BlogInfo.blog_id}" type="text">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button type="submit">发布</button>
+                                    <button type="reset">重置</button>
+                                </div>
+                            </div>
+                        </form>
+                        </tr>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    </div>
+
+
+</section>
+<!-- Blog Page Area End -->
+
+
+<!-- 底部菜单项开始 -->
+<footer class="jobguru-footer-area" th:replace="head::myunder">
+</footer>
+<!-- 底部菜单项结束 -->
+
+
+<script src="/layui/layui.js"></script>
+
+<script src="/js/jquery-3.0.0.min.js"></script>
+<!--Popper js-->
+<script src="/js/popper.min.js"></script>
+<!--Bootstrap js-->
+<script src="/js/bootstrap.min.js"></script>
+<!--Bootstrap Datepicker js-->
+<script src="/js/bootstrap-datepicker.min.js"></script>
+<!--Perfect Scrollbar js-->
+<script src="/js/jquery-perfect-scrollbar.min.js"></script>
+<!--Owl-Carousel js-->
+<script src="/js/owl.carousel.min.js"></script>
+<!--SlickNav js-->
+<script src="/js/jquery.slicknav.min.js"></script>
+<!--Magnific js-->
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<!--Select2 js-->
+<script src="/js/select2.min.js"></script>
+<!--jquery-ui js-->
+<script src="/js/jquery-ui.min.js"></script>
+<!--Custom-Scrollbar js-->
+<script src="/js/custom-scrollbar.js"></script>
+<!--Main js-->
+<script src="/js/main.js"></script>
+</body>
+</html>
+

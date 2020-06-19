@@ -537,6 +537,111 @@ public class UserController {
 
     @GetMapping("/report1/{company_industry}")
     public String report1(@PathVariable("company_industry") String company_industry,Model model){
+        if(!company_industry.equals("")) {
+        int ed1 = recruitmentMapper.ed1();
+        model.addAttribute("ed1", ed1);
+        int ed2 = recruitmentMapper.ed2();
+        model.addAttribute("ed2", ed2);
+        int ed3 = recruitmentMapper.ed3();
+        model.addAttribute("ed3", ed3);
+        int ed4 = recruitmentMapper.ed4();
+        model.addAttribute("ed4", ed4);
+        int ed5 = recruitmentMapper.ed5();
+        model.addAttribute("ed5", ed5);
+        int ed6 = recruitmentMapper.ed6();
+        model.addAttribute("ed6", ed6);
+
+
+        int aed1 = recruitmentMapper.aed1();
+        model.addAttribute("aed1", aed1);
+        int aed2 = recruitmentMapper.aed2();
+        model.addAttribute("aed2", aed2);
+        int aed3 = recruitmentMapper.aed3();
+        model.addAttribute("aed3", aed3);
+        int aed4 = recruitmentMapper.aed4();
+        model.addAttribute("aed4", aed4);
+        int aed5 = recruitmentMapper.aed5();
+        model.addAttribute("aed5", aed5);
+        int aed6 = recruitmentMapper.aed6();
+        model.addAttribute("aed6", aed6);
+
+
+        int bed1 = recruitmentMapper.bed1();
+        model.addAttribute("bed1", bed1);
+        int bed2 = recruitmentMapper.bed2();
+        model.addAttribute("bed2", bed2);
+        int bed3 = recruitmentMapper.bed3();
+        model.addAttribute("bed3", bed3);
+        int bed4 = recruitmentMapper.bed4();
+        model.addAttribute("bed4", bed4);
+        int bed5 = recruitmentMapper.bed5();
+        model.addAttribute("bde5", bed5);
+        int bed6 = recruitmentMapper.bed6();
+        model.addAttribute("bed6", bed6);
+
+
+        int ced1 = recruitmentMapper.ced1();
+        model.addAttribute("ced1", ced1);
+        int ced2 = recruitmentMapper.ced2();
+        model.addAttribute("ced2", ced2);
+        int ced3 = recruitmentMapper.ced3();
+        model.addAttribute("ced3", ced3);
+        int ced4 = recruitmentMapper.ced4();
+        model.addAttribute("ced4", ced4);
+        int ced5 = recruitmentMapper.ced5();
+        model.addAttribute("ced5", ced5);
+        int ced6 = recruitmentMapper.ced6();
+        model.addAttribute("ced6", ced6);
+
+
+        int ded1 = recruitmentMapper.ded1();
+        model.addAttribute("ded1", ded1);
+        int ded2 = recruitmentMapper.ded2();
+        model.addAttribute("ded2", ded2);
+        int ded3 = recruitmentMapper.ded3();
+        model.addAttribute("ded3", ded3);
+        int ded4 = recruitmentMapper.ded4();
+        model.addAttribute("ded4", ded4);
+        int ded5 = recruitmentMapper.ded5();
+        model.addAttribute("ded5", ded5);
+        int ded6 = recruitmentMapper.ded6();
+        model.addAttribute("ded6", ded6);
+
+
+        int eed1 = recruitmentMapper.eed1();
+        model.addAttribute("eed1", eed1);
+        int eed2 = recruitmentMapper.eed2();
+        model.addAttribute("eed2", eed2);
+        int eed3 = recruitmentMapper.eed3();
+        model.addAttribute("eed3", eed3);
+        int eed4 = recruitmentMapper.eed4();
+        model.addAttribute("eed4", eed4);
+        int eed5 = recruitmentMapper.eed5();
+        model.addAttribute("eed5", eed5);
+        int eed6 = recruitmentMapper.eed6();
+        model.addAttribute("eed6", eed6);
+
+        int fed1 = recruitmentMapper.fed1();
+        model.addAttribute("fed1", fed1);
+        int fed2 = recruitmentMapper.ed2();
+        model.addAttribute("fed2", fed2);
+        int fed3 = recruitmentMapper.fed3();
+        model.addAttribute("fed3", fed3);
+        int fed4 = recruitmentMapper.fed4();
+        model.addAttribute("ed4", fed4);
+        int fed5 = recruitmentMapper.fed5();
+        model.addAttribute("fed5", fed5);
+        int fed6 = recruitmentMapper.fed6();
+        model.addAttribute("fed6", fed6);
+
+        List<String> comindu = recruitmentMapper.getindustry(company_industry);
+        model.addAttribute("company_industry", comindu);
+
+        List<String> exper=recruitmentMapper.getexper(company_industry);
+        model.addAttribute("exper",exper);
+
+
+
         List<RecruitmentInfo> lists=recruitmentMapper.industry(company_industry);
         model.addAttribute("lists",lists);
 
@@ -553,6 +658,7 @@ public class UserController {
         List<Integer> Jnum=recruitmentMapper.getjobnumber(company_industry);
         model.addAttribute("Jnum",Jnum);
 
+        }
         return "report1.html";
     }
 

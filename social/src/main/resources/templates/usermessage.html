@@ -71,23 +71,23 @@
                     <div class="row">
                         <div class="col-md-12">
                             <form class="layui-form" method="POST" th:action="@{/user/add}">
-                                <div class="layui-hide">
-                                    <div class="layui-input-block">
+                                    <div class="layui-hide">
+                                        <div class="layui-input-block">
                                         <input class="layui-input" id="user_email" lay-verify="title" name="user_email"
-                                               th:value="${session.user.user_email}" type="email">
+                                                   th:value="${session.user.user_email}" type="email">
+                                        </div>
                                     </div>
-                                </div>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label" for="inputtheme">主题</label>
-                                    <div class="layui-input-block">
+                                        <div class="layui-input-block">
                                         <input class="layui-input" id="theme" lay-verify="title" name="theme"
                                                placeholder="请输入主题" type="text">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="layui-form-item">
+                                    <div class="layui-form-item">
                                     <label class="layui-form-label" for="inputcontent">内容</label>
-                                    <div class="layui-input-block">
-                                        <textarea class="layui-textarea" id="content" lay-verify="title" name="content"
+                                        <div class="layui-input-block">
+                                        <textarea class=""layui-textarea"" id="content" lay-verify="title" name="content"
                                                   placeholder="请输入内容" rows="5"></textarea>
                                     </div>
                                 </div>
