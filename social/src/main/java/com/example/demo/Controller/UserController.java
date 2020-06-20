@@ -3,6 +3,7 @@ package com.example.demo.Controller;
 
 import com.example.demo.Entity.*;
 import com.example.demo.Mapper.*;
+import com.example.demo.Util.FileUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -406,10 +409,25 @@ public class UserController {
      * @return 返回userinformationindex页面，即用户个人信息首页
      */
     @PostMapping("/submit")
-    public String updateUser(UserInfo userInfo) {
+    public String updateUser(UserInfo userInfo,@RequestParam("filepic") MultipartFile file1) {
+
+        //1.保存文件至硬盘
+        String fileName = file1.getOriginalFilename();
+        String filePath = FileUtil.getUpLoadFilePath();
+        fileName = System.currentTimeMillis() + fileName;//保存在磁盘上的文件名称
+
+        try {
+            FileUtil.uploadFile( file1.getBytes(), filePath, fileName );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //2.保存文件到数据库
+        userInfo.setUser_images(fileName);
         int i = userMapper.updateUserByid(userInfo);
         return "redirect:/user/userinformation";
     }
+
+
 
     /**用于user-change-password页面功能，主要用于显示用户修改密码页面
      * @param id id，判断是否修改成功
@@ -741,6 +759,18 @@ public class UserController {
         model.addAttribute("lists",lists);
         return "prcontxt.html";
     }
+
+    @RequestMapping("/advice")
+    public String adviceinfoPage(Model model){
+        List<AdviceInfo> list=userMapper.getart();
+        List<AdviceInfo> list1=userMapper.getresume();
+        List<AdviceInfo> list2=userMapper.getmodel();
+        model.addAttribute("art",list);
+        model.addAttribute("resume",list1);
+        model.addAttribute("model",list2);
+        return "advice";
+    }
+
 
 
 }

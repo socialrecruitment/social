@@ -1,9 +1,6 @@
 package com.example.demo.Mapper;
 
-import com.example.demo.Entity.CollectInfo;
-import com.example.demo.Entity.CompanyInfo;
-import com.example.demo.Entity.MessageInfo;
-import com.example.demo.Entity.UserInfo;
+import com.example.demo.Entity.*;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
@@ -23,8 +20,9 @@ public interface UserMapper {
 
 
     //修改个人信息
-    @Update("UPDATE `social_work`.`user` SET `user_email` = #{user_email}, `user_name` = #{user_name}, `user_phone` =#{user_phone}, `user_sex` = #{user_sex}, `user_birthday` = #{user_birthday}, `user_address` = #{user_address}, `user_education` = #{user_education}, `user_major` =#{user_major}, `user_school` =#{user_school}, `user_expection` =#{user_expection}, `user_experience` = #{user_experience} WHERE (`user_email` = #{user_email});\n")
+    @Update("UPDATE `social_work`.`user` SET `user_email` = #{user_email}, `user_name` = #{user_name}, `user_phone` =#{user_phone}, `user_sex` = #{user_sex}, `user_birthday` = #{user_birthday}, `user_address` = #{user_address}, `user_education` = #{user_education}, `user_major` =#{user_major}, `user_school` =#{user_school}, `user_expection` =#{user_expection}, `user_experience` = #{user_experience}, `user_images` = #{user_images} WHERE (`user_email` = #{user_email});\n")
     Integer updateUserByid(UserInfo userInfo);
+
     //获取登录用户的个人信息
     @Select("SELECT * FROM social_work.user where `user_email` = #{user_email}")
     UserInfo getUserByid(String user_email);
@@ -70,6 +68,17 @@ public interface UserMapper {
 
     @Delete("delete from collect where c_id=#{c_id}")
     Integer dell(Integer c_id);
+
+    //帮助建议页面
+//    得到三张表的所有信息
+    @Select("select * from resume")
+    List<AdviceInfo> getresume();
+    @Select("select * from model")
+    List<AdviceInfo> getmodel();
+    @Select("select * from article")
+    List<AdviceInfo> getart();
+
+
 
 
 }

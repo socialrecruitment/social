@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="jobguru | Job Board HTML Templates from Themescare">
+    <meta name="keyword" content="Job, freelancer, employee, marketplace">
+    <meta name="author" content="Themescare">
+    <!-- Title -->
+    <title>jobguru</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+    <!--Bootstrap css-->
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <!--Font Awesome css-->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <!--Magnific css-->
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+    <!--Owl-Carousel css-->
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+    <!--Animate css-->
+    <link rel="stylesheet" href="/css/animate.min.css">
+    <!--Select2 css-->
+    <link rel="stylesheet" href="/css/select2.min.css">
+    <!--Slicknav css-->
+    <link rel="stylesheet" href="/css/slicknav.min.css">
+    <!--Bootstrap-Datepicker css-->
+    <link rel="stylesheet" href="/css/bootstrap-datepicker.min.css">
+    <!--Jquery UI css-->
+    <link rel="stylesheet" href="/css/jquery-ui.min.css">
+    <!--Perfect-Scrollbar css-->
+    <link rel="stylesheet" href="/css/perfect-scrollbar.min.css">
+    <!--Site Main Style css-->
+    <link rel="stylesheet" href="/css/style.css">
+    <!--Responsive css-->
+    <link rel="stylesheet" href="/css/responsive.css">
+
+    <link rel="stylesheet" href="/layui/css/layui.css">
+</head>
+<body>
+
+<!-- 导航栏菜单开始 -->
+<header class="jobguru-header-area stick-top forsticky" th:replace="head::myMenu">
+</header>
+<!-- 导航栏菜单结束 -->
+<!-- 轮播开始 -->
+<section class="jobguru-banner-area">
+    <div class="layui-carousel" id="test1">
+        <div carousel-item>
+            <div><img src="/img/Q-21.jpg"></div>
+            <div><img src="/img/Q-4.jpg"></div>
+            <div><img src="/img/Q-7.jpg"></div>
+            <div><img src="/img/Q-5.jpg"></div>
+            <div><img src="/img/Q-3.jpg"></div>
+        </div>
+    </div>
+    <!-- 条目中可以是任意内容，如：<img src=""> ·1-->
+
+
+</section>
+<!-- 轮播结束 -->
+
+
+<!-- 帮助类页面开始 -->
+<section class="jobguru-job-tab-area section_70">
+    <form method="post" th:action="@{/user/advice}">
+    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="site-heading">
+                    <h2>面试经验 & <span>简历范文及模板</span></h2>
+                    <p>易析，找工作的好帮手</p>
+                </div>
+            </div>
+        </div>
+        <!-- 此处开始页面进行 -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class=" job-tab">
+                    <ul class="nav nav-pills job-tab-switch" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="pills-companies-tab" data-toggle="pill" href="#pills-companies" role="tab" aria-controls="pills-companies" aria-selected="true">面试经验贴</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-job-tab" data-toggle="pill" href="#pills-job" role="tab" aria-controls="pills-job" aria-selected="false">简历模板</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link model" id="pills-model-tab" data-toggle="pill" href="#pills-model" role="tab" aria-controls="pills-model" aria-selected="false">求职信</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content" id="pills-tabContent">
+                    <!-- 文章页面一 -->
+                    <div class="tab-pane fade show active" id="pills-companies" role="tabpanel" aria-labelledby="pills-companies-tab">
+                        <div class="面试经验贴">
+                            <ul>
+                                <!-- 一部分 -->
+                                <div class="job-sidebar-list-single">
+                                    <tr th:each="AdviceInfo,userStat:${art}">
+                                        <div class="sidebar-list-single" >
+                                            <div class="top-company-list">
+                                                <div class="company-list-logo">
+                                                    <a href="#">
+                                                        <img src="/img/qing-1.png" alt="company list 1">
+                                                    </a>
+                                                </div>
+                                                <div class="company-list-details">
+                                                    <h3 th:text="${AdviceInfo.art_name}"><a href="${AdviceInfo.art_link}"></a></h3>
+                                                    <div class="layui-row layui-col-space10">
+                                                        <p class="layui-hide" th:text="${AdviceInfo.art_id}"></p>
+                                                        <p class="varify"><i class="fa fa-check"></i>官方认证</p>
+                                                        <p class="layui-col-md4" th:text="${AdviceInfo.writer}"></p>
+                                                    </div>
+                                                </div>
+                                                <a th:href="${AdviceInfo.art_link}" class="layui-btn " lay-submit lay-filter="formDemo">浏览</a>
+                                            </div>
+                                        </div>
+                                    </tr>
+                                </div>
+
+<!--                                    <div class="top-company-list">-->
+<!--                                        <tr th:each="AdviceInfo,userStat:${art}">-->
+<!--                                            <div class="company-list-logo">-->
+<!--                                                <a href="#">-->
+<!--                                                    <img src="/img/company-logo-1.png" alt="company list 1" />-->
+<!--                                                </a>-->
+<!--                                            </div>-->
+<!--                                            <div class="company-list-details">-->
+<!--                                                <h3 th:text="${AdviceInfo.art_name}"><a href="${AdviceInfo.art_link}"></a></h3>-->
+<!--                                                <div class="layui-row layui-col-space10">-->
+<!--                                                    <p class="layui-hide" th:text="${AdviceInfo.art_id}"></p>-->
+<!--                                                    <p class="varify"><i class="fa fa-check"></i>官方认证</p>-->
+<!--                                                    <p class="layui-col-md4" th:text="${AdviceInfo.writer}"></p>-->
+<!--                                                    &lt;!&ndash;                                                <p class="layui-col-md4" th:text=" ${#dates.format(AdviceInfo.adate,'yyyy/MM/dd')}"><i class="fa fa-clock-o"></i></p>&ndash;&gt;&ndash;&gt;-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <a th:href="${AdviceInfo.art_link}" class="layui-btn " lay-submit lay-filter="formDemo">浏览</a>-->
+<!--                                        </tr>-->
+<!--                                    </div>-->
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- 页面二 -->
+                    <div class="tab-pane fade show active" id="pills-job" role="tabpanel" aria-labelledby="pills-job-tab">
+                        <div class="简历模板">
+                            <tr th:each="AdviceInfo,userStat:${resume}">
+                                <ul>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <a th:href="${AdviceInfo.resume_link}" class="single-category-holder account_cat">
+                                                <div class="category-holder-icon">
+                                                    <i class="fa fa-briefcase"></i>
+                                                </div>
+                                                <div class="category-holder-text">
+                                                    <h3 th:text="${AdviceInfo.resume_name}"></h3>
+                                                </div>
+                                                <img src="/img/Q-6.jpg" alt="category" />
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <a th:href="${AdviceInfo.r_link}" class="single-category-holder account_cat">
+                                                <div class="category-holder-icon">
+                                                    <i class="fa fa-briefcase"></i>
+                                                </div>
+                                                <div class="category-holder-text">
+                                                    <h3 th:text="${AdviceInfo.rname}"></h3>
+                                                </div>
+                                                <img src="/img/Q-6.jpg" alt="category" />
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <a th:href="${AdviceInfo.re_link}" class="single-category-holder account_cat">
+                                                <div class="category-holder-icon">
+                                                    <i class="fa fa-briefcase"></i>
+                                                </div>
+                                                <div class="category-holder-text">
+                                                    <h3 th:text="${AdviceInfo.rename}"></h3>
+                                                </div>
+                                                <img src="/img/Q-6.jpg" alt="category" />
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <a th:href="${AdviceInfo.res_link}" class="single-category-holder account_cat">
+                                                <div class="category-holder-icon">
+                                                    <i class="fa fa-briefcase"></i>
+                                                </div>
+                                                <div class="category-holder-text">
+                                                    <h3 th:text="${AdviceInfo.resname}"></h3>
+                                                </div>
+                                                <img src="/img/Q-6.jpg" alt="category" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </tr>
+                        </div>
+                    </div>
+                    <!-- <页面三> -->
+                    <div class="tab-pane fade" id="pills-model" role="tabpanel" aria-labelledby="pills-model-tab">
+                        <div class="求职">
+                            <tr th:each="AdviceInfo,userStat:${model}">
+                            <ul>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <a th:href="${AdviceInfo.model_link}" class="single-category-holder account_cat">
+                                            <div class="category-holder-icon">
+                                                <i class="fa fa-briefcase"></i>
+                                            </div>
+                                            <div class="category-holder-text">
+                                                <h3 th:text="${AdviceInfo.model_name}"></h3>
+                                            </div>
+                                            <img src="/img/Q-1.jpg" alt="category" />
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <a th:href="${AdviceInfo.m_link}" class="single-category-holder account_cat">
+                                            <div class="category-holder-icon">
+                                                <i class="fa fa-briefcase"></i>
+                                            </div>
+                                            <div class="category-holder-text">
+                                                <h3 th:text="${AdviceInfo.mname}"></h3>
+                                            </div>
+                                            <img src="/img/Q-1.jpg" alt="category" />
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <a th:href="${AdviceInfo.mo_link}" class="single-category-holder account_cat">
+                                            <div class="category-holder-icon">
+                                                <i class="fa fa-briefcase"></i>
+                                            </div>
+                                            <div class="category-holder-text">
+                                                <h3 th:text="${AdviceInfo.moname}"></h3>
+                                            </div>
+                                            <img src="/img/Q-1.jpg" alt="category" />
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
+                                        <a th:href="${AdviceInfo.mod_link}" class="single-category-holder account_cat">
+                                            <div class="category-holder-icon">
+                                                <i class="fa fa-briefcase"></i>
+                                            </div>
+                                            <div class="category-holder-text">
+                                                <h3 th:text="${AdviceInfo.modname}"></h3>
+                                            </div>
+                                            <img src="/img/Q-1.jpg" alt="category" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- 帮助类页面结束-->
+
+<!--底部菜单项开始-->
+<footer class="jobguru-footer-area" th:replace="head::myunder">
+</footer>
+<!--底部菜单项结束-->
+<!--layui-->
+<script src="../layui/layui.js"></script>
+<script>
+    layui.use('carousel', function(){
+        var carousel = layui.carousel;
+        //建造实例
+        carousel.render({
+            elem: '#test1'
+            ,width: '100%' //设置容器宽度
+            ,arrow: 'always' //始终显示箭头
+            //,anim: 'updown' //切换动画方式
+        });
+    });
+</script>
+<!--Jquery js-->
+<script src="/js/jquery-3.0.0.min.js"></script>
+<!--Popper js-->
+<script src="/js/popper.min.js"></script>
+<!--Bootstrap js-->
+<script src="/js/bootstrap.min.js"></script>
+<!--Bootstrap Datepicker js-->
+<script src="/js/bootstrap-datepicker.min.js"></script>
+<!--Perfect Scrollbar js-->
+<script src="/js/jquery-perfect-scrollbar.min.js"></script>
+<!--Owl-Carousel js-->
+<script src="/js/owl.carousel.min.js"></script>
+<!--SlickNav js-->
+<script src="/js/jquery.slicknav.min.js"></script>
+<!--Magnific js-->
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<!--Select2 js-->
+<script src="/js/select2.min.js"></script>
+<!--jquery-ui js-->
+<script src="/js/jquery-ui.min.js"></script>
+<!--Custom-Scrollbar js-->
+<script src="/js/custom-scrollbar.js"></script>
+<!--Main js-->
+<script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="jobguru | Job Board HTML Templates from Themescare">
     <meta name="keyword" content="Job, freelancer, employee, marketplace">
     <meta name="author" content="Themescare">
+    <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8">
     <!-- Title -->
     <title>社会职位变化分析</title>
     <!-- Favicon -->
@@ -66,19 +68,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <tr th:each="UserInfo,userStat:${user}">
                 <div class="submit-resume-box">
                     <div class="resume-box">
                         <h3>个人信息</h3>
-
                         <div class="single-resume-feild feild-flex-2">
                             <div class="single-input">
                                 <label for="user_email" class="layui-form">邮箱:</label>
-                                <div name="user_email" th:text="${UserInfo.user_email}"></div>
+                                <div name="user_email" th:text="${session.user.user_email}"></div>
                             </div>
                             <div class="single-input">
                                 <label for="user_name" class="layui-form">名字:</label>
-                                <div name="user_name" th:text="${UserInfo.user_name}"></div>
+                                <div name="user_name" th:text="${session.user.user_name}"></div>
                             </div>
                         </div>
                         <div class="single-resume-feild feild-flex-2">
@@ -86,24 +86,24 @@
                                 <label for="user_sex" class="layui-form">性别:</label>
                                 <div class="col-sm-10">
                                     <label class="radio-inline">
-                                        <div name="user_sex" th:text="${UserInfo.user_sex}==true?'男':'女'"></div>
+                                        <div name="user_sex" th:text="${session.user.user_sex}==true?'男':'女'"></div>
                                     </label>
                                 </div>
                             </div>
 
                             <div class="single-input">
                                 <label for="user_birthday" class="layui-form">出生日期:</label>
-                               <div name="user_birthday " th:text=" ${#dates.format(UserInfo.user_birthday,'yyyy/MM/dd')}"></div>
+                               <div name="user_birthday " th:text=" ${#dates.format(session.user.user_birthday,'yyyy/MM/dd')}"></div>
                             </div>
                         </div>
                         <div class="single-resume-feild feild-flex-2">
                             <div class="single-input">
                                 <label for="user_phone" class="layui-form">电话:</label>
-                                <div name="user_phone" th:text="${UserInfo.user_phone}" ></div>
+                                <div name="user_phone" th:text="${session.user.user_phone}" ></div>
                             </div>
                             <div class="single-input">
                                 <label for="user_address" class="layui-form">地址:</label>
-                                <div name="user_address" th:text="${UserInfo.user_address}"></div>
+                                <div name="user_address" th:text="${session.user.user_address}"></div>
                             </div>
                         </div>
                     </div>
@@ -113,31 +113,40 @@
 
                             <div class="single-input">
                                 <label for="user_school" class="layui-form">毕业院校:</label>
-                                <div name="user_school" th:text="${UserInfo.user_school}"></div>
+                                <div name="user_school" th:text="${session.user.user_school}"></div>
                             </div>
 
                             <div class="single-input">
                                 <label for="user_major" class="layui-form">专业:</label>
-                                <div name="user_major" th:text="${UserInfo.user_major}"></div>
+                                <div name="user_major" th:text="${session.user.user_major}"></div>
                             </div>
                         </div>
                         <div class="single-resume-feild feild-flex-2">
                             <div class="single-input">
                                 <label for="user_education" class="layui-form">学历:</label>
-                                <div name="user_education" th:text="${UserInfo.user_education}"></div>
+                                <div name="user_education" th:text="${session.user.user_education}"></div>
                             </div>
                             <div class="single-input">
                                 <label for="user_expection" class="layui-form">期望薪资:</label>
-                                <div name="user_expection" th:text="${UserInfo.user_expection}" ></div>
+                                <div name="user_expection" th:text="${session.user.user_expection}" ></div>
                             </div>
                         </div>
                         <div class="single-resume-feild ">
                             <div class="single-input">
                                 <label for="Bio" class="layui-form">工作经验:</label>
-                                <div name="user_experience" th:text="${UserInfo.user_experience}" ></div>
+                                <div name="user_experience" th:text="${session.user.user_experience}" ></div>
                             </div>
                         </div>
                     </div>
+                    <!--文件上传-->
+                    <br class="form-horizontal" method="post" th:action="@{/user/userinformation}" enctype="multipart/form-data">
+                    <div class="single-resume-feild ">
+                        <div class="single-input">
+                            <label for="inputEmail3" class="layui-form">文件:</label>
+                            <img th:src="'http://localhost:8080/images/'+${session.user.user_images}" class="img-thumbnail" width="120px" height="120px" />
+                        </div>
+                    </div>
+
 
                     <div class="layui-form-item">
                         <div class=layui-btn-group>
@@ -148,7 +157,6 @@
 <!--                        <a th:href="@{'submit/'+${session.user.user_email}}" title="编辑简历">编辑简历<i class="fa fa-edit text-navy"></i></a>-->
 <!--                    </div>-->
                 </div>
-                </tr>
             </div>
         </div>
     </div>
