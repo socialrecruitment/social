@@ -8,7 +8,7 @@
     <meta content="Job, freelancer, employee, marketplace" name="keyword">
     <meta content="Themescare" name="author">
     <!-- Title -->
-    <title>jobguru</title>
+    <title>易析职位分析平台</title>
     <!-- Favicon -->
     <!-- Favicon -->
     <link href="/img/favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
@@ -42,12 +42,10 @@
 </head>
 <body>
 
-
 <!-- 导航栏开始 -->
 <header class="jobguru-header-area stick-top forsticky" th:replace="head::myMenu">
 </header>
 <!-- 导航栏结束-->
-
 
 <!-- Blog Page Area Start -->
 <section class="jobguru-blog-page-area section_70">
@@ -110,37 +108,37 @@
 
                     <div class="leave-comment ">
                         <tr th:each="BlogInfo,userStat:${blog}">
-                        <h3>发送评论</h3>
-                        <form method="post" th:action="@{/blog/blogdetail}">
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">评论</label>
-                                <div class="layui-input-block">
+                            <h3>发送评论</h3>
+                            <form method="post" th:action="@{/blog/blogdetail}">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">评论</label>
+                                    <div class="layui-input-block">
                                         <textarea class="layui-textarea" id="comment_text" lay-verify="title"
                                                   name="comment_text"
                                                   placeholder="请输入评论内容" rows="2"></textarea>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="layui-hide">
-                                <div class="layui-input-block">
-                                    <input class="layui-input" id="blog_comment_email" lay-verify="title"
-                                           name="blog_comment_email"
-                                           th:value="${session.user.user_email}" type="email">
+                                <div class="layui-hide">
+                                    <div class="layui-input-block">
+                                        <input class="layui-input" id="blog_comment_email" lay-verify="title"
+                                               name="blog_comment_email"
+                                               th:value="${session.user.user_email}" type="email">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="layui-hide">
-                                <div class="layui-input-block">
-                                    <input class="layui-input" id="blog_id" lay-verify="title"
-                                           name="blog_id"
-                                           th:value="${BlogInfo.blog_id}" type="text">
+                                <div class="layui-hide">
+                                    <div class="layui-input-block">
+                                        <input class="layui-input" id="blog_id" lay-verify="title"
+                                               name="blog_id"
+                                               th:value="${BlogInfo.blog_id}" type="text">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="layui-form-item">
-                                <div class="layui-input-block">
-                                    <button type="submit">发布</button>
-                                    <button type="reset">重置</button>
+                                <div class="layui-form-item">
+                                    <div class="layui-input-block">
+                                        <button type="submit">发布</button>
+                                        <button type="reset">重置</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
                         </tr>
                     </div>
                 </div>
@@ -149,9 +147,6 @@
 
         </div>
     </div>
-    </div>
-
-
 </section>
 <!-- Blog Page Area End -->
 
@@ -160,7 +155,7 @@
 <footer class="jobguru-footer-area" th:replace="head::myunder">
 </footer>
 <!-- 底部菜单项结束 -->
-
+</body>
 
 <script src="/layui/layui.js"></script>
 
@@ -187,6 +182,6 @@
 <script src="/js/custom-scrollbar.js"></script>
 <!--Main js-->
 <script src="/js/main.js"></script>
-</body>
+
 </html>
 

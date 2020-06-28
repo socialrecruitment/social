@@ -8,7 +8,7 @@
     <meta name="keyword" content="Job, freelancer, employee, marketplace">
     <meta name="author" content="Themescare">
     <!-- Title -->
-    <title>jobguru</title>
+    <title>易析职位分析平台</title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
     <!--Bootstrap css-->
@@ -48,6 +48,41 @@
 <!--报告分析开始-->
 <section class="jobguru-categories-area section_70">
     <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="widget_card_page grid_flex widget_bg_blue">
+                    <div class="widget-icon">
+                        <i class="fa fa-gavel"></i>
+                    </div>
+                    <div class="widget-page-text">
+                        <h4>[[${count1}]]</h4>
+                        <h2>职位总数</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="widget_card_page grid_flex  widget_bg_purple">
+                    <div class="widget-icon">
+                        <i class="fa fa-usd"></i>
+                    </div>
+                    <div class="widget-page-text">
+                        <h4>[[${count2}]]</h4>
+                        <h2>公司总数</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="widget_card_page grid_flex widget_bg_dark_red">
+                    <div class="widget-icon">
+                        <i class="fa fa-users"></i>
+                    </div>
+                    <div class="widget-page-text">
+                        <h4>[[${count3}]]</h4>
+                        <h2>注册用户</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="site-heading">
@@ -571,7 +606,7 @@
 <footer class="jobguru-footer-area" th:replace="head::myunder">
 </footer>
 <!-- 底部菜单结束 -->
-
+</body>
 <!--Jquery js-->
 <script src="/js/jquery-3.0.0.min.js"></script>
 <!--Popper js-->
@@ -594,6 +629,6 @@
 <script src="/js/jquery-ui.min.js"></script>
 <!--Main js-->
 <script src="/js/main.js"></script>
-</body>
+
 </html>
 

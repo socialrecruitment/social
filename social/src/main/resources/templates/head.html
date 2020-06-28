@@ -13,8 +13,8 @@
                 <div class="col-lg-2">
                     <div class="site-logo">
                         <a href="index.html">
-                            <img src="/img/logo.png" alt="jobguru" class="non-stick-logo" />
-                            <img src="/img/logo-2.png" alt="jobguru" class="stick-logo" />
+                            <img alt="jobguru" class="non-stick-logo" src="/img/logo.png"/>
+                            <img alt="jobguru" class="stick-logo" src="/img/logo-2.png"/>
                         </a>
                     </div>
                     <div class="jobguru-responsive-menu"></div>
@@ -35,7 +35,7 @@
                                     <a href="#">我要求职</a>
                                     <ul>
                                         <li><a href="/user/joblist">公司列表</a></li>
-                                        <li ><a href="/user/test">地区分布</a></li>
+                                        <li><a href="/user/test">地区分布</a></li>
                                         <li><a href="/user/randlist">随机推送</a></li>
                                         <li class="has-inner-child">
                                         <li><a href="/blog/blog">讨论区</a></li>
@@ -57,7 +57,8 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <img th:src="'http://localhost:8080/images/'+${session.user.user_images}" class="img-circle" alt="logo" width="30px" height="30px" >
+                                    <img alt="logo"
+                                         class="img-circle" height="30px" th:src="'http://localhost:8080/images/'+${session.user.user_images}" width="30px">
                                 </li>
                                 <li class="has-children">
                                     <div th:text="${session.user.user_name}"></div>
@@ -74,7 +75,7 @@
                 <div class="col-lg-4">
                     <div class="header-right-menu">
                         <ul>
-                            <li><a href="/user/postjob" class="post-jobs">发布工作</a></li>
+                            <li><a class="post-jobs" href="/user/postjob">发布工作</a></li>
                             <li><a href="/user/register"><i class="fa fa-user"></i>注册</a></li>
                             <li><a href="/user/login"><i class="fa fa-lock"></i>登录</a></li>
                         </ul>
@@ -90,7 +91,7 @@
     <div class="footer-top section_50">
         <div class="container">
             <div class="row">
-                <div >
+                <div>
                     <div class="single-footer-widget footer-contact">
                         <h3>联系我们</h3>
                         <p><i class="fa fa-map-marker"></i> 湖北省，武汉市，洪山区
@@ -107,7 +108,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="copyright-left">
-                        <p>Copyright &copy; 2019 blogroll <a href="https://www.zhipin.com/?sid=sem_pz_360pc_title" >Reserved</a></p>
+                        <p>Copyright &copy; 2019 blogroll <a href="https://www.zhipin.com/?sid=sem_pz_360pc_title">Reserved</a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -121,10 +123,10 @@
         <ul class="dashboard-menu">
 
             <li><a href="/user/joblist"><i class="fa fa-envelope-open"></i>公司列表</a></li>
-            <li ><a href="/user/test"><i class="fa fa-lock"></i>地区分布</a></li>
-            <li ><a href="/user/randlist"><i class="fa fa-lock"></i>随机推送</a></li>
-            <li ><a href="/blog/add"><i class="fa fa-lock"></i>我要发帖</a></li>
-            <li ><a href="/blog/blog"><i class="fa fa-lock"></i>我要看帖</a></li>
+            <li><a href="/user/test"><i class="fa fa-lock"></i>地区分布</a></li>
+            <li><a href="/user/randlist"><i class="fa fa-lock"></i>随机推送</a></li>
+            <li><a href="/blog/add"><i class="fa fa-lock"></i>我要发帖</a></li>
+            <li><a href="/blog/blog"><i class="fa fa-lock"></i>我要看帖</a></li>
         </ul>
     </div>
 </div>

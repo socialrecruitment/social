@@ -49,18 +49,6 @@ public interface UserMapper {
     @Select("SELECT * FROM social_work.user where `user_email` = #{user_email}")
     UserInfo getUserByid1(String user_email);
 
-
-    //留言板查看
-    @Select("select * from user u join message m on u.user_email=m.user_email order by posttime desc")
-    List<MessageInfo> getallmessage();
-
-    @Select("select * from user u join message m on u.user_email=m.user_email where message_id=#{message_id};")
-    List<MessageInfo> getmessage(Integer message_id);
-    //留言板添加
-    @Insert(" INSERT INTO `social_work`.`message` (`content`, `message_id`, `user_email`, `posttime`, `theme`)" +
-            " VALUES (#{content}, #{message_id},#{user_email},sysdate(), #{theme});")
-    Integer saveMessage(MessageInfo messageInfo);
-
     @Select( "SELECT company.job_name,company.company_name,company.company_id,company.company_link,company.company_address,company.company_industry,c_id\n" +
             "FROM user join collect join company\n" +
             "on user.user_email=collect.user_email and collect.company_id=company.company_id and user.user_email=#{user_email} ;" )

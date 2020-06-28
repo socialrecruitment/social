@@ -1,45 +1,45 @@
 ﻿<!DOCTYPE html>
 <html lang="en-US" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="description" content="jobguru | Job Board HTML Templates from Themescare">
-   <meta name="keyword" content="Job, freelancer, employee, marketplace">
-   <meta name="author" content="Themescare">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="jobguru | Job Board HTML Templates from Themescare" name="description">
+    <meta content="Job, freelancer, employee, marketplace" name="keyword">
+    <meta content="Themescare" name="author">
 
-   <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8">
-   <!-- Title -->
-   <title>社会职位变化分析</title>
-   <!-- Favicon -->
-   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
-   <!--Bootstrap css-->
-   <link rel="stylesheet" href="/css/bootstrap.css">
-   <!--Font Awesome css-->
-   <link rel="stylesheet" href="/css/font-awesome.min.css">
-   <!--Magnific css-->
-   <link rel="stylesheet" href="/css/magnific-popup.css">
-   <!--Owl-Carousel css-->
-   <link rel="stylesheet" href="/css/owl.carousel.min.css">
-   <link rel="stylesheet" href="/css/owl.theme.default.min.css">
-   <!--Animate css-->
-   <link rel="stylesheet" href="/css/animate.min.css">
-   <!--Select2 css-->
-   <link rel="stylesheet" href="/css/select2.min.css">
-   <!--Slicknav css-->
-   <link rel="stylesheet" href="/css/slicknav.min.css">
-   <!--Bootstrap-Datepicker css-->
-   <link rel="stylesheet" href="/css/bootstrap-datepicker.min.css">
-   <!--Jquery UI css-->
-   <link rel="stylesheet" href="/css/jquery-ui.min.css">
-   <!--Perfect-Scrollbar css-->
-   <link rel="stylesheet" href="/css/perfect-scrollbar.min.css">
-   <!--Site Main Style css-->
-   <link rel="stylesheet" href="/css/style.css">
-   <!--Responsive css-->
-   <link rel="stylesheet" href="/css/responsive.css">
-   <!--layui-->
-   <link rel="stylesheet" href="../layui/css/layui.css">
+    <meta content="multipart/form-data; charset=utf-8" http-equiv="Content-Type">
+    <!-- Title -->
+    <title>易析职位分析平台</title>
+    <!-- Favicon -->
+    <link href="/img/favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+    <!--Bootstrap css-->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <!--Font Awesome css-->
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <!--Magnific css-->
+    <link href="/css/magnific-popup.css" rel="stylesheet">
+    <!--Owl-Carousel css-->
+    <link href="/css/owl.carousel.min.css" rel="stylesheet">
+    <link href="/css/owl.theme.default.min.css" rel="stylesheet">
+    <!--Animate css-->
+    <link href="/css/animate.min.css" rel="stylesheet">
+    <!--Select2 css-->
+    <link href="/css/select2.min.css" rel="stylesheet">
+    <!--Slicknav css-->
+    <link href="/css/slicknav.min.css" rel="stylesheet">
+    <!--Bootstrap-Datepicker css-->
+    <link href="/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <!--Jquery UI css-->
+    <link href="/css/jquery-ui.min.css" rel="stylesheet">
+    <!--Perfect-Scrollbar css-->
+    <link href="/css/perfect-scrollbar.min.css" rel="stylesheet">
+    <!--Site Main Style css-->
+    <link href="/css/style.css" rel="stylesheet">
+    <!--Responsive css-->
+    <link href="/css/responsive.css" rel="stylesheet">
+    <!--layui-->
+    <link href="../layui/css/layui.css" rel="stylesheet">
 </head>
 <body>
 <!-- 导航栏开始-->
@@ -48,117 +48,132 @@
 <!--导航栏结束 -->
 <!-- 投递简历标题开始-->
 <section class="jobguru-breadcromb-area">
-   <div class="breadcromb-top section_100">
-      <div class="container">
-         <div class="row">
-            <div class="col-md-12">
-               <div class="breadcromb-box">
-                  <h3>投递简历</h3>
-               </div>
+    <div class="breadcromb-top section_100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcromb-box">
+                        <h3>投递简历</h3>
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
-   </div>
+        </div>
+    </div>
 </section>
 <!-- 投递简历标题结束 -->
 <!-- 个人信息修改开始 -->
 <section class="jobguru-submit-resume-area section_70">
-   <div class="container">
-      <div class="row">
-         <div class="col-md-12">
-            <div class="submit-resume-box">
-               <form method="POST" th:action="@{/user/submit}" enctype="multipart/form-data">
-                  <div class="resume-box">
-                     <h3>个人信息</h3>
-                     <div class="single-resume-feild feild-flex-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <tr th:each="UserInfo,userStat:${user}">
+                    <div class="submit-resume-box">
+                        <form enctype="multipart/form-data" method="POST" th:action="@{/user/submit}">
+                            <div class="resume-box">
+                                <h3>个人信息</h3>
+                                <div class="single-resume-feild feild-flex-2">
 
-                        <div class="single-input">
-                           <label for="user_email" class="layui-form-label">邮箱:</label>
-                           <input type="text" name="user_email" th:value="${session.user.user_email}" placeholder="邮箱" id="user_email" class="layui-input" autocomplete="off" lay-verify="title">
-                        </div>
+                                    <div class="single-input">
+                                        <label class="layui-form-label" for="user_email">邮箱:</label>
+                                        <input autocomplete="off" class="layui-input" id="user_email"
+                                               lay-verify="title" name="user_email" placeholder="邮箱" th:value="${UserInfo.user_email}"
+                                               type="text">
+                                    </div>
 
-                        <div class="single-input">
-                           <label for="user_name" class="layui-form-label">名字:</label>
-                           <input type="text" name="user_name" th:value="${session.user.user_name}" placeholder="名字" id="user_name" class="layui-input" autocomplete="off" lay-verify="title">
-                        </div>
-                     </div>
-                     <div class="single-resume-feild feild-flex-2">
-                        <div class="single-input">
-                           <label for="user_sex" class="layui-form-label">性别:</label>
-                           <div class="col-sm-10">
-                              <label class="radio-inline">
-                                 <input type="radio" th:checked="${session.user.user_sex}==true?1:0" name="user_sex" id="user_sex1" value="1">男
-                              </label>
-                              <label class="radio-inline">
-                                 <input type="radio" th:checked="${session.user.user_sex}==false?1:0" name="user_sex" id="user_sex2" value="0">女
-                              </label>
-                           </div>
-                        </div>
-                        <div class="single-input">
-                           <label for="user_birthday" class="layui-form-label">出生日期:</label>
-                           <input type="date" name="user_birthday" th:value="${session.user.user_birthday}" placeholder="出生日期" id="user_birthday">
-                        </div>
-                     </div>
-                     <div class="single-resume-feild feild-flex-2">
-                        <div class="single-input">
-                           <label for="user_phone" class="layui-form-label">电话:</label>
-                           <input type="tel" name="user_phone" th:value="${session.user.user_phone}" placeholder="电话" id="user_phone">
-                        </div>
-                        <div class="single-input">
-                           <label for="user_address" class="layui-form-label">地址:</label>
-                           <input type="text" name="user_address" th:value="${session.user.user_address}" id="user_address">
-                        </div>
-                     </div>
-                  </div>
-                  <div class="resume-box">
-                     <h3>专业与技能</h3>
-                     <div class="single-resume-feild feild-flex-2">
-                        <div class="single-input">
-                           <label for="user_school" class="layui-form-label">毕业院校:</label>
-                           <input type="text" name="user_school" th:value="${session.user.user_school}" placeholder="毕业院校" id="user_school">
-                        </div>
-                        <div class="single-input">
-                           <label for="user_major" class="layui-form-label">专业:</label>
-                           <input type="text" name="user_major" th:value="${session.user.user_major}" placeholder="专业" id="user_major">
-                        </div>
-                     </div>
-                     <div class="single-resume-feild feild-flex-2">
-                        <div class="single-input">
-                           <label for="user_education" class="layui-form-label">学历:</label>
-                           <input type="text" name="user_education" th:value="${session.user.user_education}" placeholder="user_education" id="user_education">
-                        </div>
-                        <div class="single-input">
-                           <label for="user_expection" class="layui-form-label">期望薪资:</label>
-                           <input type="text" name="user_expection" th:value="${session.user.user_expection}" placeholder="期望薪资" id="user_expection">
-                        </div>
-                     </div>
-                     <div class="single-resume-feild ">
-                        <div class="single-input">
-                           <label for="Bio" class="layui-form-label">工作经验:</label>
-                           <input type="text" name="user_experience" th:value="${session.user.user_experience}" placeholder="在这里写下工作经验...">
-                        </div>
-                     </div>
-
-                     <!--文件上传-->
-                     <div class="single-resume-feild ">
-                        <div class="single-input">
-                           <label for="inputEmail3" class="layui-form-label">上传文件</label>
-                           <input type="file" id="upfile" name="filepic">
-                        </div>
-                     </div>
-
-
-                  </div>
-                  <div class="layui-form-item">
-                     <div class=layui-btn-group>
-                        <button class="layui-btn" lay-submit lay-filter="formDemo">保存简历<i class="layui-icon">&#xe642;</i></button>
-                     </div>
-                  </div>
-               </form>
+                                    <div class="single-input">
+                                        <label class="layui-form-label" for="user_name">名字:</label>
+                                        <input autocomplete="off" class="layui-input" id="user_name"
+                                               lay-verify="title" name="user_name" placeholder="名字" th:value="${UserInfo.user_name}"
+                                               type="text">
+                                    </div>
+                                </div>
+                                <div class="single-resume-feild feild-flex-2">
+                                    <div class="single-input">
+                                        <label class="layui-form-label" for="user_sex">性别:</label>
+                                        <div class="col-sm-10">
+                                            <label class="radio-inline">
+                                                <input id="user_sex1" name="user_sex"
+                                                       th:checked="${UserInfo.user_sex}==true?1:0" type="radio" value="1">男
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input id="user_sex2" name="user_sex"
+                                                       th:checked="${UserInfo.user_sex}==false?1:0" type="radio" value="0">女
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="single-input">
+                                        <label class="layui-form-label" for="user_birthday">出生日期:</label>
+                                        <input id="user_birthday" name="user_birthday"
+                                               placeholder="出生日期"
+                                               th:value="${#dates.format(UserInfo.user_birthday,'yyyy/MM/dd')}" type="date">
+                                    </div>
+                                </div>
+                                <div class="single-resume-feild feild-flex-2">
+                                    <div class="single-input">
+                                        <label class="layui-form-label" for="user_phone">电话:</label>
+                                        <input id="user_phone" name="user_phone" placeholder="电话"
+                                               th:value="${UserInfo.user_phone}" type="tel">
+                                    </div>
+                                    <div class="single-input">
+                                        <label class="layui-form-label" for="user_address">地址:</label>
+                                        <input id="user_address" name="user_address" th:value="${UserInfo.user_address}"
+                                               type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="resume-box">
+                                <h3>专业与技能</h3>
+                                <div class="single-resume-feild feild-flex-2">
+                                    <div class="single-input">
+                                        <label class="layui-form-label" for="user_school">毕业院校:</label>
+                                        <input id="user_school" name="user_school" placeholder="毕业院校"
+                                               th:value="${UserInfo.user_school}" type="text">
+                                    </div>
+                                    <div class="single-input">
+                                        <label class="layui-form-label" for="user_major">专业:</label>
+                                        <input id="user_major" name="user_major" placeholder="专业"
+                                               th:value="${UserInfo.user_major}" type="text">
+                                    </div>
+                                </div>
+                                <div class="single-resume-feild feild-flex-2">
+                                    <div class="single-input">
+                                        <label class="layui-form-label" for="user_education">学历:</label>
+                                        <input id="user_education" name="user_education" placeholder="学历"
+                                               th:value="${UserInfo.user_education}" type="text">
+                                    </div>
+                                    <div class="single-input">
+                                        <label class="layui-form-label" for="user_expection">期望薪资:</label>
+                                        <input id="user_expection" name="user_expection" placeholder="期望薪资"
+                                               th:value="${UserInfo.user_expection}" type="text">
+                                    </div>
+                                </div>
+                                <div class="single-resume-feild ">
+                                    <div class="single-input">
+                                        <label class="layui-form-label" for="user_experience">工作经验:</label>
+                                        <input name="user_experience" placeholder="在这里写下工作经验..." th:value="${UserInfo.user_experience}"
+                                               type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--文件上传-->
+                            <div class="single-resume-feild ">
+                                <div class="single-input">
+                                    <label class="layui-form-label" for="inputEmail3">上传文件</label>
+                                    <input id="upfile" name="filepic" type="file">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class=layui-btn-group>
+                                    <button class="layui-btn" type="submit">保存简历<i class="layui-icon">&#xe642;</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </tr>
             </div>
-         </div>
-      </div>
-   </div>
+        </div>
+    </div>
 </section>
 <!-- 个人信息修改结束 -->
 
@@ -166,8 +181,9 @@
 <footer class="jobguru-footer-area" th:replace="head::myunder">
 </footer>
 <!-- 底部菜单项结束 -->
+</body>
 <!--layui-->
-<script src="../layui/layui.js"></script>
+<script src="/layui/layui.js"></script>
 
 <!--Jquery js-->
 <script src="/js/jquery-3.0.0.min.js"></script>
@@ -193,25 +209,25 @@
 <script src="/js/custom-scrollbar.js"></script>
 <!--Main js-->
 <script src="/js/main.js"></script>
-</body>
-</html>
 <!--文件上传-->
 <script language="JavaScript">
-   $('#upfile').change(function () {
-      //获取input file文件数组
-      //默认只能选一个，但是存放形式仍然是数组，所以取第一个元素的下标为0
-      var file1=$('#upfile').gte(0).files[0];
-      //创建用来读取此文件的对象
-      var reader=new FileReader();
-      //使用该对象读取File文件
-      reader.readAsDataURL(file1);
-      //读取此对象成功后执行的方法函数
-      reader.onload=function (ev) {
-         //读取成功后返回第一个参数ev，整个的一个进度事件
-         console.log(ev);
-         $('#imgshow').get(0).src=ev.target.result;
-      }
-   })
+    $('#upfile').change(function () {
+        //获取input file文件数组
+        //默认只能选一个，但是存放形式仍然是数组，所以取第一个元素的下标为0
+        var file1 = $('#upfile').gte(0).files[0];
+        //创建用来读取此文件的对象
+        var reader = new FileReader();
+        //使用该对象读取File文件
+        reader.readAsDataURL(file1);
+        //读取此对象成功后执行的方法函数
+        reader.onload = function (ev) {
+            //读取成功后返回第一个参数ev，整个的一个进度事件
+            console.log(ev);
+            $('#imgshow').get(0).src = ev.target.result;
+        }
+    })
 </script>
+</html>
+
 
 

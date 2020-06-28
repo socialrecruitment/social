@@ -1,7 +1,6 @@
 package com.example.demo.Mapper;
 
 import com.example.demo.Entity.CompanyInfo;
-import com.example.demo.Entity.MessageInfo;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,8 @@
 package com.example.demo.Mapper;
 
+import com.example.demo.Entity.CompanyInfo;
 import com.example.demo.Entity.RecruitmentInfo;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -415,6 +417,19 @@ public interface RecruitmentMapper {
     @Select("select count(job_id) from recruitment where job_experience in ('10年以上经验') and education_required ='博士'")
     Integer fed6();
 
+
+    @Insert("INSERT INTO `social_work`.`recruitment` (`job_name`, `job_experience`, `education_required`, `job_information`,`salary`, `recruiting_numbers`, `postdate`, `welfare`,`company_id`)" +
+            "VALUES (#{job_name},#{job_experience},#{education_required},#{job_information},#{salary},#{recruiting_numbers},sysdate(),#{welfare},#{company_id});")
+    Integer saveRec(RecruitmentInfo recruitmentInfo);
+
+    @Select("SELECT count(job_id) FROM social_work.recruitment")
+    Integer count1();
+
+    @Select("select count(company_id) from company")
+    Integer count2();
+
+    @Select("select count(user_email) from user")
+    Integer count3();
 
 
 
